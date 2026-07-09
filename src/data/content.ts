@@ -17,6 +17,8 @@ export interface Education {
   period: string
   gpa?: string
   coursework?: string[]
+  /** Logo image URL (e.g. Clearbit). Falls back to monogram if missing/broken. */
+  logo?: string
 }
 
 export type ExperienceCategory = 'research' | 'industry'
@@ -28,6 +30,8 @@ export interface Experience {
   period: string
   category: ExperienceCategory
   highlights: string[]
+  /** Logo image URL (e.g. Clearbit). Falls back to monogram if missing/broken. */
+  logo?: string
 }
 
 export interface Project {
@@ -50,6 +54,10 @@ export interface Achievement {
   id: string
   title: string
   detail?: string
+  /** Logo image URL (e.g. Clearbit). Falls back to monogram if missing/broken. */
+  logo?: string
+  /** Organization name used for monogram fallback when logo is set. */
+  organization?: string
 }
 
 export interface SiteContent {
@@ -114,6 +122,7 @@ export const content: SiteContent = {
       location: 'University Park, PA',
       period: 'Expected May 2027',
       gpa: '3.8',
+      logo: '/logos/psu.png',
       coursework: [
         'Algorithm Analysis',
         'Computer Architecture',
@@ -139,6 +148,7 @@ export const content: SiteContent = {
       organization: 'Penn State NLP Group',
       period: 'Apr 2026 – Present',
       category: 'research',
+      logo: '/logos/psu.png',
       highlights: [
         'Designing RL-based agent behaviors for urban disaster simulations — reward functions for evacuation, information seeking, and resource allocation under uncertainty.',
         'Integrating real-world urban data, behavioral priors, and psychological theory into interpretable agent simulations.',
@@ -150,6 +160,7 @@ export const content: SiteContent = {
       organization: 'Pennsylvania State University',
       period: 'Sep 2025 – Present',
       category: 'research',
+      logo: '/logos/psu.png',
       highlights: [
         'Mentoring students in secure coding practices.',
         'Secure Code Generation (arXiv): benchmarked DeepSeek and CodeLlama on 4,000 C/C++ prompts; RAG remediation pipeline reduced failures by 20% (compilation), 35% (security), and 55% (semantic).',
@@ -183,6 +194,7 @@ export const content: SiteContent = {
       organization: 'Lumel Technologies',
       period: 'Mar 2025 – Jun 2025',
       category: 'industry',
+      logo: '/logos/lumel.svg',
       highlights: [
         'Built an LLM-powered RAG system in TypeScript automating formula creation in Inforiver Matrix (−70% manual effort).',
         'Shipped a real-time collaborative JSON editor (React, Node.js, WebSockets) supporting 30+ concurrent users.',
@@ -195,6 +207,7 @@ export const content: SiteContent = {
       organization: 'Phosphene AI',
       period: 'May 2024 – Jul 2024',
       category: 'industry',
+      logo: '/logos/phosphene.png',
       highlights: [
         'Led a 5-member team building deepfake detection in PyTorch (91% accuracy, 5s inference).',
         'MINTIME multi-identity detection; DeepFaceLab deepfakes (PSNR 34.5 dB); augmentation pipeline (+22% F1).',
@@ -206,6 +219,7 @@ export const content: SiteContent = {
       organization: 'Culvii',
       period: 'Feb 2024 – May 2024',
       category: 'industry',
+      logo: '/logos/culvii.svg',
       highlights: [
         'Built a student management portal with Next.js and Node.js.',
         'Integrated GPT-based assistants into a gamified learning platform.',
@@ -217,6 +231,7 @@ export const content: SiteContent = {
       organization: 'Optisol Business Solutions',
       period: 'May 2023 – Jan 2024',
       category: 'industry',
+      logo: '/logos/optisol.png',
       highlights: [
         'UI image generation app (React + Stable Diffusion + FastAPI) with fine-tuned diffusion models under 5s generation.',
         'GPT-4 resolution app; YOLOv8 soot detection (98% accuracy @ 25 FPS) on Jetson Nano.',
@@ -312,11 +327,15 @@ export const content: SiteContent = {
       id: 'encryptcon',
       title: 'Winner, Encryptcon Shaastra Hackathon',
       detail: 'IIT Madras + Temenos',
+      organization: 'IIT Madras',
+      logo: '/logos/iitm.ico',
     },
     {
       id: 'soft-computing',
       title: 'Gold + Elite Top 2%',
       detail: 'Intro to Soft Computing — IIT Kharagpur',
+      organization: 'IIT Kharagpur',
+      logo: '/logos/iitkgp.png',
     },
     {
       id: 'accel-ai',
@@ -327,6 +346,8 @@ export const content: SiteContent = {
       id: 'trinity',
       title: 'Trinity College London Electronic Keyboard Grade 6',
       detail: 'Distinction',
+      organization: 'Trinity College London',
+      logo: '/logos/trinity.svg',
     },
     {
       id: 'invente',

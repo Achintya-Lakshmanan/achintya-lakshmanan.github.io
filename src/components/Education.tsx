@@ -1,4 +1,5 @@
 import { content } from '../data/content'
+import { OrgLogo } from './OrgLogo'
 import { Reveal } from './Reveal'
 import { Section } from './Section'
 
@@ -14,14 +15,22 @@ export function Education() {
           <Reveal key={edu.id} delay={i * 0.1} as="li">
             <article className="rounded-2xl border border-white/5 bg-surface-raised/60 p-6 transition-all duration-300 hover:border-accent/30 hover:shadow-glow-sm sm:p-7">
               <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <h3 className="font-display text-xl font-semibold text-ink">
-                    {edu.degree}
-                  </h3>
-                  <p className="mt-1 text-sm text-accent-bright">
-                    {edu.institution}
-                    <span className="text-ink-dim"> · {edu.location}</span>
-                  </p>
+                <div className="flex min-w-0 flex-1 items-start gap-3.5">
+                  <OrgLogo
+                    name={edu.institution}
+                    src={edu.logo}
+                    size={48}
+                    className="mt-0.5"
+                  />
+                  <div className="min-w-0">
+                    <h3 className="font-display text-xl font-semibold text-ink">
+                      {edu.degree}
+                    </h3>
+                    <p className="mt-1 text-sm text-accent-bright">
+                      {edu.institution}
+                      <span className="text-ink-dim"> · {edu.location}</span>
+                    </p>
+                  </div>
                 </div>
                 <div className="text-right text-sm text-ink-dim">
                   <time className="block">{edu.period}</time>

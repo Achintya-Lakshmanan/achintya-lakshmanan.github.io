@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { content, type ExperienceCategory } from '../data/content'
+import { OrgLogo } from './OrgLogo'
 import { Reveal } from './Reveal'
 import { Section } from './Section'
 
@@ -85,16 +86,24 @@ export function Experience() {
                   </div>
 
                   <div className="flex-1 rounded-2xl border border-white/5 bg-surface-raised/60 p-5 transition-all duration-300 hover:border-accent/30 hover:bg-surface-raised hover:shadow-glow-sm sm:p-6">
-                    <div className="flex flex-wrap items-start justify-between gap-2">
-                      <div>
-                        <h3 className="font-display text-lg font-semibold text-ink">
-                          {item.title}
-                        </h3>
-                        <p className="mt-0.5 text-sm text-accent-bright">
-                          {item.organization}
-                        </p>
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div className="flex min-w-0 flex-1 items-start gap-3.5">
+                        <OrgLogo
+                          name={item.organization}
+                          src={item.logo}
+                          size={44}
+                          className="mt-0.5"
+                        />
+                        <div className="min-w-0">
+                          <h3 className="font-display text-lg font-semibold text-ink">
+                            {item.title}
+                          </h3>
+                          <p className="mt-0.5 text-sm text-accent-bright">
+                            {item.organization}
+                          </p>
+                        </div>
                       </div>
-                      <div className="flex flex-wrap items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
                         <span className="rounded-md bg-white/5 px-2 py-0.5 text-xs font-medium uppercase tracking-wide text-ink-dim">
                           {item.category}
                         </span>

@@ -1,4 +1,5 @@
 import { content } from '../data/content'
+import { OrgLogo } from './OrgLogo'
 import { Reveal } from './Reveal'
 import { Section } from './Section'
 
@@ -13,7 +14,13 @@ export function Achievements() {
         {content.achievements.map((a, i) => (
           <Reveal key={a.id} delay={Math.min(i * 0.06, 0.3)} as="li">
             <div className="group h-full rounded-2xl border border-white/5 bg-surface-raised/60 p-5 transition-all duration-300 hover:border-accent/30 hover:shadow-glow-sm">
-              <div className="mb-3 h-1 w-8 rounded-full bg-accent-gradient opacity-70 transition-all duration-300 group-hover:w-12 group-hover:opacity-100" />
+              {a.logo && a.organization ? (
+                <div className="mb-3">
+                  <OrgLogo name={a.organization} src={a.logo} size={36} />
+                </div>
+              ) : (
+                <div className="mb-3 h-1 w-8 rounded-full bg-accent-gradient opacity-70 transition-all duration-300 group-hover:w-12 group-hover:opacity-100" />
+              )}
               <h3 className="font-display text-base font-semibold text-ink">
                 {a.title}
               </h3>
