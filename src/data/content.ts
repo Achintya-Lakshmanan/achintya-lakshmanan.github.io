@@ -67,6 +67,8 @@ export interface SiteContent {
   taglineRoles: string[]
   bio: string
   location: string
+  /** Profile photo path under /public (e.g. /me.jpg). Optional. */
+  photo?: string
   socials: SocialLink[]
   nav: NavItem[]
   education: Education[]
@@ -81,6 +83,7 @@ export const content: SiteContent = {
   shortName: 'Achintya',
   email: 'aql6062@psu.edu',
   location: 'University Park, PA',
+  photo: '/me.jpg',
   taglineRoles: [
     'LLM + RL Researcher',
     'ML Engineer',
