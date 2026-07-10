@@ -7,6 +7,7 @@ export function Achievements() {
   return (
     <Section
       id="achievements"
+      wash
       title="Achievements"
       subtitle="Competitions, certifications, and leadership."
     >

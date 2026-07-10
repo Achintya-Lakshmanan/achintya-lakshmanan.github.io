@@ -136,7 +136,7 @@ export function Hero() {
           >
             <a
               href="#projects"
-              className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl bg-accent-gradient px-6 py-3 text-sm font-semibold text-white shadow-glow transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+              className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl bg-accent-gradient px-6 py-3 text-sm font-semibold text-surface shadow-glow transition-transform duration-200 hover:scale-[1.02] hover:shadow-glow-cyan active:scale-[0.98]"
             >
               View Projects
             </a>
@@ -149,7 +149,7 @@ export function Hero() {
                   href={s.href}
                   target={s.icon === 'email' ? undefined : '_blank'}
                   rel={s.icon === 'email' ? undefined : 'noopener noreferrer'}
-                  className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-medium text-ink-muted backdrop-blur-sm transition-all duration-200 hover:border-accent/40 hover:bg-accent/10 hover:text-ink hover:shadow-glow-sm"
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm font-medium text-ink-muted backdrop-blur-sm transition-all duration-200 hover:border-accent-cyan/35 hover:bg-accent-cyan/10 hover:text-ink hover:shadow-glow-sm"
                   aria-label={s.label}
                 >
                   <Icon className="h-4 w-4" />

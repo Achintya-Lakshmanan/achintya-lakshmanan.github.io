@@ -26,4 +26,67 @@
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-accent-cyan;
   }
+
+  /* Thin accent scrollbar (WebKit) */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #07090f;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #2dd4bf, #7c6af0);
+    border-radius: 999px;
+    border: 2px solid #07090f;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #5eead4, #7c6af0);
+  }
+
+  /* Numbered section eyebrows via CSS counters (Hero #top skipped) */
+  main {
+    counter-reset: section;
+  }
+
+  main > section:not(#top) {
+    counter-increment: section;
+  }
+}
+
+@layer components {
+  .section-eyebrow::before {
+    content: counter(section, decimal-leading-zero);
+    @apply mb-3 block font-sans text-xs font-semibold uppercase tracking-[0.2em] text-accent-cyan/70;
+  }
+
+  .section-underline {
+    @apply mt-3 block h-1 w-20 rounded-full;
+    background: linear-gradient(
+      90deg,
+      #2dd4bf 0%,
+      #22d3ee 55%,
+      transparent 100%
+    );
+  }
+
+  .atm-grid {
+    background-image:
+      linear-gradient(rgba(232, 238, 248, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232, 238, 248, 0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .section-wash {
+    background: linear-gradient(
+      180deg,
+      rgba(45, 212, 191, 0.03) 0%,
+      transparent 40%,
+      transparent 60%,
+      rgba(124, 106, 240, 0.025) 100%
+    );
+  }
 }

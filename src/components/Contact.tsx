@@ -7,6 +7,7 @@ export function Contact() {
   return (
     <Section
       id="contact"
+      wash
       title="Contact"
       subtitle="Open to research collaborations, internships, and interesting problems."
     >
@@ -18,7 +19,7 @@ export function Contact() {
           </p>
           <a
             href={`mailto:${content.email}`}
-            className="mt-8 inline-flex items-center justify-center rounded-xl bg-accent-gradient px-8 py-3.5 text-sm font-semibold text-white shadow-glow transition-transform duration-200 hover:scale-[1.02] active:scale-[0.98]"
+            className="mt-8 inline-flex items-center justify-center rounded-xl bg-accent-gradient px-8 py-3.5 text-sm font-semibold text-surface shadow-glow transition-transform duration-200 hover:scale-[1.02] hover:shadow-glow-cyan active:scale-[0.98]"
           >
             {content.email}
           </a>

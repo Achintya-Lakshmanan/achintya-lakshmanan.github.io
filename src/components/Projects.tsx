@@ -6,6 +6,7 @@ export function Projects() {
   return (
     <Section
       id="projects"
+      wash
       title="Projects"
       subtitle="Selected work in agents, multi-agent RAG, inference-time search, vision, and applied ML."
     >
@@ -13,12 +14,17 @@ export function Projects() {
         {content.projects.map((project, i) => (
           <Reveal key={project.id} delay={Math.min(i * 0.08, 0.32)}>
             <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-surface-raised/70 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-glow">
-              {/* Glow border accent on hover */}
+              {/* Top-edge glow line on hover */}
+              <div
+                className="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gradient-to-r from-transparent via-accent-cyan to-accent-violet opacity-0 transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-100"
+                aria-hidden
+              />
+              {/* Soft wash on hover */}
               <div
                 className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 style={{
                   background:
-                    'linear-gradient(135deg, rgba(139,92,246,0.12), transparent 50%, rgba(34,211,238,0.08))',
+                    'linear-gradient(135deg, rgba(45,212,191,0.08), transparent 50%, rgba(124,106,240,0.06))',
                 }}
                 aria-hidden
               />

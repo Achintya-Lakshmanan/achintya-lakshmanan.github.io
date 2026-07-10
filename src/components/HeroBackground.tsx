@@ -32,8 +32,8 @@ export function HeroBackground() {
         className="absolute inset-0 opacity-[0.07]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(139, 92, 246, 0.5) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(139, 92, 246, 0.5) 1px, transparent 1px)
+            linear-gradient(rgba(45, 212, 191, 0.35) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(45, 212, 191, 0.35) 1px, transparent 1px)
           `,
           backgroundSize: '64px 64px',
           maskImage:
@@ -48,7 +48,7 @@ export function HeroBackground() {
         dots.map((d) => (
           <motion.span
             key={d.id}
-            className="absolute rounded-full bg-accent-bright/40"
+            className="absolute rounded-full bg-accent-cyan/50"
             style={{
               left: d.left,
               top: d.top,

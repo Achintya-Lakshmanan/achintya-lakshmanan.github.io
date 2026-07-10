@@ -98,11 +98,11 @@ export function Experience() {
       <div className="relative">
         {/* Timeline line — aligned to the dot column */}
         <div
-          className="absolute left-[7.25rem] top-2 bottom-2 hidden w-px bg-gradient-to-b from-accent via-accent/40 to-transparent sm:left-[8.75rem] md:block"
+          className="absolute left-[7.25rem] top-2 bottom-2 hidden w-px bg-gradient-to-b from-accent-cyan via-accent-violet/50 to-transparent sm:left-[8.75rem] md:block"
           aria-hidden
         />
         <div
-          className="absolute left-[11px] top-2 bottom-2 w-px bg-gradient-to-b from-accent via-accent/40 to-transparent md:hidden sm:left-[15px]"
+          className="absolute left-[11px] top-2 bottom-2 w-px bg-gradient-to-b from-accent-cyan via-accent-violet/50 to-transparent md:hidden sm:left-[15px]"
           aria-hidden
         />
 

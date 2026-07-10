@@ -5,20 +5,21 @@ export default {
     extend: {
       colors: {
         surface: {
-          DEFAULT: '#0a0a0f',
-          raised: '#12121a',
-          overlay: '#1a1a26',
+          DEFAULT: '#07090f',
+          raised: '#0e131c',
+          overlay: '#151b28',
         },
         accent: {
-          DEFAULT: '#8b5cf6',
-          bright: '#a78bfa',
+          DEFAULT: '#2dd4bf',
+          bright: '#5eead4',
           cyan: '#22d3ee',
-          glow: '#7c3aed',
+          violet: '#7c6af0',
+          glow: '#2dd4bf',
         },
         ink: {
-          DEFAULT: '#e8e8f0',
-          muted: '#9ca3af',
-          dim: '#6b7280',
+          DEFAULT: '#e8eef8',
+          muted: '#93a0b5',
+          dim: '#64708a',
         },
       },
       fontFamily: {
@@ -27,14 +28,15 @@ export default {
       },
       backgroundImage: {
         'accent-gradient':
-          'linear-gradient(135deg, #8b5cf6 0%, #22d3ee 100%)',
+          'linear-gradient(135deg, #2dd4bf 0%, #22d3ee 45%, #7c6af0 100%)',
         'hero-mesh':
-          'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139, 92, 246, 0.25), transparent), radial-gradient(ellipse 60% 40% at 80% 50%, rgba(34, 211, 238, 0.08), transparent), radial-gradient(ellipse 50% 30% at 20% 80%, rgba(124, 58, 237, 0.12), transparent)',
+          'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(45, 212, 191, 0.18), transparent), radial-gradient(ellipse 60% 40% at 85% 45%, rgba(34, 211, 238, 0.1), transparent), radial-gradient(ellipse 50% 35% at 15% 75%, rgba(124, 106, 240, 0.12), transparent)',
       },
       boxShadow: {
-        glow: '0 0 40px rgba(139, 92, 246, 0.25)',
-        'glow-sm': '0 0 20px rgba(139, 92, 246, 0.2)',
-        'glow-cyan': '0 0 30px rgba(34, 211, 238, 0.2)',
+        glow: '0 0 40px rgba(45, 212, 191, 0.22)',
+        'glow-sm': '0 0 20px rgba(45, 212, 191, 0.16)',
+        'glow-cyan': '0 0 30px rgba(34, 211, 238, 0.22)',
+        'glow-violet': '0 0 30px rgba(124, 106, 240, 0.18)',
       },
       animation: {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',

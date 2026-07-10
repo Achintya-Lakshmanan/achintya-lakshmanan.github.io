@@ -6,6 +6,7 @@ export function About() {
   return (
     <Section
       id="about"
+      wash
       title="About"
       subtitle="Research interests, software engineering, and the work in between."
     >

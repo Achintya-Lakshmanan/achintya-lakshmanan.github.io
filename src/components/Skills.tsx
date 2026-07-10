@@ -19,7 +19,7 @@ export function Skills() {
               <ul className="flex flex-wrap gap-2.5">
                 {group.skills.map((skill) => (
                   <li key={skill}>
-                    <span className="inline-flex rounded-xl border border-white/10 bg-surface-raised px-3.5 py-2 text-sm font-medium text-ink-muted transition-all duration-200 hover:border-accent/40 hover:bg-accent/10 hover:text-ink hover:shadow-glow-sm">
+                    <span className="inline-flex rounded-xl border border-white/[0.08] bg-surface-raised px-3.5 py-2 text-sm font-medium text-ink-muted transition-all duration-200 hover:border-accent-cyan/35 hover:bg-accent-cyan/10 hover:text-ink hover:shadow-glow-cyan">
                       {skill}
                     </span>
                   </li>
