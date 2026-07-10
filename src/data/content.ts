@@ -179,11 +179,9 @@ export const content: SiteContent = {
       period: 'Sep 2025 to Present',
       category: 'research',
       logo: '/logos/psu.png',
-      link: 'https://arxiv.org/abs/2601.00509',
-      linkLabel: 'arXiv:2601.00509',
       highlights: [
-        'Mentor students in secure coding through question preparation, office hours, and project help sessions, supporting implementation, evaluation design, and experimental analysis.',
-        '[Secure Code Generation](https://arxiv.org/abs/2601.00509): Benchmarked DeepSeek and CodeLlama on 4,000 C/C++ prompts; tracked compilation failures, CWE-based security vulnerabilities, and semantic correctness. Implemented a RAG remediation pipeline that reduced failures by 20% (compilation), 35% (security), and 55% (semantic).',
+        'Supported CMPSC 461 and CMPSC 311 by creating assignments and projects, conducting exams, grading, and helping run the courses day to day.',
+        'Mentored undergraduate honors projects on [Secure Code Generation](https://arxiv.org/abs/2601.00509): benchmarked DeepSeek and CodeLlama on 4,000 C/C++ prompts; tracked compilation failures, CWE-based security vulnerabilities, and semantic correctness. Implemented a RAG remediation pipeline that reduced failures by 20% (compilation), 35% (security), and 55% (semantic).',
       ],
     },
     {
