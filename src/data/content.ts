@@ -155,8 +155,7 @@ export const content: SiteContent = {
       logo: '/logos/psu.png',
       highlights: [
         'Building LLM-driven generative agent simulations of urban disaster behavior (heatwaves) on the AgentSociety platform, grounded in empirical activity data across demographic segments.',
-        'Showed the "structure, not scale" thesis: an 8B model with a data-grounded world model, transition validators, and constrained plan edits closes the gap to 10x larger API models. A 4x larger planner gave no gain, while structural validation did.',
-        'Diagnosed and eliminated prompt-salience failure modes (e.g. heat-warning framing flooding agents into unrealistic health behavior) via constrained edit vocabularies over normal-day schedule skeletons.',
+        'After fixing pipeline bugs that had been underestimating every method, an 8B model with a data-grounded transition validator reaches 0.908 correlation with the target activity distributions, beating a bare Markov skeleton (0.884) and a GPT-4o-mini API reference (~0.84).',
       ],
     },
     {
