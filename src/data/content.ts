@@ -32,9 +32,6 @@ export interface Experience {
   highlights: string[]
   /** Logo image URL (e.g. Clearbit). Falls back to monogram if missing/broken. */
   logo?: string
-  /** Optional external link (e.g. arXiv paper, GitHub). */
-  link?: string
-  linkLabel?: string
 }
 
 export interface Project {
