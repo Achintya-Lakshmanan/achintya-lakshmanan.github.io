@@ -143,6 +143,15 @@ export const content: SiteContent = {
       location: 'Chennai, India',
       period: 'June 2025',
       gpa: '9.15/10',
+      logo: '/logos/snu.svg',
+      coursework: [
+        'Data Structures',
+        'Web Technology',
+        'Database Management Systems',
+        'Artificial Intelligence',
+        'Machine Learning',
+        'Data Science',
+      ],
     },
   ],
   experience: [
@@ -176,6 +185,7 @@ export const content: SiteContent = {
       organization: 'Vision and Image Processing Lab, SNU',
       period: 'Aug 2024 to Mar 2025',
       category: 'research',
+      logo: '/logos/snu.svg',
       highlights: [
         '3D Reconstruction from Single X-Ray Images: Developed a novel NeRF-based 3D reconstruction pipeline enhanced with Mamba modules, significantly improving reconstruction fidelity and efficiency over state-of-the-art methods such as 3DGS and GAMBA. Achieved PSNR of 28.538 and LPIPS of 0.309 on clinically relevant datasets, enabling accurate 3D bone structure recovery from single X-rays.',
         'Fetal Ultrasound Grand Challenge (FUGC): Experimented with semi-supervised segmentation models, including Semi-Mamba and a custom designed VMUNet variant with mutual learning, to address the challenges of noisy and low-contrast fetal ultrasound images. Incorporated attention mechanisms and multi-scale supervision to enhance feature learning. Achieved PSNR of 14.3 and accuracy of 96%.',
@@ -187,6 +197,7 @@ export const content: SiteContent = {
       organization: 'Speech Lab, SNU',
       period: 'Sep 2022 to Nov 2022',
       category: 'research',
+      logo: '/logos/snu.svg',
       highlights: [
         'Investigated and deployed Encoder-Decoder Architectures for Text-To-Speech Systems for Tamil Language.',
         'Deployed a Tacotron-based voice cloning architecture for Tamil text-to-speech, optimizing inference latency to deliver natural voice generation within a <5-second threshold.',

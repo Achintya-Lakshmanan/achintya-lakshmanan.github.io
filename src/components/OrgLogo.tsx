@@ -43,7 +43,7 @@ export function OrgLogo({
 
   return (
     <div
-      className={`relative shrink-0 overflow-hidden rounded-xl border border-white/10 bg-white/10 ${className}`}
+      className={`relative shrink-0 overflow-hidden rounded-xl border border-white/10 ${failed ? 'bg-white/10' : 'bg-white'} ${className}`}
       style={{ width: size, height: size }}
       aria-hidden
     >
