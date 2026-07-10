@@ -96,9 +96,13 @@ export function Experience() {
       </Reveal>
 
       <div className="relative">
-        {/* Timeline line */}
+        {/* Timeline line — aligned to the dot column */}
         <div
-          className="absolute left-[11px] top-2 bottom-2 w-px bg-gradient-to-b from-accent via-accent/40 to-transparent sm:left-[15px]"
+          className="absolute left-[7.25rem] top-2 bottom-2 hidden w-px bg-gradient-to-b from-accent via-accent/40 to-transparent sm:left-[8.75rem] md:block"
+          aria-hidden
+        />
+        <div
+          className="absolute left-[11px] top-2 bottom-2 w-px bg-gradient-to-b from-accent via-accent/40 to-transparent md:hidden sm:left-[15px]"
           aria-hidden
         />
 
@@ -113,12 +117,18 @@ export function Experience() {
           >
             {items.map((item, i) => (
               <Reveal key={item.id} delay={Math.min(i * 0.06, 0.3)} as="li">
-                <article className="group relative flex gap-5 sm:gap-7">
-                  <div className="relative z-10 mt-1.5 flex h-6 w-6 shrink-0 items-center justify-center sm:h-8 sm:w-8">
-                    <span className="absolute h-3 w-3 rounded-full bg-accent shadow-glow-sm ring-4 ring-surface transition-transform duration-300 group-hover:scale-125" />
+                <article className="group relative flex gap-4 sm:gap-5 md:gap-6">
+                  {/* Date + dot rail */}
+                  <div className="relative z-10 flex shrink-0 items-start gap-3 md:w-[9.5rem] md:justify-end md:gap-4">
+                    <time className="hidden w-[6.5rem] pt-2 text-right text-xs font-medium leading-snug text-ink-dim md:block">
+                      {item.period}
+                    </time>
+                    <div className="mt-1.5 flex h-6 w-6 shrink-0 items-center justify-center sm:h-8 sm:w-8">
+                      <span className="absolute h-3 w-3 rounded-full bg-accent shadow-glow-sm ring-4 ring-surface transition-transform duration-300 group-hover:scale-125" />
+                    </div>
                   </div>
 
-                  <div className="flex-1 rounded-2xl border border-white/5 bg-surface-raised/60 p-5 transition-all duration-300 hover:border-accent/30 hover:bg-surface-raised hover:shadow-glow-sm sm:p-6">
+                  <div className="min-w-0 flex-1 rounded-2xl border border-white/5 bg-surface-raised/60 p-5 transition-all duration-300 hover:border-accent/30 hover:bg-surface-raised hover:shadow-glow-sm sm:p-6">
                     <div className="flex flex-wrap items-start justify-between gap-3">
                       <div className="flex min-w-0 flex-1 items-start gap-3.5">
                         <OrgLogo
@@ -134,16 +144,14 @@ export function Experience() {
                           <p className="mt-0.5 text-sm text-accent-bright">
                             {item.organization}
                           </p>
+                          <time className="mt-1 block text-xs text-ink-dim md:hidden">
+                            {item.period}
+                          </time>
                         </div>
                       </div>
-                      <div className="flex flex-wrap items-center gap-2 sm:ml-auto">
-                        <span className="rounded-md bg-white/5 px-2 py-0.5 text-xs font-medium uppercase tracking-wide text-ink-dim">
-                          {item.category}
-                        </span>
-                        <time className="text-xs text-ink-dim sm:text-sm">
-                          {item.period}
-                        </time>
-                      </div>
+                      <span className="rounded-md bg-white/5 px-2 py-0.5 text-xs font-medium uppercase tracking-wide text-ink-dim">
+                        {item.category}
+                      </span>
                     </div>
                     <ul className="mt-4 space-y-2">
                       {item.highlights.map((h) => (
