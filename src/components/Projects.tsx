@@ -1,4 +1,5 @@
 import { content } from '../data/content'
+import { IconGitHub } from './Icons'
 import { Reveal } from './Reveal'
 import { Section } from './Section'
 
@@ -34,6 +35,18 @@ export function Projects() {
                   <h3 className="font-display text-lg font-semibold leading-snug text-ink transition-colors group-hover:text-accent-bright">
                     {project.title}
                   </h3>
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 rounded-lg border border-white/10 bg-white/5 p-2 text-ink-muted transition-all hover:border-accent/40 hover:text-ink hover:shadow-glow-sm"
+                      aria-label={`View ${project.title} on GitHub`}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <IconGitHub className="h-4 w-4" />
+                    </a>
+                  )}
                 </div>
                 <time className="mt-2 text-xs text-ink-dim">{project.period}</time>
 
@@ -55,7 +68,7 @@ export function Projects() {
                   </ul>
                 )}
 
-                <div className="mt-5 flex flex-wrap gap-2">
+                <div className="mt-5 flex flex-wrap items-center gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}

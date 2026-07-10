@@ -272,6 +272,7 @@ export const content: SiteContent = {
         'INT4 cache noise rescues biased decisions (net repair +0.09 to +0.41)',
         'Bias sits in fragile low-margin decisions; noise flips them back',
       ],
+      link: 'https://github.com/vivek032001/Quantized-KV-Cache-Transfer-for-Multi-Agent-RAG',
     },
     {
       id: 'mcts-llm',
@@ -305,6 +306,7 @@ export const content: SiteContent = {
         'Winner, Encryptcon Shaastra',
         '99% anomaly detection accuracy',
       ],
+      link: 'https://github.com/Achintya-Lakshmanan/Technica_LAVA',
     },
   ],
   skills: [
