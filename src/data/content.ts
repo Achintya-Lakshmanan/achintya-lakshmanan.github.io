@@ -86,12 +86,7 @@ export const content: SiteContent = {
   email: 'aql6062@psu.edu',
   location: 'University Park, PA',
   photo: '/me.jpg',
-  taglineRoles: [
-    'LLM + RL Researcher',
-    'ML Engineer',
-    'Full-Stack Developer',
-    'Software Engineer',
-  ],
+  taglineRoles: ['Full-Stack Developer', 'LLM Researcher'],
   bio: 'MS student at Penn State interested in LLM and reinforcement learning research. I like building efficient learning systems that improve reasoning and decision-making, and I also ship full-stack software across research and industry.',
   aboutResearch:
     'I want to work on problems at the intersection of large language models and reinforcement learning: better reasoning, alignment, and agents that can plan and adapt in the real world. My recent research spans multi-agent RAG, LLM-driven behavioral simulation, and inference-time search, but I am not locked into one niche. I follow interesting problems wherever they lead.',
