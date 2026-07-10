@@ -32,6 +32,9 @@ export interface Experience {
   highlights: string[]
   /** Logo image URL (e.g. Clearbit). Falls back to monogram if missing/broken. */
   logo?: string
+  /** Optional external link (e.g. arXiv paper, GitHub). */
+  link?: string
+  linkLabel?: string
 }
 
 export interface Project {
@@ -165,7 +168,8 @@ export const content: SiteContent = {
       highlights: [
         'Building LLM agents that simulate urban heatwave behavior on AgentSociety, grounded in demographic activity data.',
         'Working on LLM activation steering for hallucination mitigation, evaluating methods like ODESteer and Spherical Steering on thinking-mode models.',
-        'Studying attention bias from KV-cache transfer in multi-agent RAG, and MCTS-based decoding for controlled Text-to-SQL generation.',
+        'Studying attention bias from KV-cache transfer in multi-agent RAG.',
+        'Developing MCTS-based decoding for controlled Text-to-SQL generation.',
       ],
     },
     {
@@ -175,9 +179,11 @@ export const content: SiteContent = {
       period: 'Sep 2025 to Present',
       category: 'research',
       logo: '/logos/psu.png',
+      link: 'https://arxiv.org/abs/2601.00509',
+      linkLabel: 'arXiv:2601.00509',
       highlights: [
         'Mentor students in secure coding through question preparation, office hours, and project help sessions, supporting implementation, evaluation design, and experimental analysis.',
-        'Secure Code Generation (arXiv): Benchmarked DeepSeek and CodeLlama on 4,000 C/C++ prompts; tracked compilation failures, CWE-based security vulnerabilities, and semantic correctness. Implemented a RAG remediation pipeline that reduced failures by 20% (compilation), 35% (security), and 55% (semantic).',
+        'Secure Code Generation: Benchmarked DeepSeek and CodeLlama on 4,000 C/C++ prompts; tracked compilation failures, CWE-based security vulnerabilities, and semantic correctness. Implemented a RAG remediation pipeline that reduced failures by 20% (compilation), 35% (security), and 55% (semantic).',
       ],
     },
     {

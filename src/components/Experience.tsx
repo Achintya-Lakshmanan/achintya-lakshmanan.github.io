@@ -5,6 +5,7 @@ import {
   type Experience as ExperienceEntry,
   type ExperienceCategory,
 } from '../data/content'
+import { IconExternal } from './Icons'
 import { OrgLogo } from './OrgLogo'
 import { Reveal } from './Reveal'
 import { Section } from './Section'
@@ -163,6 +164,17 @@ export function Experience() {
                       <p className="mt-0.5 text-sm text-accent-bright">
                         {item.organization}
                       </p>
+                      {item.link && (
+                        <a
+                          href={item.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-1.5 inline-flex items-center gap-1.5 text-xs font-medium text-accent-cyan transition-colors hover:text-accent-bright"
+                        >
+                          <IconExternal className="h-3 w-3" />
+                          {item.linkLabel ?? 'View paper'}
+                        </a>
+                      )}
                     </div>
                   </div>
 
