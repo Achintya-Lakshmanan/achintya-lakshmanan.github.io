@@ -93,8 +93,8 @@ export function Projects() {
                 Built for myself
               </h3>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">
-                Local-first tools I use daily: notch UI, a second brain, personal
-                finance, and a Linux calendar sync.
+                Tools I use daily: notch UI, a second brain, personal finance, and
+                a Linux calendar sync.
               </p>
             </div>
           </Reveal>

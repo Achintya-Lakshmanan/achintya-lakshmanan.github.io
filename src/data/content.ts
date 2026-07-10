@@ -352,14 +352,14 @@ export const content: SiteContent = {
       id: 'cortex',
       title: 'Cortex',
       description:
-        'Local second brain over an Obsidian vault. Semantic search, on-device RAG chat with citations, unlinked connections, capture, and task loops. Apple on-device models only: no cloud, no API key.',
+        'Second brain over an Obsidian vault: semantic search, RAG chat with citations, unlinked connections, capture, and task loops, powered by Apple on-device models.',
       tags: ['Python', 'Swift', 'Obsidian', 'RAG'],
     },
     {
       id: 'finance-tracker',
       title: 'Finance Tracker',
       description:
-        'Private on-device iOS finance app: accounts, budgets, CSV and Splitwise import, OCR bill scan, and Ask AI over your money. No servers and no subscriptions.',
+        'iOS finance app with accounts, budgets, CSV and Splitwise import, OCR bill scan, and Ask AI over your money.',
       tags: ['Swift', 'iOS', 'Core ML'],
     },
     {
