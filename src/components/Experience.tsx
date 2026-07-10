@@ -110,11 +110,11 @@ export function Experience() {
                 key={item.id}
                 delay={Math.min(i * 0.05, 0.28)}
                 as="li"
-                className="relative grid grid-cols-[1.1rem_1fr] gap-x-5 sm:grid-cols-[7.5rem_1.25rem_1fr] sm:gap-x-6"
+                className="relative grid grid-cols-[1.1rem_1fr] gap-x-5 sm:grid-cols-[9.75rem_1.25rem_1fr] sm:gap-x-6"
               >
                 {/* Desktop date column */}
                 <div className="hidden pt-1 sm:block">
-                  <time className="block text-right text-xs font-medium leading-relaxed text-ink-dim">
+                  <time className="block whitespace-nowrap text-right text-xs font-medium leading-relaxed text-ink-dim">
                     {item.period}
                   </time>
                 </div>
