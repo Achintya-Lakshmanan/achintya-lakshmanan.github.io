@@ -264,11 +264,12 @@ export const content: SiteContent = {
       title: 'AURA: LLM Agents for Urban Disaster Simulation',
       period: 'Apr 2026 to Present',
       description:
-        'LLM agents for urban heatwave behavior on AgentSociety. The LLM proposes; planning loops, plan-as-edit, and data-grounded validators keep day-long schedules coherent.',
+        'Simulating how people behave during urban heatwaves with LLM agents on AgentSociety. Instead of asking the model what to do at every timestep, we treat behavior as planning: the LLM proposes, and data-grounded world models plus validators keep day-long schedules coherent.',
       tags: ['Python', 'LLMs', 'Agents', 'Planning', 'Simulation'],
       highlights: [
-        'Plan-as-edit: edit normal-day skeletons instead of regenerating from scratch',
-        'Planning loops with ATUS-grounded world models and transition validators',
+        'Plan-as-edit: revise normal-day ATUS skeletons with constrained edits under disaster context',
+        'Planning loops with transition validators and empirical activity priors across demographic segments',
+        'Structure over scale: small local models with external validation close the gap to larger API agents',
       ],
     },
     {
@@ -276,11 +277,11 @@ export const content: SiteContent = {
       title: 'Attention Bias in Multi-Agent RAG',
       period: 'Feb 2026 to Present',
       description:
-        'How KV-cache transfer between agents biases multi-agent RAG judges, and whether cache noise can undo that bias.',
+        'In multi-agent RAG, agents can share KV-cache instead of re-encoding text. We studied whether that transfer biases the downstream judge ("memory infection"), and whether perturbing the cache can undo the bias across Llama-3, Mistral, and Qwen2 on HotpotQA and Natural Questions.',
       tags: ['Python', 'PyTorch', 'LLMs', 'RAG', 'Quantization'],
       highlights: [
-        'Memory infection in 5/6 settings (up to +0.38 approval shift on NQ)',
-        'INT4 cache noise rescues biased decisions (net repair +0.09 to +0.41)',
+        'Memory infection in 5/6 model x dataset settings (up to +0.38 approval shift on NQ)',
+        'INT4 cache noise rescues biased decisions (net repair +0.09 to +0.41 across all 6 cells)',
         'Matched-magnitude noise works too: the rescue is about noise strength, not INT4 itself',
       ],
       link: 'https://github.com/vivek032001/Quantized-KV-Cache-Transfer-for-Multi-Agent-RAG',
@@ -290,11 +291,12 @@ export const content: SiteContent = {
       title: 'Monte Carlo Tree Search for Controlled LLM Text Generation',
       period: 'Feb to May 2026',
       description:
-        'MCTS decoding for Text-to-SQL. 12.6% exact-match vs 6.4% SMC baseline (+97% relative).',
+        'Text-to-SQL needs globally valid queries, but standard decoding is myopic. We treat generation as search: MCTS plans the high-leverage SQL prefix under grammar and schema constraints, then greedy decoding finishes the rest.',
       tags: ['Python', 'PyTorch', 'MCTS', 'Text-to-SQL', 'LLMs'],
       highlights: [
-        '+97% relative exact-match vs SMC',
-        '70.2% column / 79.8% table correctness',
+        '12.6% exact-match vs 6.4% SMC baseline on 500 SPIDER prompts (+97% relative)',
+        '70.2% correct column usage and 79.8% correct table usage',
+        'AWRS-constrained rollouts keep simulations syntactically valid during search',
       ],
     },
     {
@@ -302,11 +304,12 @@ export const content: SiteContent = {
       title: 'Dense Non-Homogeneous Haze Removal',
       period: 'Jan to Apr 2024',
       description:
-        'Lightweight ResNet U-Net for dense haze removal. Ranked 16/128 worldwide.',
+        'Computer vision challenge entry for removing dense, non-homogeneous haze from images. Built a lightweight ResNet-based U-Net aimed at strong reconstruction quality without a heavy training or inference budget.',
       tags: ['Python', 'PyTorch', 'Computer Vision', 'U-Net'],
       highlights: [
-        'Ranked 16/128 worldwide',
-        '4h training, under 5s inference on a lightweight ResNet U-Net',
+        'Ranked 16 out of 128 submissions worldwide',
+        'PSNR of 14.4 dB after about 4 hours of training',
+        'Inference under 5 seconds on the lightweight ResNet U-Net',
       ],
     },
     {

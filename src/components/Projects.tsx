@@ -59,10 +59,10 @@ export function Projects() {
                     {project.highlights.map((h) => (
                       <li
                         key={h}
-                        className="flex items-center gap-2 text-xs font-medium text-accent-cyan"
+                        className="flex items-start gap-2 text-xs leading-relaxed text-ink-muted"
                       >
-                        <span className="h-1 w-1 rounded-full bg-accent-cyan" />
-                        {h}
+                        <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent-cyan" />
+                        <span>{h}</span>
                       </li>
                     ))}
                   </ul>
