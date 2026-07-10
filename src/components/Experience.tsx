@@ -30,7 +30,7 @@ const MONTHS: Record<string, number> = {
   dec: 11,
 }
 
-/** Parse start month/year from period strings like "Apr 2026 – Present". */
+/** Parse start month/year from period strings like "Apr 2026 to Present". */
 function startDateMs(period: string): number {
   const match = period.trim().match(/^([A-Za-z]{3})\s+(\d{4})/)
   if (!match) return 0
@@ -64,7 +64,7 @@ export function Experience() {
     >
       <Reveal delay={0.05}>
         <div
-          className="mb-10 inline-flex rounded-xl border border-white/10 bg-surface-raised p-1"
+          className="mb-12 inline-flex rounded-xl border border-white/10 bg-surface-raised p-1"
           role="tablist"
           aria-label="Experience filter"
         >
@@ -95,82 +95,86 @@ export function Experience() {
         </div>
       </Reveal>
 
-      <div className="relative">
-        {/* Timeline line — aligned to the dot column */}
-        <div
-          className="absolute left-[7.25rem] top-2 bottom-2 hidden w-px bg-gradient-to-b from-accent-cyan via-accent-violet/50 to-transparent sm:left-[8.75rem] md:block"
-          aria-hidden
-        />
-        <div
-          className="absolute left-[11px] top-2 bottom-2 w-px bg-gradient-to-b from-accent-cyan via-accent-violet/50 to-transparent md:hidden sm:left-[15px]"
-          aria-hidden
-        />
+      <AnimatePresence mode="wait">
+        <motion.ol
+          key={tab}
+          initial={shouldReduce ? false : { opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={shouldReduce ? undefined : { opacity: 0, y: -8 }}
+          transition={{ duration: 0.28 }}
+          className="relative ml-3 border-l border-white/10 pl-8 sm:ml-4 sm:pl-10"
+        >
+          {/* Accent rail over the border */}
+          <div
+            className="pointer-events-none absolute -left-px top-0 bottom-0 w-px bg-gradient-to-b from-accent-cyan via-accent-violet/70 to-transparent"
+            aria-hidden
+          />
 
-        <AnimatePresence mode="wait">
-          <motion.ul
-            key={tab}
-            initial={shouldReduce ? false : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={shouldReduce ? undefined : { opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            className="space-y-8"
-          >
-            {items.map((item, i) => (
-              <Reveal key={item.id} delay={Math.min(i * 0.06, 0.3)} as="li">
-                <article className="group relative flex gap-4 sm:gap-5 md:gap-6">
-                  {/* Date + dot rail */}
-                  <div className="relative z-10 flex shrink-0 items-start gap-3 md:w-[9.5rem] md:justify-end md:gap-4">
-                    <time className="hidden w-[6.5rem] pt-2 text-right text-xs font-medium leading-snug text-ink-dim md:block">
-                      {item.period}
-                    </time>
-                    <div className="mt-1.5 flex h-6 w-6 shrink-0 items-center justify-center sm:h-8 sm:w-8">
-                      <span className="absolute h-3 w-3 rounded-full bg-accent shadow-glow-sm ring-4 ring-surface transition-transform duration-300 group-hover:scale-125" />
-                    </div>
-                  </div>
+          {items.map((item, i) => (
+            <Reveal
+              key={item.id}
+              delay={Math.min(i * 0.06, 0.3)}
+              as="li"
+              className={`relative ${i < items.length - 1 ? 'pb-10 sm:pb-12' : 'pb-2'}`}
+            >
+              {/* Timeline node */}
+              <div
+                className="absolute -left-[2.55rem] top-1 flex h-10 w-10 items-center justify-center rounded-full border border-accent/30 bg-surface shadow-glow-sm sm:-left-[3.05rem] sm:h-11 sm:w-11"
+                aria-hidden
+              >
+                <span className="absolute inset-0 rounded-full bg-accent-gradient opacity-20" />
+                <OrgLogo
+                  name={item.organization}
+                  src={item.logo}
+                  size={32}
+                  className="relative z-10 !rounded-full border-0"
+                />
+              </div>
 
-                  <div className="min-w-0 flex-1 rounded-2xl border border-white/5 bg-surface-raised/60 p-5 transition-all duration-300 hover:border-accent/30 hover:bg-surface-raised hover:shadow-glow-sm sm:p-6">
-                    <div className="flex flex-wrap items-start justify-between gap-3">
-                      <div className="flex min-w-0 flex-1 items-start gap-3.5">
-                        <OrgLogo
-                          name={item.organization}
-                          src={item.logo}
-                          size={44}
-                          className="mt-0.5"
-                        />
-                        <div className="min-w-0">
-                          <h3 className="font-display text-lg font-semibold text-ink">
-                            {item.title}
-                          </h3>
-                          <p className="mt-0.5 text-sm text-accent-bright">
-                            {item.organization}
-                          </p>
-                          <time className="mt-1 block text-xs text-ink-dim md:hidden">
-                            {item.period}
-                          </time>
-                        </div>
-                      </div>
-                      <span className="rounded-md bg-white/5 px-2 py-0.5 text-xs font-medium uppercase tracking-wide text-ink-dim">
-                        {item.category}
-                      </span>
-                    </div>
-                    <ul className="mt-4 space-y-2">
-                      {item.highlights.map((h) => (
-                        <li
-                          key={h}
-                          className="flex gap-2 text-sm leading-relaxed text-ink-muted"
-                        >
-                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-cyan" />
-                          <span>{h}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </motion.ul>
-        </AnimatePresence>
-      </div>
+              {/* Connector stub */}
+              <div
+                className="absolute -left-8 top-5 h-px w-5 bg-gradient-to-r from-accent-cyan/70 to-transparent sm:-left-10 sm:w-7"
+                aria-hidden
+              />
+
+              <article className="group relative overflow-hidden rounded-2xl border border-white/8 bg-surface-raised/70 p-5 transition-all duration-300 hover:border-accent/35 hover:bg-surface-raised hover:shadow-glow-sm sm:p-6">
+                <div
+                  className="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gradient-to-r from-accent-cyan via-accent-violet/80 to-transparent opacity-0 transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-100"
+                  aria-hidden
+                />
+
+                <div className="flex flex-wrap items-center gap-2">
+                  <time className="rounded-md border border-accent/20 bg-accent/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-accent-bright">
+                    {item.period}
+                  </time>
+                  <span className="rounded-md border border-white/10 bg-white/5 px-2.5 py-1 text-[11px] font-medium uppercase tracking-wide text-ink-dim">
+                    {item.category}
+                  </span>
+                </div>
+
+                <h3 className="mt-3 font-display text-lg font-semibold text-ink sm:text-xl">
+                  {item.title}
+                </h3>
+                <p className="mt-1 text-sm text-accent-bright">
+                  {item.organization}
+                </p>
+
+                <ul className="mt-4 space-y-2.5">
+                  {item.highlights.map((h) => (
+                    <li
+                      key={h}
+                      className="flex gap-2.5 text-sm leading-relaxed text-ink-muted"
+                    >
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-cyan" />
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
+          ))}
+        </motion.ol>
+      </AnimatePresence>
     </Section>
   )
 }
