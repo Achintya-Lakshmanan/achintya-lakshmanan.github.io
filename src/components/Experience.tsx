@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, type ReactNode } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import {
   content,
@@ -42,6 +42,34 @@ function startDateMs(period: string): number {
 
 function byStartDateDesc(a: ExperienceEntry, b: ExperienceEntry): number {
   return startDateMs(b.period) - startDateMs(a.period)
+}
+
+/** Renders highlight text with optional [label](url) markdown links. */
+function HighlightText({ text }: { text: string }) {
+  const nodes: ReactNode[] = []
+  const pattern = /\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g
+  let last = 0
+  let match: RegExpExecArray | null
+  let key = 0
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > last) {
+      nodes.push(text.slice(last, match.index))
+    }
+    nodes.push(
+      <a
+        key={key++}
+        href={match[2]}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-medium text-accent-cyan underline decoration-accent-cyan/40 underline-offset-2 transition-colors hover:text-accent-bright hover:decoration-accent-bright"
+      >
+        {match[1]}
+      </a>,
+    )
+    last = match.index + match[0].length
+  }
+  if (last < text.length) nodes.push(text.slice(last))
+  return <>{nodes}</>
 }
 
 export function Experience() {
@@ -185,7 +213,9 @@ export function Experience() {
                         className="flex gap-2.5 text-sm leading-relaxed text-ink-muted"
                       >
                         <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-cyan/80" />
-                        <span>{h}</span>
+                        <span>
+                          <HighlightText text={h} />
+                        </span>
                       </li>
                     ))}
                   </ul>

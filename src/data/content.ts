@@ -183,7 +183,7 @@ export const content: SiteContent = {
       linkLabel: 'arXiv:2601.00509',
       highlights: [
         'Mentor students in secure coding through question preparation, office hours, and project help sessions, supporting implementation, evaluation design, and experimental analysis.',
-        'Secure Code Generation: Benchmarked DeepSeek and CodeLlama on 4,000 C/C++ prompts; tracked compilation failures, CWE-based security vulnerabilities, and semantic correctness. Implemented a RAG remediation pipeline that reduced failures by 20% (compilation), 35% (security), and 55% (semantic).',
+        '[Secure Code Generation](https://arxiv.org/abs/2601.00509): Benchmarked DeepSeek and CodeLlama on 4,000 C/C++ prompts; tracked compilation failures, CWE-based security vulnerabilities, and semantic correctness. Implemented a RAG remediation pipeline that reduced failures by 20% (compilation), 35% (security), and 55% (semantic).',
       ],
     },
     {
