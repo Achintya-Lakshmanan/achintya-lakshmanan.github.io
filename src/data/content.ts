@@ -154,8 +154,8 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/psu.png',
       highlights: [
-        'Building LLM-driven generative agent simulations of urban disaster behavior (heatwaves) on the AgentSociety platform, grounded in empirical activity data across demographic segments.',
-        'After fixing pipeline bugs that had been underestimating every method, an 8B model with a data-grounded transition validator reaches 0.908 correlation with the target activity distributions, beating a bare Markov skeleton (0.884) and a GPT-4o-mini API reference (~0.84).',
+        'Building LLM agents that simulate urban heatwave behavior on AgentSociety, grounded in demographic activity data.',
+        'Framing agent decisions as planning: LLMs propose actions, and data-grounded world models, transition validators, and plan-as-edit loops enforce day-long schedules.',
       ],
     },
     {
@@ -166,8 +166,8 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/psu.png',
       highlights: [
-        'Mentoring students in secure coding practices.',
-        'Secure Code Generation (arXiv): benchmarked DeepSeek and CodeLlama on 4,000 C/C++ prompts; RAG remediation pipeline reduced failures by 20% (compilation), 35% (security), and 55% (semantic).',
+        'Mentoring students in secure coding through office hours and projects.',
+        'Secure Code Generation (arXiv): RAG remediation cut compilation, security, and semantic failures by 20%, 35%, and 55%.',
       ],
     },
     {
@@ -177,8 +177,8 @@ export const content: SiteContent = {
       period: 'Aug 2024 to Mar 2025',
       category: 'research',
       highlights: [
-        'NeRF-based 3D reconstruction from single X-ray images with Mamba modules (PSNR 28.538, LPIPS 0.309), outperforming 3DGS and GAMBA.',
-        'Fetal Ultrasound Grand Challenge: semi-supervised segmentation with Semi-Mamba (custom VMUNet + mutual learning), reaching 96% accuracy.',
+        'NeRF + Mamba 3D reconstruction from single X-rays (PSNR 28.538, LPIPS 0.309), beating 3DGS and GAMBA.',
+        'Fetal ultrasound segmentation (Semi-Mamba / VMUNet): 96% accuracy.',
       ],
     },
     {
@@ -188,8 +188,8 @@ export const content: SiteContent = {
       period: 'Sep 2022 to Nov 2022',
       category: 'research',
       highlights: [
-        'Built Tacotron-based Tamil TTS voice cloning with under 5s inference.',
-        'Voice transcreation for IIT online courses with naturalness ~3.5.',
+        'Tacotron-based Tamil TTS voice cloning with under 5s inference.',
+        'Voice transcreation for IIT online courses (naturalness ~3.5).',
       ],
     },
     {
@@ -200,9 +200,9 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/lumel.svg',
       highlights: [
-        'Built an LLM-powered RAG system in TypeScript automating formula creation in Inforiver Matrix (−70% manual effort).',
-        'Shipped a real-time collaborative JSON editor (React, Node.js, WebSockets) supporting 30+ concurrent users.',
-        'MS Project → Power BI parser (+40% integration speed) and automated Power BI theme generator (−50% customization time).',
+        'LLM-powered RAG system in TypeScript for Inforiver Matrix formulas (70% less manual effort).',
+        'Real-time collaborative JSON editor (React, Node.js, WebSockets) for 30+ concurrent users.',
+        'MS Project to Power BI parser (+40% speed) and automated Power BI theme generator.',
       ],
     },
     {
@@ -213,8 +213,8 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/phosphene.png',
       highlights: [
-        'Led a 5-member team building deepfake detection in PyTorch (91% accuracy, 5s inference).',
-        'MINTIME multi-identity detection; DeepFaceLab deepfakes (PSNR 34.5 dB); augmentation pipeline (+22% F1).',
+        'Led a 5-person team on deepfake detection in PyTorch (91% accuracy, 5s inference).',
+        'Data augmentation pipeline boosted F1 by 22%; DeepFaceLab deepfakes at PSNR 34.5 dB.',
       ],
     },
     {
@@ -225,8 +225,8 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/culvii.svg',
       highlights: [
-        'Built a student management portal with Next.js and Node.js.',
-        'Integrated GPT-based assistants into a gamified learning platform.',
+        'Student management portal with Next.js and Node.js.',
+        'GPT-based assistants for a gamified learning platform.',
       ],
     },
     {
@@ -237,23 +237,35 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/optisol.png',
       highlights: [
-        'UI image generation app (React + Stable Diffusion + FastAPI) with fine-tuned diffusion models under 5s generation.',
-        'GPT-4 resolution app; YOLOv8 soot detection (98% accuracy @ 25 FPS) on Jetson Nano.',
+        'UI image generation app with React, Stable Diffusion, and FastAPI.',
+        'YOLOv8 soot detection at 98% accuracy @ 25 FPS on Jetson Nano.',
       ],
     },
   ],
   projects: [
     {
+      id: 'aura',
+      title: 'AURA: LLM Agents for Urban Disaster Simulation',
+      period: 'Apr 2026 to Present',
+      description:
+        'LLM agents for urban heatwave behavior on AgentSociety. The LLM proposes; planning loops, plan-as-edit, and data-grounded validators keep day-long schedules coherent.',
+      tags: ['Python', 'LLMs', 'Agents', 'Planning', 'Simulation'],
+      highlights: [
+        'Plan-as-edit: edit normal-day skeletons instead of regenerating from scratch',
+        'Planning loops with ATUS-grounded world models and transition validators',
+      ],
+    },
+    {
       id: 'attention-bias-rag',
       title: 'Attention Bias in Multi-Agent RAG',
       period: 'Feb 2026 to Present',
       description:
-        'Studied how transferring a retriever\'s KV-cache between agents biases the evaluator\'s judgments in multi-agent RAG pipelines, and whether cache perturbation can rescue those decisions.',
+        'How KV-cache transfer between agents biases multi-agent RAG judges, and whether cache noise can undo that bias.',
       tags: ['Python', 'PyTorch', 'LLMs', 'RAG', 'Quantization'],
       highlights: [
-        'Showed memory infection is real: KV-cache transfer biases evaluator judgments in 5/6 model x dataset cells (up to +0.38 approval shift on Natural Questions; n=500/cell, McNemar + bootstrap CIs).',
-        'INT4 (NF4) cache perturbation robustly rescues biased decisions (net repair +0.09 to +0.41, significant in 6/6 cells). Matched-magnitude noise controls showed the effect is driven by perturbation magnitude, not quantization specifically.',
-        'Identified the mechanism: bias concentrates in fragile low-margin decisions that noise preferentially flips back (consistent in 6/6 cells).',
+        'Memory infection in 5/6 settings (up to +0.38 approval shift on NQ)',
+        'INT4 cache noise rescues biased decisions (net repair +0.09 to +0.41)',
+        'Bias sits in fragile low-margin decisions; noise flips them back',
       ],
     },
     {
@@ -261,10 +273,10 @@ export const content: SiteContent = {
       title: 'Monte Carlo Tree Search for Controlled LLM Text Generation',
       period: 'Feb to May 2026',
       description:
-        'MCTS decoding for Text-to-SQL generation. Achieved 12.6% exact-match vs 6.4% SMC baseline (+97% relative), with 70.2% column and 79.8% table usage correctness.',
+        'MCTS decoding for Text-to-SQL. 12.6% exact-match vs 6.4% SMC baseline (+97% relative).',
       tags: ['Python', 'PyTorch', 'MCTS', 'Text-to-SQL', 'LLMs'],
       highlights: [
-        '+97% relative exact-match gain',
+        '+97% relative exact-match vs SMC',
         '70.2% column / 79.8% table correctness',
       ],
     },
@@ -273,7 +285,7 @@ export const content: SiteContent = {
       title: 'Dense Non-Homogeneous Haze Removal',
       period: 'Jan to Apr 2024',
       description:
-        'Lightweight ResNet U-Net for dense haze removal. PSNR 14.4 dB after 4h training with under 5s inference; +20% PSNR from histogram equalization post-processing. Ranked 16/128 worldwide.',
+        'Lightweight ResNet U-Net for dense haze removal. Ranked 16/128 worldwide.',
       tags: ['Python', 'PyTorch', 'Computer Vision', 'U-Net'],
       highlights: ['Ranked 16/128 worldwide', '+20% PSNR via post-processing'],
     },
@@ -282,7 +294,7 @@ export const content: SiteContent = {
       title: 'Krypton: Financial Transaction Anomaly Detection',
       period: 'Jan to Mar 2024',
       description:
-        'Real-time anomaly detection under 5s latency at 99% accuracy with random forests. Spam/phishing mobile app at 98% accuracy; IP tracking within 1s. Winner of Encryptcon Shaastra Hackathon (IIT Madras + Temenos).',
+        'Real-time anomaly detection at 99% accuracy under 5s latency. Winner of Encryptcon Shaastra (IIT Madras + Temenos).',
       tags: ['Python', 'React', 'Node.js', 'MongoDB', 'ML'],
       highlights: [
         'Winner, Encryptcon Shaastra',

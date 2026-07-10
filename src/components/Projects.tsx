@@ -7,7 +7,7 @@ export function Projects() {
     <Section
       id="projects"
       title="Projects"
-      subtitle="Selected work in multi-agent RAG, inference-time search, vision, and applied ML."
+      subtitle="Selected work in agents, multi-agent RAG, inference-time search, vision, and applied ML."
     >
       <div className="grid gap-6 sm:grid-cols-2">
         {content.projects.map((project, i) => (
