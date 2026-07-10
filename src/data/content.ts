@@ -314,11 +314,13 @@ export const content: SiteContent = {
       title: 'Krypton: Financial Transaction Anomaly Detection',
       period: 'Jan to Mar 2024',
       description:
-        'Real-time anomaly detection at 99% accuracy under 5s latency. Winner of Encryptcon Shaastra (IIT Madras + Temenos).',
+        'End-to-end fraud system for Encryptcon Shaastra (IIT Madras + Temenos): real-time transaction scoring, spam/phishing protection, and IP geolocation for investigation.',
       tags: ['Python', 'React', 'Node.js', 'MongoDB', 'ML'],
       highlights: [
-        'Winner, Encryptcon Shaastra',
-        '99% anomaly detection accuracy',
+        'Winner of Encryptcon Shaastra, outperforming 400+ teams',
+        'Random-forest anomaly detection at 99% accuracy with under 5s latency',
+        'Spam and phishing mobile app at 98% accuracy',
+        'IP geolocation tracker localizing anomalous transactions within 1s',
       ],
       link: 'https://github.com/Achintya-Lakshmanan/Technica_LAVA',
     },
