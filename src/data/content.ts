@@ -304,7 +304,10 @@ export const content: SiteContent = {
       description:
         'Lightweight ResNet U-Net for dense haze removal. Ranked 16/128 worldwide.',
       tags: ['Python', 'PyTorch', 'Computer Vision', 'U-Net'],
-      highlights: ['Ranked 16/128 worldwide', '+20% PSNR via post-processing'],
+      highlights: [
+        'Ranked 16/128 worldwide',
+        '4h training, under 5s inference on a lightweight ResNet U-Net',
+      ],
     },
     {
       id: 'krypton',
