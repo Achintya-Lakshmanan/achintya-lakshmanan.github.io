@@ -164,7 +164,8 @@ export const content: SiteContent = {
       logo: '/logos/psu.png',
       highlights: [
         'Building LLM agents that simulate urban heatwave behavior on AgentSociety, grounded in demographic activity data.',
-        'Framing agent decisions as planning: LLMs propose actions, and data-grounded world models, transition validators, and plan-as-edit loops enforce day-long schedules.',
+        'Working on LLM activation steering for hallucination mitigation, evaluating methods like ODESteer and Spherical Steering on thinking-mode models.',
+        'Studying attention bias from KV-cache transfer in multi-agent RAG, and MCTS-based decoding for controlled Text-to-SQL generation.',
       ],
     },
     {
