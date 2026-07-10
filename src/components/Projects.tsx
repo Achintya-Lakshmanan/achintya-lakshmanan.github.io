@@ -9,18 +9,16 @@ export function Projects() {
       id="projects"
       wash
       title="Projects"
-      subtitle="Selected work in agents, multi-agent RAG, inference-time search, vision, and applied ML."
+      subtitle="Research and applied ML work, plus a few personal tools I build for myself."
     >
       <div className="grid gap-6 sm:grid-cols-2">
         {content.projects.map((project, i) => (
           <Reveal key={project.id} delay={Math.min(i * 0.08, 0.32)}>
             <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/5 bg-surface-raised/70 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-glow">
-              {/* Top-edge glow line on hover */}
               <div
                 className="pointer-events-none absolute inset-x-0 top-0 h-px origin-left scale-x-0 bg-gradient-to-r from-transparent via-accent-cyan to-accent-violet opacity-0 transition-all duration-300 group-hover:scale-x-100 group-hover:opacity-100"
                 aria-hidden
               />
-              {/* Soft wash on hover */}
               <div
                 className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 style={{
@@ -83,6 +81,68 @@ export function Projects() {
           </Reveal>
         ))}
       </div>
+
+      {content.sideProjects.length > 0 && (
+        <div className="mt-16">
+          <Reveal delay={0.05}>
+            <div className="mb-8">
+              <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-accent-cyan/80">
+                Side projects
+              </p>
+              <h3 className="mt-2 font-display text-xl font-semibold text-ink sm:text-2xl">
+                Built for myself
+              </h3>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">
+                Local-first tools I use daily: notch UI, a second brain, personal
+                finance, and a Linux calendar sync.
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+            {content.sideProjects.map((project, i) => (
+              <Reveal key={project.id} delay={Math.min(0.08 + i * 0.06, 0.3)}>
+                <article className="group relative flex h-full flex-col border-l border-accent/30 bg-transparent py-1 pl-5 transition-colors hover:border-accent-cyan/60">
+                  <div className="flex items-start justify-between gap-3">
+                    <h4 className="font-display text-base font-semibold text-ink transition-colors group-hover:text-accent-bright">
+                      {project.title}
+                    </h4>
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 rounded-lg border border-white/10 bg-white/5 p-1.5 text-ink-muted transition-all hover:border-accent/40 hover:text-ink"
+                        aria-label={`View ${project.title} on GitHub`}
+                      >
+                        <IconGitHub className="h-3.5 w-3.5" />
+                      </a>
+                    )}
+                  </div>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                    {project.description}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-x-2 gap-y-1">
+                    {project.tags.map((tag, ti) => (
+                      <span
+                        key={tag}
+                        className="text-[11px] font-medium tracking-wide text-ink-dim"
+                      >
+                        {ti > 0 && (
+                          <span className="mr-2 text-white/20" aria-hidden>
+                            ·
+                          </span>
+                        )}
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      )}
     </Section>
   )
 }

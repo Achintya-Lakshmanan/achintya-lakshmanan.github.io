@@ -44,6 +44,15 @@ export interface Project {
   link?: string
 }
 
+/** Lighter personal / fun builds shown under research projects. */
+export interface SideProject {
+  id: string
+  title: string
+  description: string
+  tags: string[]
+  link?: string
+}
+
 export interface SkillGroup {
   id: string
   category: string
@@ -76,6 +85,7 @@ export interface SiteContent {
   education: Education[]
   experience: Experience[]
   projects: Project[]
+  sideProjects: SideProject[]
   skills: SkillGroup[]
   achievements: Achievement[]
 }
@@ -330,6 +340,36 @@ export const content: SiteContent = {
       link: 'https://github.com/Achintya-Lakshmanan/Technica_LAVA',
     },
   ],
+  sideProjects: [
+    {
+      id: 'notchnest',
+      title: 'NotchNest',
+      description:
+        'DynamicLake-style notch companion for Apple Silicon MacBooks: music, calendar with meeting Join, file shelf and AirDrop, weather, pomodoro that traces the notch, and a camera mirror.',
+      tags: ['Swift', 'AppKit', 'SwiftUI', 'macOS'],
+    },
+    {
+      id: 'cortex',
+      title: 'Cortex',
+      description:
+        'Local second brain over an Obsidian vault. Semantic search, on-device RAG chat with citations, unlinked connections, capture, and task loops. Apple on-device models only: no cloud, no API key.',
+      tags: ['Python', 'Swift', 'Obsidian', 'RAG'],
+    },
+    {
+      id: 'finance-tracker',
+      title: 'Finance Tracker',
+      description:
+        'Private on-device iOS finance app: accounts, budgets, CSV and Splitwise import, OCR bill scan, and Ask AI over your money. No servers and no subscriptions.',
+      tags: ['Swift', 'iOS', 'Core ML'],
+    },
+    {
+      id: 'cosmic-calendar-sync',
+      title: 'Cosmic Calendar Sync',
+      description:
+        'COSMIC desktop panel calendar applet that syncs iCloud and Outlook events into one place on Linux.',
+      tags: ['Rust', 'COSMIC', 'Linux'],
+    },
+  ],
   skills: [
     {
       id: 'languages',
@@ -343,6 +383,8 @@ export const content: SiteContent = {
         'TypeScript',
         'Go',
         'R',
+        'Swift',
+        'Rust',
       ],
     },
     {
