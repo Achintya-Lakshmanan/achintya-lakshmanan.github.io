@@ -1,6 +1,10 @@
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { content, type ExperienceCategory } from '../data/content'
+import {
+  content,
+  type Experience as ExperienceEntry,
+  type ExperienceCategory,
+} from '../data/content'
 import { OrgLogo } from './OrgLogo'
 import { Reveal } from './Reveal'
 import { Section } from './Section'
@@ -11,17 +15,46 @@ const tabs: { id: ExperienceCategory | 'all'; label: string }[] = [
   { id: 'industry', label: 'Industry' },
 ]
 
+const MONTHS: Record<string, number> = {
+  jan: 0,
+  feb: 1,
+  mar: 2,
+  apr: 3,
+  may: 4,
+  jun: 5,
+  jul: 6,
+  aug: 7,
+  sep: 8,
+  oct: 9,
+  nov: 10,
+  dec: 11,
+}
+
+/** Parse start month/year from period strings like "Apr 2026 – Present". */
+function startDateMs(period: string): number {
+  const match = period.trim().match(/^([A-Za-z]{3})\s+(\d{4})/)
+  if (!match) return 0
+  const month = MONTHS[match[1]!.toLowerCase()]
+  const year = Number(match[2])
+  if (month === undefined || Number.isNaN(year)) return 0
+  return Date.UTC(year, month, 1)
+}
+
+function byStartDateDesc(a: ExperienceEntry, b: ExperienceEntry): number {
+  return startDateMs(b.period) - startDateMs(a.period)
+}
+
 export function Experience() {
   const [tab, setTab] = useState<(typeof tabs)[number]['id']>('all')
   const shouldReduce = useReducedMotion()
 
-  const items = useMemo(
-    () =>
+  const items = useMemo(() => {
+    const filtered =
       tab === 'all'
         ? content.experience
-        : content.experience.filter((e) => e.category === tab),
-    [tab],
-  )
+        : content.experience.filter((e) => e.category === tab)
+    return [...filtered].sort(byStartDateDesc)
+  }, [tab])
 
   return (
     <Section

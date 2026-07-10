@@ -153,8 +153,9 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/psu.png',
       highlights: [
-        'Designing RL-based agent behaviors for urban disaster simulations — reward functions for evacuation, information seeking, and resource allocation under uncertainty.',
-        'Integrating real-world urban data, behavioral priors, and psychological theory into interpretable agent simulations.',
+        'Building LLM-driven generative agent simulations of urban disaster behavior (heatwaves) on the AgentSociety platform, grounded in empirical activity data across demographic segments.',
+        'Showed the "structure, not scale" thesis: an 8B model with a data-grounded world model, transition validators, and constrained plan edits closes the gap to 10× larger API models — a 4× larger planner gave no gain, while structural validation did.',
+        'Diagnosed and eliminated prompt-salience failure modes (e.g. heat-warning framing flooding agents into unrealistic health behavior) via constrained edit vocabularies over normal-day schedule skeletons.',
       ],
     },
     {
@@ -243,16 +244,29 @@ export const content: SiteContent = {
   ],
   projects: [
     {
+      id: 'activation-steering',
+      title: 'LLM Activation Steering for Hallucination Mitigation',
+      period: 'Jul 2026 – Present',
+      description:
+        'Research collaboration with a Penn State professor (author of FineSteer). Evaluating whether activation-steering methods (ODESteer, Spherical Steering) mitigate hallucination in modern thinking-mode LLMs (Qwen3.5-4B, Gemma-4-E4B-it), fitted from span-annotated hallucination data.',
+      tags: ['Python', 'PyTorch', 'vLLM', 'Interpretability'],
+      highlights: [
+        "Reproduced the ODESteer paper's TruthfulQA benchmark within error bars across 3 seeds (Llama-3.1-8B, Qwen2.5-7B), and Spherical Steering's MC1/MC2/MC3 scores to ~0.1 of the published values.",
+        'Found TQA-fit steering yields +22.6 True% on held-out questions for Qwen3.5-4B (+2% accuracy) — gains bound to their fitting domain, not memorization.',
+        'Built steering inside vLLM via a worker-extension RPC hook with fail-fast application checks; showed steering strength is absolute and must be rescaled per model (~9× activation-norm differences).',
+      ],
+    },
+    {
       id: 'kv-cache-rag',
-      title:
-        'Mitigating Inherited Attention Bias in Multi-Agent RAG via Quantized KV Cache Transfer',
+      title: 'Quantized KV-Cache Transfer in Multi-Agent RAG',
       period: 'Feb 2026 – Present',
       description:
-        'INT4 quantization during KV-cache transfer between agents as a regularizer. Benchmarked Llama 3 8B, Qwen2 7B, and Mistral 7B — +15% accuracy and +8% JCR on Natural Questions.',
+        'Studied "memory infection" in multi-agent RAG: how transferring a retriever\'s KV-cache biases the evaluator\'s judgments, and whether INT4 (NF4) cache perturbation can rescue those decisions across Llama-3-8B, Mistral-7B, and Qwen2-7B on HotpotQA and Natural Questions.',
       tags: ['Python', 'PyTorch', 'LLMs', 'RAG', 'Quantization'],
       highlights: [
-        '+15% accuracy on Natural Questions',
-        '+8% JCR improvement',
+        'Showed memory infection is real: KV-cache transfer biases evaluator judgments in 5/6 model×dataset cells (up to +0.38 approval shift on Natural Questions; n=500/cell, McNemar + bootstrap CIs).',
+        'INT4 (NF4) cache perturbation robustly rescues biased decisions (net repair +0.09 to +0.41, significant in 6/6 cells) — matched-magnitude noise controls show the effect is driven by perturbation magnitude, not quantization specifically.',
+        'Identified the mechanism: bias concentrates in fragile low-margin decisions that noise preferentially flips back (consistent in 6/6 cells).',
       ],
     },
     {
