@@ -166,8 +166,8 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/psu.png',
       highlights: [
-        'Mentoring students in secure coding through office hours and projects.',
-        'Secure Code Generation (arXiv): RAG remediation cut compilation, security, and semantic failures by 20%, 35%, and 55%.',
+        'Mentor students in secure coding through question preparation, office hours, and project help sessions, supporting implementation, evaluation design, and experimental analysis.',
+        'Secure Code Generation (arXiv): Benchmarked DeepSeek and CodeLlama on 4,000 C/C++ prompts; tracked compilation failures, CWE-based security vulnerabilities, and semantic correctness. Implemented a RAG remediation pipeline that reduced failures by 20% (compilation), 35% (security), and 55% (semantic).',
       ],
     },
     {
@@ -177,19 +177,20 @@ export const content: SiteContent = {
       period: 'Aug 2024 to Mar 2025',
       category: 'research',
       highlights: [
-        'NeRF + Mamba 3D reconstruction from single X-rays (PSNR 28.538, LPIPS 0.309), beating 3DGS and GAMBA.',
-        'Fetal ultrasound segmentation (Semi-Mamba / VMUNet): 96% accuracy.',
+        '3D Reconstruction from Single X-Ray Images: Developed a novel NeRF-based 3D reconstruction pipeline enhanced with Mamba modules, significantly improving reconstruction fidelity and efficiency over state-of-the-art methods such as 3DGS and GAMBA. Achieved PSNR of 28.538 and LPIPS of 0.309 on clinically relevant datasets, enabling accurate 3D bone structure recovery from single X-rays.',
+        'Fetal Ultrasound Grand Challenge (FUGC): Experimented with semi-supervised segmentation models, including Semi-Mamba and a custom designed VMUNet variant with mutual learning, to address the challenges of noisy and low-contrast fetal ultrasound images. Incorporated attention mechanisms and multi-scale supervision to enhance feature learning. Achieved PSNR of 14.3 and accuracy of 96%.',
       ],
     },
     {
       id: 'snu-speech',
       title: 'Speech Lab Research Intern',
-      organization: 'Shiv Nadar University',
+      organization: 'Speech Lab, SNU',
       period: 'Sep 2022 to Nov 2022',
       category: 'research',
       highlights: [
-        'Tacotron-based Tamil TTS voice cloning with under 5s inference.',
-        'Voice transcreation for IIT online courses (naturalness ~3.5).',
+        'Investigated and deployed Encoder-Decoder Architectures for Text-To-Speech Systems for Tamil Language.',
+        'Deployed a Tacotron-based voice cloning architecture for Tamil text-to-speech, optimizing inference latency to deliver natural voice generation within a <5-second threshold.',
+        'Researched Voice Transcreation for IIT Online Courses, obtained a naturalness score of about 3.5.',
       ],
     },
     {
@@ -200,9 +201,10 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/lumel.svg',
       highlights: [
-        'LLM-powered RAG system in TypeScript for Inforiver Matrix formulas (70% less manual effort).',
-        'Real-time collaborative JSON editor (React, Node.js, WebSockets) for 30+ concurrent users.',
-        'MS Project to Power BI parser (+40% speed) and automated Power BI theme generator.',
+        'Built LLM-powered RAG system in TypeScript automating formula creation in Inforiver Matrix, reducing manual effort by 70%.',
+        'Developed real-time collaborative JSON editor with React, Node.js, WebSockets, enabling 30+ concurrent users.',
+        'Optimized MS Project to Power BI parser in TypeScript, accelerating enterprise data integration by 40%.',
+        'Engineered automated Power BI theme generator using TypeScript, reducing report customization time by 50%.',
       ],
     },
     {
@@ -213,8 +215,9 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/phosphene.png',
       highlights: [
-        'Led a 5-person team on deepfake detection in PyTorch (91% accuracy, 5s inference).',
-        'Data augmentation pipeline boosted F1 by 22%; DeepFaceLab deepfakes at PSNR 34.5 dB.',
+        'Led a 5-member team to deliver deepfake detection in Python + PyTorch with 91% accuracy and 5s inference time.',
+        'Applied MINTIME framework for multi-identity detection and generated high-fidelity deepfakes using DeepFaceLab (PSNR 34.5 dB).',
+        'Implemented data augmentation pipeline (blurring, compression, color jitter) in PyTorch, boosting F1 score by 22%.',
       ],
     },
     {
@@ -225,8 +228,8 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/culvii.svg',
       highlights: [
-        'Student management portal with Next.js and Node.js.',
-        'GPT-based assistants for a gamified learning platform.',
+        'Developed student management portal in Next.js + Node.js, enabling seamless class tracking and user onboarding.',
+        'Integrated GPT-based assistants into a gamified learning platform, optimizing conversational responsiveness and enhancing student engagement.',
       ],
     },
     {
@@ -237,8 +240,10 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/optisol.png',
       highlights: [
-        'UI image generation app with React, Stable Diffusion, and FastAPI.',
-        'YOLOv8 soot detection at 98% accuracy @ 25 FPS on Jetson Nano.',
+        'Developed UI image generation app with React + Stable Diffusion and FastAPI, improving design quality by 40%.',
+        'Fine-tuned diffusion models in PyTorch using HuggingFace to generate images in <5s.',
+        'Built GPT-4 powered resolution app with React + FastAPI, improving employee issue turnaround efficiency by 20%.',
+        'Deployed YOLOv8 soot detection model (98% accuracy @25 FPS) on NVIDIA Jetson Nano for real-time monitoring.',
       ],
     },
   ],
