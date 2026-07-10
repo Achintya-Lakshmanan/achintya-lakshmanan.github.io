@@ -281,7 +281,7 @@ export const content: SiteContent = {
       highlights: [
         'Memory infection in 5/6 settings (up to +0.38 approval shift on NQ)',
         'INT4 cache noise rescues biased decisions (net repair +0.09 to +0.41)',
-        'Bias sits in fragile low-margin decisions; noise flips them back',
+        'Matched-magnitude noise works too: the rescue is about noise strength, not INT4 itself',
       ],
       link: 'https://github.com/vivek032001/Quantized-KV-Cache-Transfer-for-Multi-Agent-RAG',
     },
