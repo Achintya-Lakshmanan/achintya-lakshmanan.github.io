@@ -1,4 +1,4 @@
-# Achintya Lakshmanan — Portfolio
+# Achintya Lakshmanan Portfolio
 
 Personal portfolio site built with **Vite + React + TypeScript**, **Tailwind CSS**, and **Framer Motion**. Deployed as a static site to GitHub Pages at [https://achintya-lakshmanan.github.io](https://achintya-lakshmanan.github.io).
 
@@ -19,7 +19,7 @@ All site content lives in a single typed file:
 src/data/content.ts
 ```
 
-Edit the `content` object (and the TypeScript interfaces at the top of the file if you need new fields). Components render generically from these arrays — you do **not** need to touch UI code to add entries.
+Edit the `content` object (and the TypeScript interfaces at the top of the file if you need new fields). Components render generically from these arrays. You do **not** need to touch UI code to add entries.
 
 ### Add a project
 
@@ -29,7 +29,7 @@ Append an object to `content.projects`:
 {
   id: 'unique-slug',
   title: 'Project Title',
-  period: 'Jan 2026 – Present',
+  period: 'Jan 2026 to Present',
   description: 'One or two sentences about what you built and the outcome.',
   tags: ['Python', 'PyTorch'],
   highlights: ['Optional bullet metrics'], // optional
@@ -46,7 +46,7 @@ Append to `content.experience`. Set `category` to `'research'` or `'industry'` s
   id: 'unique-slug',
   title: 'Role Title',
   organization: 'Lab or Company',
-  period: 'Mon YYYY – Present',
+  period: 'Mon YYYY to Present',
   category: 'research', // or 'industry'
   highlights: [
     'Bullet point with impact / metrics.',

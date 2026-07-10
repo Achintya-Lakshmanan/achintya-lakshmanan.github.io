@@ -66,6 +66,8 @@ export interface SiteContent {
   email: string
   taglineRoles: string[]
   bio: string
+  aboutResearch: string
+  aboutSoftware: string
   location: string
   /** Profile photo path under /public (e.g. /me.jpg). Optional. */
   photo?: string
@@ -85,13 +87,16 @@ export const content: SiteContent = {
   location: 'University Park, PA',
   photo: '/me.jpg',
   taglineRoles: [
-    'ML Researcher',
-    'LLM Systems Builder',
-    'Interpretability & Steering',
-    'Multi-Agent Simulation',
-    'Full-Stack ML Engineer',
+    'LLM + RL Researcher',
+    'ML Engineer',
+    'Full-Stack Developer',
+    'Software Engineer',
   ],
-  bio: 'ML researcher and engineer interested in understanding and controlling how large models behave — spanning interpretability and activation steering, multi-agent systems and RAG, LLM-driven simulation of human behavior, inference-time search and planning, and model efficiency. Focused on designing efficient, robust, scalable systems that improve reasoning and real-world adaptability while reducing computational cost. Background also includes computer vision and full-stack ML engineering.',
+  bio: 'MS student at Penn State interested in LLM and reinforcement learning research. I like building efficient learning systems that improve reasoning and decision-making, and I also ship full-stack software across research and industry.',
+  aboutResearch:
+    'I want to work on problems at the intersection of large language models and reinforcement learning: better reasoning, alignment, and agents that can plan and adapt in the real world. My recent research spans multi-agent RAG, LLM-driven behavioral simulation, and inference-time search, but I am not locked into one niche. I follow interesting problems wherever they lead.',
+  aboutSoftware:
+    'Alongside research, I have spent a lot of time building production software. At Lumel I shipped an LLM-powered RAG system in TypeScript, a real-time collaborative JSON editor with React, Node.js, and WebSockets, and Power BI tooling used by enterprise customers. Earlier roles covered Next.js portals, FastAPI backends, and ML apps from prototype to deployment. I am comfortable owning features end to end.',
   socials: [
     {
       label: 'GitHub',
@@ -150,12 +155,12 @@ export const content: SiteContent = {
       id: 'psu-nlp',
       title: 'Graduate Researcher',
       organization: 'Penn State NLP Group',
-      period: 'Apr 2026 – Present',
+      period: 'Apr 2026 to Present',
       category: 'research',
       logo: '/logos/psu.png',
       highlights: [
         'Building LLM-driven generative agent simulations of urban disaster behavior (heatwaves) on the AgentSociety platform, grounded in empirical activity data across demographic segments.',
-        'Showed the "structure, not scale" thesis: an 8B model with a data-grounded world model, transition validators, and constrained plan edits closes the gap to 10× larger API models — a 4× larger planner gave no gain, while structural validation did.',
+        'Showed the "structure, not scale" thesis: an 8B model with a data-grounded world model, transition validators, and constrained plan edits closes the gap to 10x larger API models. A 4x larger planner gave no gain, while structural validation did.',
         'Diagnosed and eliminated prompt-salience failure modes (e.g. heat-warning framing flooding agents into unrealistic health behavior) via constrained edit vocabularies over normal-day schedule skeletons.',
       ],
     },
@@ -163,7 +168,7 @@ export const content: SiteContent = {
       id: 'psu-la',
       title: 'Learning Assistant',
       organization: 'Pennsylvania State University',
-      period: 'Sep 2025 – Present',
+      period: 'Sep 2025 to Present',
       category: 'research',
       logo: '/logos/psu.png',
       highlights: [
@@ -175,7 +180,7 @@ export const content: SiteContent = {
       id: 'snu-vip',
       title: 'Research Intern',
       organization: 'Vision and Image Processing Lab, SNU',
-      period: 'Aug 2024 – Mar 2025',
+      period: 'Aug 2024 to Mar 2025',
       category: 'research',
       highlights: [
         'NeRF-based 3D reconstruction from single X-ray images with Mamba modules (PSNR 28.538, LPIPS 0.309), outperforming 3DGS and GAMBA.',
@@ -186,7 +191,7 @@ export const content: SiteContent = {
       id: 'snu-speech',
       title: 'Speech Lab Research Intern',
       organization: 'Shiv Nadar University',
-      period: 'Sep 2022 – Nov 2022',
+      period: 'Sep 2022 to Nov 2022',
       category: 'research',
       highlights: [
         'Built Tacotron-based Tamil TTS voice cloning with under 5s inference.',
@@ -197,7 +202,7 @@ export const content: SiteContent = {
       id: 'lumel',
       title: 'Product Developer Intern',
       organization: 'Lumel Technologies',
-      period: 'Mar 2025 – Jun 2025',
+      period: 'Mar 2025 to Jun 2025',
       category: 'industry',
       logo: '/logos/lumel.svg',
       highlights: [
@@ -210,7 +215,7 @@ export const content: SiteContent = {
       id: 'phosphene',
       title: 'Deep Learning Intern',
       organization: 'Phosphene AI',
-      period: 'May 2024 – Jul 2024',
+      period: 'May 2024 to Jul 2024',
       category: 'industry',
       logo: '/logos/phosphene.png',
       highlights: [
@@ -222,7 +227,7 @@ export const content: SiteContent = {
       id: 'culvii',
       title: 'Software Engineering Intern',
       organization: 'Culvii',
-      period: 'Feb 2024 – May 2024',
+      period: 'Feb 2024 to May 2024',
       category: 'industry',
       logo: '/logos/culvii.svg',
       highlights: [
@@ -234,7 +239,7 @@ export const content: SiteContent = {
       id: 'optisol',
       title: 'Machine Learning Intern',
       organization: 'Optisol Business Solutions',
-      period: 'May 2023 – Jan 2024',
+      period: 'May 2023 to Jan 2024',
       category: 'industry',
       logo: '/logos/optisol.png',
       highlights: [
@@ -245,35 +250,22 @@ export const content: SiteContent = {
   ],
   projects: [
     {
-      id: 'activation-steering',
-      title: 'LLM Activation Steering for Hallucination Mitigation',
-      period: 'Jul 2026 – Present',
+      id: 'attention-bias-rag',
+      title: 'Attention Bias in Multi-Agent RAG',
+      period: 'Feb 2026 to Present',
       description:
-        'Research collaboration with a Penn State professor (author of FineSteer). Evaluating whether activation-steering methods (ODESteer, Spherical Steering) mitigate hallucination in modern thinking-mode LLMs (Qwen3.5-4B, Gemma-4-E4B-it), fitted from span-annotated hallucination data.',
-      tags: ['Python', 'PyTorch', 'vLLM', 'Interpretability'],
-      highlights: [
-        "Reproduced the ODESteer paper's TruthfulQA benchmark within error bars across 3 seeds (Llama-3.1-8B, Qwen2.5-7B), and Spherical Steering's MC1/MC2/MC3 scores to ~0.1 of the published values.",
-        'Found TQA-fit steering yields +22.6 True% on held-out questions for Qwen3.5-4B (+2% accuracy) — gains bound to their fitting domain, not memorization.',
-        'Built steering inside vLLM via a worker-extension RPC hook with fail-fast application checks; showed steering strength is absolute and must be rescaled per model (~9× activation-norm differences).',
-      ],
-    },
-    {
-      id: 'kv-cache-rag',
-      title: 'Quantized KV-Cache Transfer in Multi-Agent RAG',
-      period: 'Feb 2026 – Present',
-      description:
-        'Studied "memory infection" in multi-agent RAG: how transferring a retriever\'s KV-cache biases the evaluator\'s judgments, and whether INT4 (NF4) cache perturbation can rescue those decisions across Llama-3-8B, Mistral-7B, and Qwen2-7B on HotpotQA and Natural Questions.',
+        'Studied how transferring a retriever\'s KV-cache between agents biases the evaluator\'s judgments in multi-agent RAG pipelines, and whether cache perturbation can rescue those decisions.',
       tags: ['Python', 'PyTorch', 'LLMs', 'RAG', 'Quantization'],
       highlights: [
-        'Showed memory infection is real: KV-cache transfer biases evaluator judgments in 5/6 model×dataset cells (up to +0.38 approval shift on Natural Questions; n=500/cell, McNemar + bootstrap CIs).',
-        'INT4 (NF4) cache perturbation robustly rescues biased decisions (net repair +0.09 to +0.41, significant in 6/6 cells) — matched-magnitude noise controls show the effect is driven by perturbation magnitude, not quantization specifically.',
+        'Showed memory infection is real: KV-cache transfer biases evaluator judgments in 5/6 model x dataset cells (up to +0.38 approval shift on Natural Questions; n=500/cell, McNemar + bootstrap CIs).',
+        'INT4 (NF4) cache perturbation robustly rescues biased decisions (net repair +0.09 to +0.41, significant in 6/6 cells). Matched-magnitude noise controls showed the effect is driven by perturbation magnitude, not quantization specifically.',
         'Identified the mechanism: bias concentrates in fragile low-margin decisions that noise preferentially flips back (consistent in 6/6 cells).',
       ],
     },
     {
       id: 'mcts-llm',
       title: 'Monte Carlo Tree Search for Controlled LLM Text Generation',
-      period: 'Feb – May 2026',
+      period: 'Feb to May 2026',
       description:
         'MCTS decoding for Text-to-SQL generation. Achieved 12.6% exact-match vs 6.4% SMC baseline (+97% relative), with 70.2% column and 79.8% table usage correctness.',
       tags: ['Python', 'PyTorch', 'MCTS', 'Text-to-SQL', 'LLMs'],
@@ -285,7 +277,7 @@ export const content: SiteContent = {
     {
       id: 'haze-removal',
       title: 'Dense Non-Homogeneous Haze Removal',
-      period: 'Jan – Apr 2024',
+      period: 'Jan to Apr 2024',
       description:
         'Lightweight ResNet U-Net for dense haze removal. PSNR 14.4 dB after 4h training with under 5s inference; +20% PSNR from histogram equalization post-processing. Ranked 16/128 worldwide.',
       tags: ['Python', 'PyTorch', 'Computer Vision', 'U-Net'],
@@ -293,13 +285,13 @@ export const content: SiteContent = {
     },
     {
       id: 'krypton',
-      title: 'Krypton — Financial Transaction Anomaly Detection',
-      period: 'Jan – Mar 2024',
+      title: 'Krypton: Financial Transaction Anomaly Detection',
+      period: 'Jan to Mar 2024',
       description:
         'Real-time anomaly detection under 5s latency at 99% accuracy with random forests. Spam/phishing mobile app at 98% accuracy; IP tracking within 1s. Winner of Encryptcon Shaastra Hackathon (IIT Madras + Temenos).',
       tags: ['Python', 'React', 'Node.js', 'MongoDB', 'ML'],
       highlights: [
-        'Winner — Encryptcon Shaastra',
+        'Winner, Encryptcon Shaastra',
         '99% anomaly detection accuracy',
       ],
     },
@@ -351,14 +343,14 @@ export const content: SiteContent = {
     {
       id: 'soft-computing',
       title: 'Gold + Elite Top 2%',
-      detail: 'Intro to Soft Computing — IIT Kharagpur',
+      detail: 'Intro to Soft Computing, IIT Kharagpur',
       organization: 'IIT Kharagpur',
       logo: '/logos/iitkgp.png',
     },
     {
       id: 'accel-ai',
       title: 'Silver + Elite Top 5%',
-      detail: 'Applied Accelerated AI — IIT Palakkad',
+      detail: 'Applied Accelerated AI, IIT Palakkad',
     },
     {
       id: 'trinity',

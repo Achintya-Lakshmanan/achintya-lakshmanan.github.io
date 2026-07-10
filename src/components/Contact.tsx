@@ -14,8 +14,7 @@ export function Contact() {
         <div className="rounded-2xl border border-white/5 bg-surface-raised/80 p-8 text-center sm:p-12">
           <p className="mx-auto max-w-lg text-base text-ink-muted sm:text-lg">
             The best way to reach me is by email. I&apos;m always happy to talk
-            about LLMs, interpretability, multi-agent systems, and building
-            efficient ML systems.
+            about LLMs, reinforcement learning, and building software that ships.
           </p>
           <a
             href={`mailto:${content.email}`}

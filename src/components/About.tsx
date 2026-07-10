@@ -7,13 +7,14 @@ export function About() {
     <Section
       id="about"
       title="About"
-      subtitle="Understanding and shaping how large models behave — efficiently and in the real world."
+      subtitle="Research interests, software engineering, and the work in between."
     >
       <Reveal delay={0.08}>
         <div className="grid gap-8 md:grid-cols-[1.4fr_1fr]">
-          <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
-            {content.bio}
-          </p>
+          <div className="space-y-5 text-base leading-relaxed text-ink-muted sm:text-lg">
+            <p>{content.aboutResearch}</p>
+            <p>{content.aboutSoftware}</p>
+          </div>
           <div className="rounded-2xl border border-white/5 bg-surface-raised/80 p-6">
             <dl className="space-y-4 text-sm">
               <div>
@@ -23,7 +24,7 @@ export function About() {
               <div>
                 <dt className="text-ink-dim">Focus</dt>
                 <dd className="mt-1 font-medium text-ink">
-                  Interpretability · Multi-Agent Systems · Efficiency
+                  LLMs · Reinforcement Learning · Software Engineering
                 </dd>
               </div>
               <div>

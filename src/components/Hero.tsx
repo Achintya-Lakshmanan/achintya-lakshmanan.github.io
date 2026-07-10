@@ -228,7 +228,7 @@ function ProfilePhoto({ src, name, size, shouldReduce }: ProfilePhotoProps) {
         <div className="h-full w-full overflow-hidden rounded-full bg-surface ring-1 ring-white/10">
           <img
             src={src}
-            alt={`${name} — headshot`}
+            alt={`${name}, headshot`}
             width={640}
             height={640}
             className="h-full w-full object-cover"
