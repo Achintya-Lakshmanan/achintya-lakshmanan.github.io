@@ -85,12 +85,13 @@ export const content: SiteContent = {
   location: 'University Park, PA',
   photo: '/me.jpg',
   taglineRoles: [
-    'LLM + RL Researcher',
-    'ML Engineer',
-    'Full-Stack Developer',
-    'NLP Researcher',
+    'ML Researcher',
+    'LLM Systems Builder',
+    'Interpretability & Steering',
+    'Multi-Agent Simulation',
+    'Full-Stack ML Engineer',
   ],
-  bio: 'Aspiring researcher at the intersection of LLMs and reinforcement learning. Focused on designing efficient, robust, scalable learning systems that improve reasoning, decision-making, and real-world adaptability while reducing computational cost. Interested in RL-based alignment and model/data efficiency.',
+  bio: 'ML researcher and engineer interested in understanding and controlling how large models behave — spanning interpretability and activation steering, multi-agent systems and RAG, LLM-driven simulation of human behavior, inference-time search and planning, and model efficiency. Focused on designing efficient, robust, scalable systems that improve reasoning and real-world adaptability while reducing computational cost. Background also includes computer vision and full-stack ML engineering.',
   socials: [
     {
       label: 'GitHub',

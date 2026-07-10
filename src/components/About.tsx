@@ -7,7 +7,7 @@ export function About() {
     <Section
       id="about"
       title="About"
-      subtitle="Building learning systems that reason, decide, and adapt — efficiently."
+      subtitle="Understanding and shaping how large models behave — efficiently and in the real world."
     >
       <Reveal delay={0.08}>
         <div className="grid gap-8 md:grid-cols-[1.4fr_1fr]">
@@ -23,7 +23,7 @@ export function About() {
               <div>
                 <dt className="text-ink-dim">Focus</dt>
                 <dd className="mt-1 font-medium text-ink">
-                  LLMs · Reinforcement Learning · Alignment
+                  Interpretability · Multi-Agent Systems · Efficiency
                 </dd>
               </div>
               <div>

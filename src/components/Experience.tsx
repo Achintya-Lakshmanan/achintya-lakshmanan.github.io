@@ -60,7 +60,7 @@ export function Experience() {
     <Section
       id="experience"
       title="Experience"
-      subtitle="Research and industry roles spanning LLMs, RL, vision, and full-stack systems."
+      subtitle="Research and industry roles spanning LLMs, multi-agent systems, vision, and full-stack ML."
     >
       <Reveal delay={0.05}>
         <div
