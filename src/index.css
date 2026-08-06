@@ -5,9 +5,18 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    background: #f2eadc;
   }
 
   @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
     html {
       scroll-behavior: auto;
     }
@@ -17,39 +26,43 @@
     @apply bg-surface font-sans text-ink antialiased;
     margin: 0;
     min-height: 100vh;
+    overflow-x: clip;
   }
 
   ::selection {
-    @apply bg-accent/40 text-ink;
+    background: #c9f31d;
+    color: #171717;
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-2 outline-accent-cyan;
+    outline: 3px solid #2457f5;
+    outline-offset: 3px;
   }
 
-  /* Thin accent scrollbar (WebKit) */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 11px;
+    height: 11px;
   }
 
   ::-webkit-scrollbar-track {
-    background: #07090f;
+    background: #f2eadc;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #2dd4bf, #7c6af0);
-    border-radius: 999px;
-    border: 2px solid #07090f;
+    background: #ff5c35;
+    border: 2px solid #171717;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #5eead4, #7c6af0);
+    background: #2457f5;
   }
 
-  /* Numbered section eyebrows via CSS counters (Hero #top skipped) */
   main {
     counter-reset: section;
+  }
+
+  main:focus {
+    outline: none;
   }
 
   main > section:not(#top) {
@@ -58,35 +71,61 @@
 }
 
 @layer components {
+  .skip-link {
+    @apply fixed left-4 top-4 z-[100] border-2 border-ink bg-[#c9f31d] px-4 py-3 text-sm font-bold text-ink shadow-[4px_4px_0_#171717];
+    transform: translateY(-160%);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+
   .section-eyebrow::before {
-    content: counter(section, decimal-leading-zero);
-    @apply mb-3 block font-sans text-xs font-semibold uppercase tracking-[0.2em] text-accent-cyan/70;
+    content: "FIELD NOTE " counter(section, decimal-leading-zero);
+    @apply mb-3 block font-sans text-xs font-bold uppercase tracking-[0.18em];
+    color: currentColor;
   }
 
   .section-underline {
-    @apply mt-3 block h-1 w-20 rounded-full;
-    background: linear-gradient(
-      90deg,
-      #2dd4bf 0%,
-      #22d3ee 55%,
-      transparent 100%
-    );
+    @apply mt-3 block h-2 w-24;
+    background: #ff5c35;
+    border: 2px solid #171717;
+    transform: rotate(-1deg);
   }
 
-  .atm-grid {
+  .paper-grid {
     background-image:
-      linear-gradient(rgba(232, 238, 248, 0.035) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(232, 238, 248, 0.035) 1px, transparent 1px);
-    background-size: 48px 48px;
+      linear-gradient(rgba(23, 23, 23, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(23, 23, 23, 0.06) 1px, transparent 1px);
+    background-size: 28px 28px;
   }
 
   .section-wash {
-    background: linear-gradient(
-      180deg,
-      rgba(45, 212, 191, 0.03) 0%,
-      transparent 40%,
-      transparent 60%,
-      rgba(124, 106, 240, 0.025) 100%
-    );
+    background: #fffaf0;
+    border-block: 2px solid #171717;
   }
+
+  .hard-card {
+    border: 2px solid #171717;
+    background: #fffaf0;
+    box-shadow: 7px 7px 0 #171717;
+  }
+
+  .ink-link {
+    background-image: linear-gradient(#c9f31d, #c9f31d);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 0.35em;
+    transition: background-size 180ms ease;
+  }
+
+  .ink-link:hover {
+    background-size: 100% 100%;
+  }
+
+  .scribble-ring {
+    border: 3px solid #171717;
+    border-radius: 46% 54% 48% 52% / 54% 44% 56% 46%;
+  }
+
 }

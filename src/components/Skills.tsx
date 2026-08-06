@@ -3,25 +3,58 @@ import { Reveal } from './Reveal'
 import { Section } from './Section'
 
 export function Skills() {
+  const skills = content.skills.flatMap((group) => group.skills)
+
   return (
     <Section
       id="skills"
-      title="Skills"
-      subtitle="Languages, tools, and libraries I reach for most often."
+      title="The toolbox"
+      subtitle="A shorter list of things I have actually used to make the work above."
     >
-      <div className="space-y-10">
+      <Reveal>
+        <div
+          className="mb-16 w-full border-2 border-ink bg-accent-cyan px-4 py-4 text-white"
+          aria-hidden="true"
+        >
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            {skills.map((skill) => (
+              <span
+                key={skill}
+                className="inline-flex items-center gap-2 font-display text-base font-bold uppercase sm:text-lg"
+              >
+                <span className="text-[#c9f31d]">✦</span>
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
+      <div className="grid gap-0 border-2 border-ink bg-[#fffaf0] md:grid-cols-2">
         {content.skills.map((group, gi) => (
           <Reveal key={group.id} delay={gi * 0.08}>
-            <div>
-              <h3 className="mb-4 font-display text-sm font-semibold uppercase tracking-[0.15em] text-ink-dim">
+            <div
+              className={`h-full border-b-2 border-ink p-6 ${
+                gi % 2 === 0 ? 'md:border-r-2' : ''
+              } ${gi >= content.skills.length - 2 ? 'md:border-b-0' : ''}`}
+            >
+              <h3 className="font-display text-2xl font-bold">
                 {group.category}
               </h3>
-              <ul className="flex flex-wrap gap-2.5">
-                {group.skills.map((skill) => (
-                  <li key={skill}>
-                    <span className="inline-flex rounded-xl border border-white/[0.08] bg-surface-raised px-3.5 py-2 text-sm font-medium text-ink-muted transition-all duration-200 hover:border-accent-cyan/35 hover:bg-accent-cyan/10 hover:text-ink hover:shadow-glow-cyan">
-                      {skill}
-                    </span>
+              <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-ink-muted">
+                {group.skills.map((skill, i) => (
+                  <li key={skill} className="flex items-center gap-2">
+                    <span
+                      className={`h-2.5 w-2.5 border border-ink ${
+                        i % 3 === 0
+                          ? 'bg-accent'
+                          : i % 3 === 1
+                            ? 'bg-[#c9f31d]'
+                            : 'bg-accent-cyan'
+                      }`}
+                      aria-hidden
+                    />
+                    {skill}
                   </li>
                 ))}
               </ul>

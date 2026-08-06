@@ -5,21 +5,21 @@ export default {
     extend: {
       colors: {
         surface: {
-          DEFAULT: '#07090f',
-          raised: '#0e131c',
-          overlay: '#151b28',
+          DEFAULT: '#f2eadc',
+          raised: '#fffaf0',
+          overlay: '#171717',
         },
         accent: {
-          DEFAULT: '#2dd4bf',
-          bright: '#5eead4',
-          cyan: '#22d3ee',
-          violet: '#7c6af0',
-          glow: '#2dd4bf',
+          DEFAULT: '#c83d22',
+          bright: '#b8321a',
+          cyan: '#2457f5',
+          violet: '#7a43d1',
+          glow: '#c9f31d',
         },
         ink: {
-          DEFAULT: '#e8eef8',
-          muted: '#93a0b5',
-          dim: '#64708a',
+          DEFAULT: '#171717',
+          muted: '#514d47',
+          dim: '#675f55',
         },
       },
       fontFamily: {
@@ -28,15 +28,15 @@ export default {
       },
       backgroundImage: {
         'accent-gradient':
-          'linear-gradient(135deg, #2dd4bf 0%, #22d3ee 45%, #7c6af0 100%)',
+          'linear-gradient(135deg, #c83d22 0%, #ff8a34 48%, #c9f31d 100%)',
         'hero-mesh':
-          'radial-gradient(ellipse 80% 50% at 50% -20%, rgba(45, 212, 191, 0.18), transparent), radial-gradient(ellipse 60% 40% at 85% 45%, rgba(34, 211, 238, 0.1), transparent), radial-gradient(ellipse 50% 35% at 15% 75%, rgba(124, 106, 240, 0.12), transparent)',
+          'radial-gradient(circle at 85% 15%, rgba(201, 243, 29, 0.75) 0 12%, transparent 12.5%), radial-gradient(circle at 8% 88%, rgba(36, 87, 245, 0.18) 0 18%, transparent 18.5%)',
       },
       boxShadow: {
-        glow: '0 0 40px rgba(45, 212, 191, 0.22)',
-        'glow-sm': '0 0 20px rgba(45, 212, 191, 0.16)',
-        'glow-cyan': '0 0 30px rgba(34, 211, 238, 0.22)',
-        'glow-violet': '0 0 30px rgba(124, 106, 240, 0.18)',
+        glow: '8px 8px 0 #171717',
+        'glow-sm': '4px 4px 0 #171717',
+        'glow-cyan': '6px 6px 0 #2457f5',
+        'glow-violet': '6px 6px 0 #7a43d1',
       },
       animation: {
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://achintya-lakshmanan.github.io/sitemap.xml

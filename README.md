@@ -8,6 +8,7 @@ Personal portfolio site built with **Vite + React + TypeScript**, **Tailwind CSS
 npm install
 npm run dev      # local development
 npm run build    # production build → dist/
+npm run check    # lint + production build
 npm run preview  # preview the production build
 ```
 
@@ -30,16 +31,21 @@ Append an object to `content.projects`:
   id: 'unique-slug',
   title: 'Project Title',
   period: 'Jan 2026 to Present',
-  description: 'One or two sentences about what you built and the outcome.',
+  kind: 'research', // or 'build'
+  question: 'The concrete question or problem.',
+  contribution: 'What you personally designed, built, or evaluated.',
   tags: ['Python', 'PyTorch'],
-  highlights: ['Optional bullet metrics'], // optional
-  link: 'https://...', // optional
+  evidence: ['A result, limitation, or honest current status.'],
+  status: 'Private research repository', // optional
+  links: [ // optional; only add verified public URLs
+    { label: 'Project repository', href: 'https://...', kind: 'github' },
+  ],
 }
 ```
 
 ### Add experience
 
-Append to `content.experience`. Set `category` to `'research'` or `'industry'` so the Experience tabs filter correctly:
+Append to `content.experience`. Set `category` to `'research'`, `'teaching'`, or `'industry'` so the Experience filters work correctly:
 
 ```ts
 {
@@ -47,7 +53,7 @@ Append to `content.experience`. Set `category` to `'research'` or `'industry'` s
   title: 'Role Title',
   organization: 'Lab or Company',
   period: 'Mon YYYY to Present',
-  category: 'research', // or 'industry'
+  category: 'research', // or 'teaching' / 'industry'
   highlights: [
     'Bullet point with impact / metrics.',
   ],
@@ -59,7 +65,7 @@ Append to `content.experience`. Set `category` to `'research'` or `'industry'` s
 - **Education** → `content.education` (`Education` interface)
 - **Skills** → `content.skills` (group by category, list skill strings)
 - **Achievements** → `content.achievements`
-- **Bio / socials / tagline roles** → top-level fields on `content` (`bio`, `socials`, `taglineRoles`, etc.)
+- **Hero / about / socials** → top-level fields on `content` (`positioning`, `bio`, `aboutResearch`, `socials`, etc.)
 
 ## Deploy to GitHub Pages
 
@@ -86,6 +92,13 @@ src/
 
 ## Design notes
 
-- Dark theme (`#0a0a0f`) with violet → cyan accent gradient
+- Warm field-notes palette with cream paper, ink borders, orange, electric blue, and acid-lime accents
 - Space Grotesk (display) + Inter (body) via `@fontsource`
 - Scroll-reveal and hover micro-interactions respect `prefers-reduced-motion`
+- The desktop hero intentionally uses oversized editorial type; narrow-screen sizes must still be checked at 320px and 390px
+
+## Content and metadata
+
+- Treat public, versioned notes and the current CV as evidence for factual claims; do not publish local paths, private repository details, or draft metrics.
+- Projects use question → contribution → evidence/status so in-progress research is not presented as a finished result.
+- Update `index.html`, `public/social-card.svg`, `public/social-card.png`, `public/robots.txt`, and `public/sitemap.xml` together when the canonical URL or public positioning changes.

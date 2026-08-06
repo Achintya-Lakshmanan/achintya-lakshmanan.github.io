@@ -21,17 +21,17 @@ export function Section({
   return (
     <section
       id={id}
-      className={`scroll-mt-24 py-20 sm:py-28 ${wash ? 'section-wash' : ''} ${className}`}
+      className={`relative scroll-mt-20 py-20 sm:py-28 ${wash ? 'section-wash' : ''} ${className}`}
     >
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
-          <div className="section-eyebrow mb-12 max-w-2xl">
-            <h2 className="font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl">
+          <div className="section-eyebrow mb-12 max-w-3xl text-ink sm:mb-16">
+            <h2 className="font-display text-4xl font-bold leading-[0.95] tracking-[-0.04em] text-ink sm:text-6xl">
               {title}
               <span className="section-underline" aria-hidden />
             </h2>
             {subtitle && (
-              <p className="mt-4 text-base leading-relaxed text-ink-muted sm:text-lg">
+              <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg">
                 {subtitle}
               </p>
             )}

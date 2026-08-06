@@ -1,23 +1,8 @@
 import { useEffect, useState } from 'react'
 
-/** True when the user prefers reduced motion. */
-export function usePrefersReducedMotion(): boolean {
-  const [reduced, setReduced] = useState(false)
-
-  useEffect(() => {
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setReduced(mq.matches)
-    const handler = (e: MediaQueryListEvent) => setReduced(e.matches)
-    mq.addEventListener('change', handler)
-    return () => mq.removeEventListener('change', handler)
-  }, [])
-
-  return reduced
-}
-
 /** Tracks which section id is currently in view for nav highlighting. */
 export function useActiveSection(sectionIds: string[]): string {
-  const [active, setActive] = useState(sectionIds[0] ?? '')
+  const [active, setActive] = useState('')
 
   useEffect(() => {
     const elements = sectionIds
@@ -33,6 +18,8 @@ export function useActiveSection(sectionIds: string[]): string {
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)
         if (visible[0]?.target.id) {
           setActive(visible[0].target.id)
+        } else if (window.scrollY < elements[0]!.offsetTop - 120) {
+          setActive('')
         }
       },
       { rootMargin: '-20% 0px -55% 0px', threshold: [0, 0.25, 0.5, 0.75] },

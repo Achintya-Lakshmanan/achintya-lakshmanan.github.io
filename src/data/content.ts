@@ -21,7 +21,7 @@ export interface Education {
   logo?: string
 }
 
-export type ExperienceCategory = 'research' | 'industry'
+export type ExperienceCategory = 'research' | 'teaching' | 'industry'
 
 export interface Experience {
   id: string
@@ -38,19 +38,24 @@ export interface Project {
   id: string
   title: string
   period: string
-  description: string
+  kind: 'research' | 'build'
+  question: string
+  contribution: string
   tags: string[]
-  highlights?: string[]
-  link?: string
+  evidence: string[]
+  status?: string
+  links?: ProjectLink[]
 }
 
-/** Lighter personal / fun builds shown under research projects. */
-export interface SideProject {
-  id: string
-  title: string
-  description: string
-  tags: string[]
-  link?: string
+export interface ProjectLink {
+  label: string
+  href: string
+  kind: 'github' | 'external'
+}
+
+export interface CurrentThread {
+  label: string
+  text: string
 }
 
 export interface SkillGroup {
@@ -71,12 +76,13 @@ export interface Achievement {
 
 export interface SiteContent {
   name: string
-  shortName: string
   email: string
-  taglineRoles: string[]
+  positioning: string
   bio: string
   aboutResearch: string
   aboutSoftware: string
+  currentThreads: CurrentThread[]
+  contactCopy: string
   location: string
   /** Profile photo path under /public (e.g. /me.jpg). Optional. */
   photo?: string
@@ -85,23 +91,38 @@ export interface SiteContent {
   education: Education[]
   experience: Experience[]
   projects: Project[]
-  sideProjects: SideProject[]
   skills: SkillGroup[]
   achievements: Achievement[]
 }
 
 export const content: SiteContent = {
   name: 'Achintya Lakshmanan',
-  shortName: 'Achintya',
   email: 'aql6062@psu.edu',
   location: 'University Park, PA',
   photo: '/me.jpg',
-  taglineRoles: ['Full-Stack Developer', 'LLM Researcher'],
-  bio: 'MS student at Penn State interested in LLM and reinforcement learning research. I like building efficient learning systems that improve reasoning and decision-making, and I also ship full-stack software across research and industry.',
+  positioning:
+    'LLM researcher and software engineer building systems that plan, share context, and hold up under real evaluation.',
+  bio: 'I’m an MS CSE student and Graduate Researcher at Penn State, working on data-grounded agents, multi-agent RAG, and search-time decoding—with prior experience shipping ML and full-stack products.',
   aboutResearch:
-    'I want to work on problems at the intersection of large language models and reinforcement learning: better reasoning, alignment, and agents that can plan and adapt in the real world. My recent research spans multi-agent RAG, LLM-driven behavioral simulation, and inference-time search, but I am not locked into one niche. I follow interesting problems wherever they lead.',
+    'The question running through my research is what should live outside the model. Empirical priors and validators can anchor an agent to real behavior; grammar constraints and search can protect high-leverage decisions; matched evaluations can tell genuine adaptation from reproduction.',
   aboutSoftware:
-    'Alongside research, I have spent a lot of time building production software. At Lumel I shipped an LLM-powered RAG system in TypeScript, a real-time collaborative JSON editor with React, Node.js, and WebSockets, and Power BI tooling used by enterprise customers. Earlier roles covered Next.js portals, FastAPI backends, and ML apps from prototype to deployment. I am comfortable owning features end to end.',
+    'I came to research from the building side. I have shipped RAG, collaborative editing, and Power BI tooling in product teams, and I still turn small annoyances on my own computer into native apps and developer tools.',
+  currentThreads: [
+    {
+      label: 'Ground first',
+      text: 'Use ATUS time-slot priors and transitions outside the prompt, then score four LLM activity proposals against that structure before selecting the next activity.',
+    },
+    {
+      label: 'Constrain early',
+      text: 'Use grammar, schema, and search where the first few choices determine whether the rest of a structured output can succeed.',
+    },
+    {
+      label: 'Audit the metric',
+      text: 'Separate reproduction from transfer, policy from execution, and oracle from deployable settings before calling a result progress.',
+    },
+  ],
+  contactCopy:
+    'If something here made you curious, send me an email. I am especially happy to talk about LLM systems, careful evaluation, useful developer tools, or work where I get to do all three.',
   socials: [
     {
       label: 'GitHub',
@@ -121,11 +142,11 @@ export const content: SiteContent = {
   ],
   nav: [
     { label: 'About', href: '#about' },
+    { label: 'Work', href: '#projects' },
     { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Achievements', href: '#achievements' },
     { label: 'Education', href: '#education' },
+    { label: 'Skills', href: '#skills' },
+    { label: 'Highlights', href: '#achievements' },
     { label: 'Contact', href: '#contact' },
   ],
   education: [
@@ -173,10 +194,8 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/psu.png',
       highlights: [
-        'Building LLM agents that simulate urban heatwave behavior on AgentSociety, grounded in demographic activity data.',
-        'Working on LLM activation steering for hallucination mitigation, evaluating methods like ODESteer and Spherical Steering on thinking-mode models.',
-        'Studying attention bias from KV-cache transfer in multi-agent RAG.',
-        'Developing MCTS-based decoding for controlled Text-to-SQL generation.',
+        'On AURA, I evaluate a K-validation controller that scores four LLM activity proposals alongside ATUS time-slot priors and transitions, with policy selections and execution analyzed separately.',
+        'I study what a downstream judge inherits when agents share KV caches, using matched perturbation controls to test the mechanism rather than crediting one compression format.',
       ],
     },
     {
@@ -184,11 +203,11 @@ export const content: SiteContent = {
       title: 'Learning Assistant',
       organization: 'Pennsylvania State University',
       period: 'Sep 2025 to Present',
-      category: 'research',
+      category: 'teaching',
       logo: '/logos/psu.png',
       highlights: [
-        'Supported CMPSC 461 and CMPSC 311 by creating assignments and projects, conducting exams, grading, and helping run the courses day to day.',
-        'Mentored undergraduate honors projects on [Secure Code Generation](https://arxiv.org/abs/2601.00509): benchmarked DeepSeek and CodeLlama on 4,000 C/C++ prompts; tracked compilation failures, CWE-based security vulnerabilities, and semantic correctness. Implemented a RAG remediation pipeline that reduced failures by 20% (compilation), 35% (security), and 55% (semantic).',
+        'Prepare course questions, hold office hours, and help students work through course projects.',
+        'Mentor secure-coding work and support its experimental design and analysis.',
       ],
     },
     {
@@ -199,8 +218,8 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/snu.svg',
       highlights: [
-        '3D Reconstruction from Single X-Ray Images: Developed a novel NeRF-based 3D reconstruction pipeline enhanced with Mamba modules, significantly improving reconstruction fidelity and efficiency over state-of-the-art methods such as 3DGS and GAMBA. Achieved PSNR of 28.538 and LPIPS of 0.309 on clinically relevant datasets, enabling accurate 3D bone structure recovery from single X-rays.',
-        'Fetal Ultrasound Grand Challenge (FUGC): Experimented with semi-supervised segmentation models, including Semi-Mamba and a custom designed VMUNet variant with mutual learning, to address the challenges of noisy and low-contrast fetal ultrasound images. Incorporated attention mechanisms and multi-scale supervision to enhance feature learning. Achieved PSNR of 14.3 and accuracy of 96%.',
+        'Built and evaluated a Mamba-enhanced NeRF pipeline for reconstructing 3D bone structure from a single X-ray.',
+        'For a fetal-ultrasound challenge, tested Semi-Mamba and a mutual-learning VMUNet variant on noisy, low-contrast scans.',
       ],
     },
     {
@@ -211,9 +230,8 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/snu.svg',
       highlights: [
-        'Investigated and deployed Encoder-Decoder Architectures for Text-To-Speech Systems for Tamil Language.',
-        'Deployed a Tacotron-based voice cloning architecture for Tamil text-to-speech, optimizing inference latency to deliver natural voice generation within a <5-second threshold.',
-        'Researched Voice Transcreation for IIT Online Courses, obtained a naturalness score of about 3.5.',
+        'Built Tamil text-to-speech and voice-cloning experiments with encoder-decoder and Tacotron models.',
+        'Contributed to voice transcreation for IIT online courses.',
       ],
     },
     {
@@ -224,10 +242,9 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/lumel.svg',
       highlights: [
-        'Built LLM-powered RAG system in TypeScript automating formula creation in Inforiver Matrix, reducing manual effort by 70%.',
-        'Developed real-time collaborative JSON editor with React, Node.js, WebSockets, enabling 30+ concurrent users.',
-        'Optimized MS Project to Power BI parser in TypeScript, accelerating enterprise data integration by 40%.',
-        'Engineered automated Power BI theme generator using TypeScript, reducing report customization time by 50%.',
+        'Built a TypeScript RAG assistant that translated natural-language requests into Inforiver Matrix formulas.',
+        'Built a collaborative JSON editor with React, Node.js, and WebSockets, including real-time shared state and multi-user testing.',
+        'Worked on Power BI utilities for parsing Microsoft Project data and generating reusable report themes.',
       ],
     },
     {
@@ -238,9 +255,8 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/phosphene.png',
       highlights: [
-        'Led a 5-member team to deliver deepfake detection in Python + PyTorch with 91% accuracy and 5s inference time.',
-        'Applied MINTIME framework for multi-identity detection and generated high-fidelity deepfakes using DeepFaceLab (PSNR 34.5 dB).',
-        'Implemented data augmentation pipeline (blurring, compression, color jitter) in PyTorch, boosting F1 score by 22%.',
+        'Led a five-person team building and evaluating a PyTorch deepfake detector.',
+        'Added blur, compression, and color-jitter augmentation and tested MINTIME on multi-identity videos.',
       ],
     },
     {
@@ -251,8 +267,8 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/culvii.svg',
       highlights: [
-        'Developed student management portal in Next.js + Node.js, enabling seamless class tracking and user onboarding.',
-        'Integrated GPT-based assistants into a gamified learning platform, optimizing conversational responsiveness and enhancing student engagement.',
+        'Built parts of a student-management portal in Next.js and Node.js, including class tracking and onboarding.',
+        'Added GPT-based assistants to a gamified learning product and worked on the conversation flow and response latency.',
       ],
     },
     {
@@ -263,149 +279,165 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/optisol.png',
       highlights: [
-        'Developed UI image generation app with React + Stable Diffusion and FastAPI, improving design quality by 40%.',
-        'Fine-tuned diffusion models in PyTorch using HuggingFace to generate images in <5s.',
-        'Built GPT-4 powered resolution app with React + FastAPI, improving employee issue turnaround efficiency by 20%.',
-        'Deployed YOLOv8 soot detection model (98% accuracy @25 FPS) on NVIDIA Jetson Nano for real-time monitoring.',
+        'Built a React and FastAPI image-generation application around Stable Diffusion and worked on model fine-tuning.',
+        'Built a GPT-4 issue-resolution prototype and deployed a YOLOv8 soot detector on a Jetson Nano.',
       ],
     },
   ],
   projects: [
     {
       id: 'aura',
-      title: 'AURA: LLM Agents for Urban Disaster Simulation',
+      title: 'AURA: Data-Grounded Agents for Heatwave Simulation',
       period: 'Apr 2026 to Present',
-      description:
-        'Simulating how people behave during urban heatwaves with LLM agents on AgentSociety. Instead of asking the model what to do at every timestep, we treat behavior as planning: the LLM proposes, and data-grounded world models plus validators keep day-long schedules coherent.',
-      tags: ['Python', 'LLMs', 'Agents', 'Planning', 'Simulation'],
-      highlights: [
-        'Plan-as-edit: revise normal-day ATUS skeletons with constrained edits under disaster context',
-        'Planning loops with transition validators and empirical activity priors across demographic segments',
-        'Structure over scale: small local models with external validation close the gap to larger API agents',
+      kind: 'research',
+      question:
+        'Can an agent model heatwave adaptation without mistaking ordinary daily structure for evidence that the LLM adapted?',
+      contribution:
+        'I built an ATUS-grounded K-validation and evaluation pipeline. At each decision, the model supplies four candidate activity proposals; candidate-category selection combines proposal support with the ATUS time-slot prior and preceding-activity transition while policy selections and executed actions are logged separately.',
+      tags: ['Python', 'vLLM', 'LLM Agents', 'Simulation', 'Evaluation'],
+      evidence: [
+        'Matched controls compare the same controller with and without LLM proposals.',
+        'In the adaptation arm, the heatwave target is withheld from the simulator and used only after the run for evaluation.',
+        'The next evaluation is a preregistered paired, multi-seed pilot; no pilot result is reported yet.',
       ],
+      status: 'Private research repository',
     },
     {
       id: 'attention-bias-rag',
       title: 'Attention Bias in Multi-Agent RAG',
       period: 'Feb 2026 to Present',
-      description:
-        'In multi-agent RAG, agents can share KV-cache instead of re-encoding text. We studied whether that transfer biases the downstream judge ("memory infection"), and whether perturbing the cache can undo the bias across Llama-3, Mistral, and Qwen2 on HotpotQA and Natural Questions.',
-      tags: ['Python', 'PyTorch', 'LLMs', 'RAG', 'Quantization'],
-      highlights: [
-        'Memory infection in 5/6 model x dataset settings (up to +0.38 approval shift on NQ)',
-        'INT4 cache noise rescues biased decisions (net repair +0.09 to +0.41 across all 6 cells)',
-        'Matched-magnitude noise works too: the rescue is about noise strength, not INT4 itself',
+      kind: 'research',
+      question:
+        'When one RAG agent hands its KV cache to a downstream judge, does the judge inherit a decision bias along with the saved context?',
+      contribution:
+        'In a collaborative study, I helped build and analyze a LangGraph pipeline across three models and two datasets, comparing text re-prefill, FP16 cache transfer, INT4 round trips, and matched-noise controls.',
+      tags: ['Python', 'PyTorch', 'LangGraph', 'RAG', 'KV Cache'],
+      evidence: [
+        'Cache transfer changed downstream decisions in most model-and-dataset settings.',
+        'Matched Gaussian and dropout controls tied or beat INT4 in most comparisons, pointing to perturbation magnitude—not INT4 itself.',
+        'End-task EM and F1 stayed flat, so whether the decision-level effect improves answer correctness remains unresolved.',
       ],
-      link: 'https://github.com/vivek032001/Quantized-KV-Cache-Transfer-for-Multi-Agent-RAG',
+      links: [
+        {
+          label: 'Collaborative repository',
+          href: 'https://github.com/vivek032001/Quantized-KV-Cache-Transfer-for-Multi-Agent-RAG',
+          kind: 'github',
+        },
+      ],
     },
     {
       id: 'mcts-llm',
-      title: 'Monte Carlo Tree Search for Controlled LLM Text Generation',
-      period: 'Feb to May 2026',
-      description:
-        'Text-to-SQL needs globally valid queries, but standard decoding is myopic. We treat generation as search: MCTS plans the high-leverage SQL prefix under grammar and schema constraints, then greedy decoding finishes the rest.',
-      tags: ['Python', 'PyTorch', 'MCTS', 'Text-to-SQL', 'LLMs'],
-      highlights: [
-        '12.6% exact-match vs 6.4% SMC baseline on 500 SPIDER prompts (+97% relative)',
-        '70.2% correct column usage and 79.8% correct table usage',
-        'AWRS-constrained rollouts keep simulations syntactically valid during search',
+      title: 'MCTS for Controlled Text-to-SQL',
+      period: 'Feb 2026 to Present',
+      kind: 'research',
+      question:
+        'Can search spend extra compute on the first 6–10 SQL tokens, where an early schema or structural mistake can doom the entire query?',
+      contribution:
+        'Working in a fork of genlm/genlm-control, I implemented a hybrid MCTS decoder that keeps expansion and simulation inside the SQL grammar and database schema, searches only the high-leverage prefix, and lets greedy decoding finish the query.',
+      tags: ['Python', 'PyTorch', 'MCTS', 'Text-to-SQL', 'SPIDER'],
+      evidence: [
+        'The benchmark separates SMC, oracle MCTS, and deployable non-oracle MCTS instead of mixing gold-assisted and test-time settings.',
+        'A bounded Earley-parser cache and rollout-free heuristic took a 64-simulation prompt from a 48 GB OOM to about 10 GB.',
+        'End-to-end metrics are being regenerated under a clean harness; the deprecated result table is not used here.',
+      ],
+      status: 'Evaluation in progress',
+      links: [
+        {
+          label: 'Project fork',
+          href: 'https://github.com/Achintya-Lakshmanan/MCTS-for-controlled-text-generation',
+          kind: 'github',
+        },
+      ],
+    },
+    {
+      id: 'notchnest',
+      title: 'NotchNest',
+      period: '2026',
+      kind: 'build',
+      question:
+        'The MacBook notch takes permanent screen space. Could it become a useful, quiet HUD instead?',
+      contribution:
+        'I built a native macOS 14+ accessory app in Swift 6, AppKit, and SwiftUI, with compact and expanded states for music, meetings, files, weather, timers, and a camera mirror.',
+      tags: ['Swift 6', 'AppKit', 'SwiftUI', 'macOS'],
+      evidence: [
+        'System integrations are event-driven where timing matters, including Bluetooth connect and disconnect notifications.',
+        'The app coordinates native panels, permissions, media controls, EventKit, IOKit, CoreAudio, and login-item behavior.',
+        'The public repository includes the source, architecture, build script, and macOS permission requirements.',
+      ],
+      links: [
+        {
+          label: 'NotchNest repository',
+          href: 'https://github.com/Achintya-Lakshmanan/NotchNest',
+          kind: 'github',
+        },
       ],
     },
     {
       id: 'haze-removal',
       title: 'Dense Non-Homogeneous Haze Removal',
       period: 'Jan to Apr 2024',
-      description:
-        'Computer vision challenge entry for removing dense, non-homogeneous haze from images. Built a lightweight ResNet-based U-Net aimed at strong reconstruction quality without a heavy training or inference budget.',
+      kind: 'build',
+      question:
+        'How much restoration quality can a compact vision model recover under a four-hour challenge training budget?',
+      contribution:
+        'I built a compact ResNet U-Net for dense, uneven haze and used histogram equalization to make the limited training run count.',
       tags: ['Python', 'PyTorch', 'Computer Vision', 'U-Net'],
-      highlights: [
-        'Ranked 16 out of 128 submissions worldwide',
-        'PSNR of 14.4 dB after about 4 hours of training',
-        'Inference under 5 seconds on the lightweight ResNet U-Net',
+      evidence: [
+        'Placed 16th out of 128 challenge submissions.',
+        'The submitted model reported 14.4 dB PSNR after about four hours of training.',
+        'Kept the architecture small enough for practical per-image inference.',
       ],
     },
     {
       id: 'krypton',
-      title: 'Krypton: Financial Transaction Anomaly Detection',
+      title: 'Krypton: Financial Investigation Dashboard',
       period: 'Jan to Mar 2024',
-      description:
-        'End-to-end fraud system for Encryptcon Shaastra (IIT Madras + Temenos): real-time transaction scoring, spam/phishing protection, and IP geolocation for investigation.',
+      kind: 'build',
+      question:
+        'Could one investigation view bring transaction anomalies, phishing signals, and network context together for a hackathon analyst?',
+      contribution:
+        'Our team combined a random-forest transaction model with spam and phishing checks, IP lookup, and a React and Node.js investigation interface.',
       tags: ['Python', 'React', 'Node.js', 'MongoDB', 'ML'],
-      highlights: [
-        'Winner of Encryptcon Shaastra, outperforming 400+ teams',
-        'Random-forest anomaly detection at 99% accuracy with under 5s latency',
-        'Spam and phishing mobile app at 98% accuracy',
-        'IP geolocation tracker localizing anomalous transactions within 1s',
+      evidence: [
+        'Won the Encryptcon Shaastra Hackathon organized with IIT Madras and Temenos.',
+        'Delivered an end-to-end prototype spanning model inference, APIs, data storage, and the analyst-facing UI.',
       ],
-      link: 'https://github.com/Achintya-Lakshmanan/Technica_LAVA',
-    },
-  ],
-  sideProjects: [
-    {
-      id: 'notchnest',
-      title: 'NotchNest',
-      description:
-        'DynamicLake-style notch companion for Apple Silicon MacBooks: music, calendar with meeting Join, file shelf and AirDrop, weather, pomodoro that traces the notch, and a camera mirror.',
-      tags: ['Swift', 'AppKit', 'SwiftUI', 'macOS'],
-    },
-    {
-      id: 'cortex',
-      title: 'Cortex',
-      description:
-        'Second brain over an Obsidian vault: semantic search, RAG chat with citations, unlinked connections, capture, and task loops, powered by Apple on-device models.',
-      tags: ['Python', 'Swift', 'Obsidian', 'RAG'],
-    },
-    {
-      id: 'finance-tracker',
-      title: 'Finance Tracker',
-      description:
-        'iOS finance app with accounts, budgets, CSV and Splitwise import, OCR bill scan, and Ask AI over your money.',
-      tags: ['Swift', 'iOS', 'Core ML'],
-    },
-    {
-      id: 'cosmic-calendar-sync',
-      title: 'Cosmic Calendar Sync',
-      description:
-        'COSMIC desktop panel calendar applet that syncs iCloud and Outlook events into one place on Linux.',
-      tags: ['Rust', 'COSMIC', 'Linux'],
+      links: [
+        {
+          label: 'Krypton repository',
+          href: 'https://github.com/Achintya-Lakshmanan/Technica_LAVA',
+          kind: 'github',
+        },
+      ],
     },
   ],
   skills: [
     {
-      id: 'languages',
-      category: 'Languages',
+      id: 'research',
+      category: 'ML & research systems',
       skills: [
-        'Java',
         'Python',
-        'C/C++',
-        'SQL',
-        'JavaScript',
-        'TypeScript',
-        'Go',
-        'R',
-        'Swift',
-        'Rust',
-      ],
-    },
-    {
-      id: 'tools',
-      category: 'Tools',
-      skills: ['Git', 'VS Code', 'Visual Studio', 'Tableau', 'Power BI'],
-    },
-    {
-      id: 'libraries',
-      category: 'Libraries',
-      skills: [
         'PyTorch',
-        'TensorFlow',
-        'LangChain',
-        'Scikit-Learn',
-        'Pandas',
-        'NumPy',
-        'Matplotlib',
-        'OpenCV',
-        'MediaPipe',
+        'Hugging Face',
+        'vLLM',
+        'LangGraph',
+        'scikit-learn',
       ],
+    },
+    {
+      id: 'web',
+      category: 'Web systems',
+      skills: ['TypeScript', 'React', 'Node.js', 'Next.js', 'FastAPI', 'WebSockets'],
+    },
+    {
+      id: 'apps',
+      category: 'Native & systems',
+      skills: ['Swift', 'SwiftUI', 'AppKit', 'C/C++', 'SQL', 'Git', 'Docker'],
+    },
+    {
+      id: 'data',
+      category: 'Data & applied ML',
+      skills: ['NumPy', 'Pandas', 'OpenCV', 'MongoDB', 'Power BI'],
     },
   ],
   achievements: [
