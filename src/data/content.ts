@@ -29,6 +29,7 @@ export interface Experience {
   organization: string
   period: string
   category: ExperienceCategory
+  context: string
   highlights: string[]
   /** Logo image URL (e.g. Clearbit). Falls back to monogram if missing/broken. */
   logo?: string
@@ -40,6 +41,7 @@ export interface Project {
   period: string
   kind: 'research' | 'build'
   question: string
+  approach: string
   contribution: string
   tags: string[]
   evidence: string[]
@@ -54,6 +56,7 @@ export interface ProjectLink {
 }
 
 export interface CurrentThread {
+  status: string
   label: string
   text: string
 }
@@ -79,8 +82,6 @@ export interface SiteContent {
   email: string
   positioning: string
   bio: string
-  aboutResearch: string
-  aboutSoftware: string
   currentThreads: CurrentThread[]
   contactCopy: string
   location: string
@@ -103,22 +104,21 @@ export const content: SiteContent = {
   positioning:
     'LLM researcher and software engineer building systems that plan, share context, and hold up under real evaluation.',
   bio: 'I’m an MS CSE student and Graduate Researcher at Penn State, working on data-grounded agents, multi-agent RAG, and search-time decoding—with prior experience shipping ML and full-stack products.',
-  aboutResearch:
-    'The question running through my research is what should live outside the model. Empirical priors and validators can anchor an agent to real behavior; grammar constraints and search can protect high-leverage decisions; matched evaluations can tell genuine adaptation from reproduction.',
-  aboutSoftware:
-    'I came to research from the building side. I have shipped RAG, collaborative editing, and Power BI tooling in product teams, and I still turn small annoyances on my own computer into native apps and developer tools.',
   currentThreads: [
     {
-      label: 'Ground first',
-      text: 'Use ATUS time-slot priors and transitions outside the prompt, then score four LLM activity proposals against that structure before selecting the next activity.',
+      status: 'Evaluating',
+      label: 'Data-grounded agent planning',
+      text: 'Testing whether real activity patterns can keep simulated decisions plausible—and whether AURA’s evaluation can separate adaptation from routine.',
     },
     {
-      label: 'Constrain early',
-      text: 'Use grammar, schema, and search where the first few choices determine whether the rest of a structured output can succeed.',
+      status: 'Investigating',
+      label: 'Shared context, inherited bias',
+      text: 'Studying what a downstream RAG agent picks up when collaborators share KV caches or other altered forms of context.',
     },
     {
-      label: 'Audit the metric',
-      text: 'Separate reproduction from transfer, policy from execution, and oracle from deployable settings before calling a result progress.',
+      status: 'Building',
+      label: 'Search-time constrained decoding',
+      text: 'Using grammar-aware MCTS to spend extra compute on the early choices that can make or break a structured answer.',
     },
   ],
   contactCopy:
@@ -141,7 +141,7 @@ export const content: SiteContent = {
     },
   ],
   nav: [
-    { label: 'About', href: '#about' },
+    { label: 'Exploring', href: '#exploring' },
     { label: 'Work', href: '#projects' },
     { label: 'Experience', href: '#experience' },
     { label: 'Education', href: '#education' },
@@ -193,9 +193,11 @@ export const content: SiteContent = {
       period: 'Apr 2026 to Present',
       category: 'research',
       logo: '/logos/psu.png',
+      context:
+        'Two collaborative research efforts examine how external structure changes LLM-agent behavior: one grounds simulated daily decisions in real activity data, while the other studies what passes between RAG agents when they share model state.',
       highlights: [
-        'On AURA, I evaluate a K-validation controller that scores four LLM activity proposals alongside ATUS time-slot priors and transitions, with policy selections and execution analyzed separately.',
-        'I study what a downstream judge inherits when agents share KV caches, using matched perturbation controls to test the mechanism rather than crediting one compression format.',
+        'For AURA, I built and evaluate a K-validation controller that scores four LLM proposals alongside ATUS time-slot priors and transitions, with policy selections and execution analyzed separately.',
+        'For the multi-agent RAG study, I help analyze what a downstream judge inherits through shared KV caches, using matched perturbation controls to test the mechanism rather than crediting one compression format.',
       ],
     },
     {
@@ -205,9 +207,11 @@ export const content: SiteContent = {
       period: 'Sep 2025 to Present',
       category: 'teaching',
       logo: '/logos/psu.png',
+      context:
+        'The role supports CMPSC 461 and CMPSC 311 instruction and extends into undergraduate honors mentoring on secure code generation.',
       highlights: [
-        'Prepare course questions, hold office hours, and help students work through course projects.',
-        'Mentor secure-coding work and support its experimental design and analysis.',
+        'I prepare course questions, hold office hours, and help students work through assignments and projects.',
+        'I mentor secure-coding work and support its experimental design and analysis.',
       ],
     },
     {
@@ -217,9 +221,11 @@ export const content: SiteContent = {
       period: 'Aug 2024 to Mar 2025',
       category: 'research',
       logo: '/logos/snu.svg',
+      context:
+        'The lab projects explored medical-image reconstruction and segmentation where observations are sparse, noisy, or low contrast.',
       highlights: [
-        'Built and evaluated a Mamba-enhanced NeRF pipeline for reconstructing 3D bone structure from a single X-ray.',
-        'For a fetal-ultrasound challenge, tested Semi-Mamba and a mutual-learning VMUNet variant on noisy, low-contrast scans.',
+        'I built and evaluated a Mamba-enhanced NeRF pipeline for reconstructing 3D bone structure from a single X-ray.',
+        'For a fetal-ultrasound challenge, I tested Semi-Mamba and a mutual-learning VMUNet variant on noisy, low-contrast scans.',
       ],
     },
     {
@@ -229,9 +235,11 @@ export const content: SiteContent = {
       period: 'Sep 2022 to Nov 2022',
       category: 'research',
       logo: '/logos/snu.svg',
+      context:
+        'The lab was developing Tamil speech systems and voice transcreation for educational material, where naturalness and usable inference mattered alongside model quality.',
       highlights: [
-        'Built Tamil text-to-speech and voice-cloning experiments with encoder-decoder and Tacotron models.',
-        'Contributed to voice transcreation for IIT online courses.',
+        'I built Tamil text-to-speech and voice-cloning experiments with encoder-decoder and Tacotron models.',
+        'I contributed to voice transcreation for IIT online courses.',
       ],
     },
     {
@@ -241,10 +249,12 @@ export const content: SiteContent = {
       period: 'Mar 2025 to Jun 2025',
       category: 'industry',
       logo: '/logos/lumel.svg',
+      context:
+        'The product work focused on making analytics workflows easier to author and share, from natural-language formula creation to collaborative configuration and Power BI utilities.',
       highlights: [
-        'Built a TypeScript RAG assistant that translated natural-language requests into Inforiver Matrix formulas.',
-        'Built a collaborative JSON editor with React, Node.js, and WebSockets, including real-time shared state and multi-user testing.',
-        'Worked on Power BI utilities for parsing Microsoft Project data and generating reusable report themes.',
+        'I built a TypeScript RAG assistant that translated natural-language requests into Inforiver Matrix formulas.',
+        'I built a collaborative JSON editor with React, Node.js, and WebSockets, including real-time shared state and multi-user testing.',
+        'I contributed Power BI utilities for parsing Microsoft Project data and generating reusable report themes.',
       ],
     },
     {
@@ -254,9 +264,11 @@ export const content: SiteContent = {
       period: 'May 2024 to Jul 2024',
       category: 'industry',
       logo: '/logos/phosphene.png',
+      context:
+        'A five-person team developed a deepfake-detection pipeline designed to remain useful across compression, blur, color variation, and videos containing multiple identities.',
       highlights: [
-        'Led a five-person team building and evaluating a PyTorch deepfake detector.',
-        'Added blur, compression, and color-jitter augmentation and tested MINTIME on multi-identity videos.',
+        'I led the team’s implementation and evaluation of the PyTorch detector.',
+        'I added blur, compression, and color-jitter augmentation and tested MINTIME on multi-identity videos.',
       ],
     },
     {
@@ -266,9 +278,11 @@ export const content: SiteContent = {
       period: 'Feb 2024 to May 2024',
       category: 'industry',
       logo: '/logos/culvii.svg',
+      context:
+        'The product connected day-to-day student management with a gamified learning experience and in-product conversational assistance.',
       highlights: [
-        'Built parts of a student-management portal in Next.js and Node.js, including class tracking and onboarding.',
-        'Added GPT-based assistants to a gamified learning product and worked on the conversation flow and response latency.',
+        'I built parts of the student-management portal in Next.js and Node.js, including class tracking and onboarding.',
+        'I added GPT-based assistants to the learning product and worked on conversation flow and response latency.',
       ],
     },
     {
@@ -278,9 +292,11 @@ export const content: SiteContent = {
       period: 'May 2023 to Jan 2024',
       category: 'industry',
       logo: '/logos/optisol.png',
+      context:
+        'The internship spanned three applied-ML products: image generation for design workflows, GPT-assisted issue resolution, and edge vision for industrial monitoring.',
       highlights: [
-        'Built a React and FastAPI image-generation application around Stable Diffusion and worked on model fine-tuning.',
-        'Built a GPT-4 issue-resolution prototype and deployed a YOLOv8 soot detector on a Jetson Nano.',
+        'I built a React and FastAPI image-generation application around Stable Diffusion and worked on model fine-tuning.',
+        'I built a GPT-4 issue-resolution prototype and deployed a YOLOv8 soot detector on a Jetson Nano.',
       ],
     },
   ],
@@ -292,8 +308,10 @@ export const content: SiteContent = {
       kind: 'research',
       question:
         'Can an agent model heatwave adaptation without mistaking ordinary daily structure for evidence that the LLM adapted?',
+      approach:
+        'AURA is a collaborative simulation effort that combines LLM activity proposals with American Time Use Survey priors and transition structure. The system keeps policy selection separate from executed actions so evaluation can distinguish a model-driven change from ordinary routine.',
       contribution:
-        'I built an ATUS-grounded K-validation and evaluation pipeline. At each decision, the model supplies four candidate activity proposals; candidate-category selection combines proposal support with the ATUS time-slot prior and preceding-activity transition while policy selections and executed actions are logged separately.',
+        'I built the ATUS-grounded K-validation and evaluation pipeline: at each decision, it scores four model proposals against the time-slot prior and preceding-activity transition.',
       tags: ['Python', 'vLLM', 'LLM Agents', 'Simulation', 'Evaluation'],
       evidence: [
         'Matched controls compare the same controller with and without LLM proposals.',
@@ -309,8 +327,10 @@ export const content: SiteContent = {
       kind: 'research',
       question:
         'When one RAG agent hands its KV cache to a downstream judge, does the judge inherit a decision bias along with the saved context?',
+      approach:
+        'This collaborative study follows context through a multi-agent RAG pipeline across three models and two datasets. It compares ordinary text re-prefill with FP16 cache transfer, INT4 round trips, and matched-noise controls to separate cache sharing from the perturbations introduced by compression.',
       contribution:
-        'In a collaborative study, I helped build and analyze a LangGraph pipeline across three models and two datasets, comparing text re-prefill, FP16 cache transfer, INT4 round trips, and matched-noise controls.',
+        'I helped build the LangGraph pipeline and analyze the decision-level effects, including the controls needed to test whether INT4 itself was responsible.',
       tags: ['Python', 'PyTorch', 'LangGraph', 'RAG', 'KV Cache'],
       evidence: [
         'Cache transfer changed downstream decisions in most model-and-dataset settings.',
@@ -332,8 +352,10 @@ export const content: SiteContent = {
       kind: 'research',
       question:
         'Can search spend extra compute on the first 6–10 SQL tokens, where an early schema or structural mistake can doom the entire query?',
+      approach:
+        'The project extends genlm/genlm-control with a hybrid decoder: grammar- and schema-aware MCTS searches the high-leverage SQL prefix, then greedy decoding completes the query. Oracle and deployable settings are evaluated separately.',
       contribution:
-        'Working in a fork of genlm/genlm-control, I implemented a hybrid MCTS decoder that keeps expansion and simulation inside the SQL grammar and database schema, searches only the high-leverage prefix, and lets greedy decoding finish the query.',
+        'Working in a fork of the upstream project, I implemented the hybrid decoder, bounded its parser cache, and replaced memory-heavy rollouts with a heuristic for the current evaluation harness.',
       tags: ['Python', 'PyTorch', 'MCTS', 'Text-to-SQL', 'SPIDER'],
       evidence: [
         'The benchmark separates SMC, oracle MCTS, and deployable non-oracle MCTS instead of mixing gold-assisted and test-time settings.',
@@ -356,8 +378,10 @@ export const content: SiteContent = {
       kind: 'build',
       question:
         'The MacBook notch takes permanent screen space. Could it become a useful, quiet HUD instead?',
+      approach:
+        'NotchNest is a native macOS 14+ accessory that turns the notch into compact and expanded surfaces for music, meetings, files, weather, timers, and a camera mirror. It is designed to feel like part of the system rather than another floating dashboard.',
       contribution:
-        'I built a native macOS 14+ accessory app in Swift 6, AppKit, and SwiftUI, with compact and expanded states for music, meetings, files, weather, timers, and a camera mirror.',
+        'I designed and built the app in Swift 6, AppKit, and SwiftUI, including its native integrations, permission flows, and event-driven state changes.',
       tags: ['Swift 6', 'AppKit', 'SwiftUI', 'macOS'],
       evidence: [
         'System integrations are event-driven where timing matters, including Bluetooth connect and disconnect notifications.',
@@ -379,8 +403,10 @@ export const content: SiteContent = {
       kind: 'build',
       question:
         'How much restoration quality can a compact vision model recover under a four-hour challenge training budget?',
+      approach:
+        'This challenge entry targeted dense, uneven haze with a compact ResNet U-Net and histogram equalization, balancing restoration quality against a tightly limited training run and practical per-image inference.',
       contribution:
-        'I built a compact ResNet U-Net for dense, uneven haze and used histogram equalization to make the limited training run count.',
+        'I built and trained the restoration pipeline and prepared the submitted model under the four-hour budget.',
       tags: ['Python', 'PyTorch', 'Computer Vision', 'U-Net'],
       evidence: [
         'Placed 16th out of 128 challenge submissions.',
@@ -395,8 +421,10 @@ export const content: SiteContent = {
       kind: 'build',
       question:
         'Could one investigation view bring transaction anomalies, phishing signals, and network context together for a hackathon analyst?',
+      approach:
+        'Krypton was a team-built hackathon prototype that combined transaction anomaly scoring, spam and phishing checks, IP lookup, and a React and Node.js investigation dashboard in one end-to-end workflow.',
       contribution:
-        'Our team combined a random-forest transaction model with spam and phishing checks, IP lookup, and a React and Node.js investigation interface.',
+        'I contributed across the ML and application stack as the team integrated the random-forest model, APIs, storage, and analyst-facing interface.',
       tags: ['Python', 'React', 'Node.js', 'MongoDB', 'ML'],
       evidence: [
         'Won the Encryptcon Shaastra Hackathon organized with IIT Madras and Temenos.',

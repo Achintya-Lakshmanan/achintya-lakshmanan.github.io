@@ -89,7 +89,7 @@ export function Experience() {
       id="experience"
       wash
       title="Experience"
-      subtitle="Research, teaching, and product work—organized by what I actually contributed."
+      subtitle="The teams and problems behind the roles, followed by the part I was responsible for."
     >
       <Reveal delay={0.05}>
         <div
@@ -188,7 +188,13 @@ export function Experience() {
                     </div>
                   </div>
 
-                  <ul className="mt-5 space-y-3 border-l-2 border-ink/20 pl-4 sm:ml-[3.625rem]">
+                  <p className="mt-5 text-sm leading-relaxed text-ink-muted sm:ml-[3.625rem]">
+                    {item.context}
+                  </p>
+                  <p className="mt-4 text-[0.68rem] font-bold uppercase tracking-[0.16em] text-accent-bright sm:ml-[3.625rem]">
+                    My contribution
+                  </p>
+                  <ul className="mt-2 space-y-3 border-l-2 border-ink/20 pl-4 sm:ml-[3.625rem]">
                     {item.highlights.map((h) => (
                       <li
                         key={h}

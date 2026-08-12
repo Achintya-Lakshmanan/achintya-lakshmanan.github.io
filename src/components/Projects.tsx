@@ -29,7 +29,7 @@ export function Projects() {
     <Section
       id="projects"
       title="Selected work"
-      subtitle="A shorter set of projects with the question, my contribution, the evidence, and an honest status."
+      subtitle="The larger question, how each effort works, where I contributed, and what the evidence supports so far."
     >
       <div className="space-y-24">
         {groups.map((group) => {
@@ -122,9 +122,18 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
 
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-ink-dim">
-                  What I built
+                  The work
                 </p>
                 <p className="mt-2 max-w-3xl text-sm leading-relaxed text-ink-muted sm:text-base">
+                  {project.approach}
+                </p>
+              </div>
+
+              <div className="border-l-2 border-accent pl-4">
+                <p className="text-xs font-bold uppercase tracking-[0.16em] text-ink-dim">
+                  My role
+                </p>
+                <p className="mt-1.5 max-w-3xl text-sm leading-relaxed text-ink-muted">
                   {project.contribution}
                 </p>
               </div>
