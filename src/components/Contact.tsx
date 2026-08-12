@@ -9,7 +9,8 @@ export function Contact() {
       id="contact"
       className="border-y-2 border-ink bg-accent-cyan"
       title="Say hello"
-      subtitle="Email is best. I do read it."
+      subtitle="The fastest way to reach me is email."
+      headerTone="on-accent"
     >
       <Reveal>
         <div className="grid gap-8 border-2 border-ink bg-[#fffaf0] p-7 shadow-[10px_10px_0_#171717] sm:p-10 lg:grid-cols-[1fr_auto] lg:items-end">

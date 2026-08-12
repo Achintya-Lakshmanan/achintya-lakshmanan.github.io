@@ -122,7 +122,7 @@ export const content: SiteContent = {
     },
   ],
   contactCopy:
-    'If something here made you curious, send me an email. I am especially happy to talk about LLM systems, careful evaluation, useful developer tools, or work where I get to do all three.',
+    'If the work here sparked an idea—whether it is a research collaboration, an engineering opportunity, or a useful tool worth building—I’d love to hear from you.',
   socials: [
     {
       label: 'GitHub',
