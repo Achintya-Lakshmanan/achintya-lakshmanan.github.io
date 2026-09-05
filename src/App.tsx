@@ -17,12 +17,14 @@ export default function App() {
       <Navbar />
       <main id="main-content" tabIndex={-1}>
         <Hero />
-        <About />
         <Projects />
         <Experience />
-        <Education />
-        <Skills />
-        <Achievements />
+        <About />
+        <div id="background" className="scroll-mt-20">
+          <Education />
+          <Skills />
+          <Achievements />
+        </div>
         <Contact />
       </main>
       <Footer />

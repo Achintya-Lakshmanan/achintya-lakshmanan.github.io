@@ -22,28 +22,27 @@ export function Section({
   compact = false,
   headerTone = 'default',
 }: SectionProps) {
-  const eyebrowColor = headerTone === 'on-accent' ? 'text-surface-raised' : 'text-ink'
+  const titleColor = headerTone === 'on-accent' ? 'text-white' : 'text-ink'
   const subtitleColor =
-    headerTone === 'on-accent' ? 'text-surface-raised' : 'text-ink-muted'
+    headerTone === 'on-accent' ? 'text-white/90' : 'text-ink-muted'
 
   return (
     <section
       id={id}
-      className={`relative scroll-mt-20 ${compact ? 'py-14 sm:py-20' : 'py-20 sm:py-28'} ${wash ? 'section-wash' : ''} ${className}`}
+      className={`relative scroll-mt-20 ${compact ? 'py-14 sm:py-16' : 'py-16 sm:py-24'} ${wash ? 'section-wash' : ''} ${className}`}
     >
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal>
           <div
-            className={`section-eyebrow max-w-3xl ${eyebrowColor} ${compact ? 'mb-8 sm:mb-10' : 'mb-12 sm:mb-16'}`}
+            className={`section-rule max-w-3xl ${headerTone === 'on-accent' ? 'border-white' : ''} ${compact ? 'mb-8 sm:mb-10' : 'mb-10 sm:mb-14'}`}
           >
             <h2
-              className={`font-display font-bold leading-[0.95] tracking-[-0.04em] text-ink ${compact ? 'text-4xl sm:text-5xl' : 'text-4xl sm:text-6xl'}`}
+              className={`font-display text-4xl font-bold leading-[0.95] tracking-[-0.045em] sm:text-5xl ${titleColor}`}
             >
               {title}
-              <span className="section-underline" aria-hidden />
             </h2>
             {subtitle && (
-              <p className={`mt-5 max-w-2xl text-base leading-relaxed sm:text-lg ${subtitleColor}`}>
+              <p className={`mt-4 max-w-2xl text-base leading-relaxed sm:text-lg ${subtitleColor}`}>
                 {subtitle}
               </p>
             )}

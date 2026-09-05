@@ -4,46 +4,45 @@ import { Reveal } from './Reveal'
 import { Section } from './Section'
 
 export function Achievements() {
+  const selected = content.achievements.slice(0, 3)
+  const additional = content.achievements.slice(3)
+
   return (
     <Section
       id="achievements"
-      wash
-      title="A few other things"
-      subtitle="The parts that do not fit neatly into papers, projects, or commit history."
+      compact
+      title="Selected recognition"
+      subtitle="A few signals beyond project work."
     >
-      <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {content.achievements.map((a, i) => (
-          <Reveal key={a.id} delay={Math.min(i * 0.06, 0.3)} as="li">
-            <div
-              className={`group h-full border-2 border-ink p-5 shadow-[5px_5px_0_#171717] transition-transform hover:rotate-0 ${
-                i % 3 === 0 ? '-rotate-1' : i % 3 === 1 ? 'rotate-1' : ''
-              } ${
-                i % 3 === 0
-                  ? 'bg-[#c9f31d]'
-                  : i % 3 === 1
-                    ? 'bg-[#ff8eb3]'
-                    : 'bg-[#fffaf0]'
-              }`}
-            >
-              {a.logo && a.organization ? (
-                <div className="mb-3">
-                  <OrgLogo name={a.organization} src={a.logo} size={36} />
-                </div>
-              ) : (
-                <div className="mb-4 font-display text-3xl font-bold" aria-hidden>
-                  ✦
-                </div>
+      <ul className="grid gap-4 sm:grid-cols-3">
+        {selected.map((achievement, index) => (
+          <Reveal key={achievement.id} delay={index * 0.05} as="li">
+            <article className="h-full border border-ink/30 bg-[#fffaf0] p-4">
+              {achievement.logo && achievement.organization && (
+                <OrgLogo name={achievement.organization} src={achievement.logo} size={36} className="mb-4" />
               )}
-              <h3 className="font-display text-lg font-bold leading-tight text-ink">
-                {a.title}
-              </h3>
-              {a.detail && (
-                <p className="mt-2 text-sm font-medium text-ink">{a.detail}</p>
-              )}
-            </div>
+              <h3 className="font-display text-lg font-bold leading-tight">{achievement.title}</h3>
+              {achievement.detail && <p className="mt-2 text-sm text-ink-muted">{achievement.detail}</p>}
+            </article>
           </Reveal>
         ))}
       </ul>
+
+      {additional.length > 0 && (
+        <details className="details-panel mt-5 border-t border-ink/20 pt-4">
+          <summary className="inline-flex items-center text-sm font-bold text-ink underline decoration-2 underline-offset-4">
+            Other campus and personal background
+          </summary>
+          <ul className="mt-4 grid gap-x-8 gap-y-3 text-base text-ink-muted sm:grid-cols-2">
+            {additional.map((achievement) => (
+              <li key={achievement.id}>
+                <span className="font-semibold text-ink">{achievement.title}</span>
+                {achievement.detail && <span> · {achievement.detail}</span>}
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
     </Section>
   )
 }

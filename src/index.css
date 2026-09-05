@@ -22,6 +22,12 @@
     }
   }
 
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
   body {
     @apply bg-surface font-sans text-ink antialiased;
     margin: 0;
@@ -39,9 +45,13 @@
     outline-offset: 3px;
   }
 
+  a {
+    text-underline-offset: 0.2em;
+  }
+
   ::-webkit-scrollbar {
-    width: 11px;
-    height: 11px;
+    width: 10px;
+    height: 10px;
   }
 
   ::-webkit-scrollbar-track {
@@ -49,24 +59,12 @@
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #ff5c35;
-    border: 2px solid #171717;
+    background: #2457f5;
+    border: 2px solid #f2eadc;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #2457f5;
-  }
-
-  main {
-    counter-reset: section;
-  }
-
-  main:focus {
-    outline: none;
-  }
-
-  main > section:not(#top) {
-    counter-increment: section;
+    background: #171717;
   }
 }
 
@@ -80,52 +78,73 @@
     transform: translateY(0);
   }
 
-  .section-eyebrow::before {
-    content: "FIELD NOTE " counter(section, decimal-leading-zero);
-    @apply mb-3 block font-sans text-xs font-bold uppercase tracking-[0.18em];
-    color: currentColor;
-  }
-
-  .section-underline {
-    @apply mt-3 block h-2 w-24;
-    background: #ff5c35;
-    border: 2px solid #171717;
-    transform: rotate(-1deg);
-  }
-
   .paper-grid {
     background-image:
-      linear-gradient(rgba(23, 23, 23, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(23, 23, 23, 0.06) 1px, transparent 1px);
-    background-size: 28px 28px;
+      linear-gradient(rgba(23, 23, 23, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(23, 23, 23, 0.045) 1px, transparent 1px);
+    background-size: 32px 32px;
   }
 
   .section-wash {
     background: #fffaf0;
-    border-block: 2px solid #171717;
+    border-block: 1px solid rgba(23, 23, 23, 0.2);
   }
 
-  .hard-card {
-    border: 2px solid #171717;
-    background: #fffaf0;
-    box-shadow: 7px 7px 0 #171717;
+  .section-rule {
+    border-left: 4px solid #2457f5;
+    padding-left: 1rem;
   }
 
-  .ink-link {
-    background-image: linear-gradient(#c9f31d, #c9f31d);
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    background-size: 100% 0.35em;
-    transition: background-size 180ms ease;
+  .details-panel summary {
+    cursor: pointer;
+    list-style: none;
   }
 
-  .ink-link:hover {
-    background-size: 100% 100%;
+  .details-panel summary::-webkit-details-marker {
+    display: none;
   }
 
-  .scribble-ring {
-    border: 3px solid #171717;
-    border-radius: 46% 54% 48% 52% / 54% 44% 56% 46%;
+  .details-panel summary::after {
+    content: '+';
+    display: inline-block;
+    margin-left: 0.5rem;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 1.1em;
+    font-weight: 700;
+    transition: transform 160ms ease;
   }
 
+  .details-panel[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .timeline-list > li {
+    position: relative;
+  }
+
+  @media (min-width: 640px) {
+    .timeline-list > li::before {
+      background: rgba(23, 23, 23, 0.2);
+      content: '';
+      left: 10.25rem;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+    }
+
+    .timeline-list > li:first-child::before {
+      top: 1.5rem;
+    }
+
+    .timeline-list > li:last-child::before {
+      bottom: 1.5rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .details-panel summary::after {
+      transition: none;
+    }
+  }
 }

@@ -55,6 +55,16 @@ export interface ProjectLink {
   kind: 'github' | 'external'
 }
 
+export interface ResearchArtifact {
+  id: string
+  title: string
+  period: string
+  summary: string
+  link: string
+  linkLabel: string
+  status: string
+}
+
 export interface CurrentThread {
   status: string
   label: string
@@ -92,6 +102,7 @@ export interface SiteContent {
   education: Education[]
   experience: Experience[]
   projects: Project[]
+  researchArtifacts: ResearchArtifact[]
   skills: SkillGroup[]
   achievements: Achievement[]
 }
@@ -102,8 +113,8 @@ export const content: SiteContent = {
   location: 'University Park, PA',
   photo: '/me.jpg',
   positioning:
-    'LLM researcher and software engineer building systems that plan, share context, and hold up under real evaluation.',
-  bio: 'I’m an MS CSE student and Graduate Researcher at Penn State, working on data-grounded agents, multi-agent RAG, and search-time decoding—with prior experience shipping ML and full-stack products.',
+    'ML / research engineer building and evaluating LLM systems.',
+  bio: 'Graduate Researcher at Penn State, focused on data-grounded agents, multi-agent RAG, and search-time decoding. I have also shipped ML and full-stack products.',
   currentThreads: [
     {
       status: 'Evaluating',
@@ -122,7 +133,7 @@ export const content: SiteContent = {
     },
   ],
   contactCopy:
-    'If the work here sparked an idea—whether it is a research collaboration, an engineering opportunity, or a useful tool worth building—I’d love to hear from you.',
+    'I’m looking for ML and research engineering opportunities where careful experiments can become dependable systems. If that sounds like your team, send me a note.',
   socials: [
     {
       label: 'GitHub',
@@ -141,12 +152,9 @@ export const content: SiteContent = {
     },
   ],
   nav: [
-    { label: 'Exploring', href: '#exploring' },
     { label: 'Work', href: '#projects' },
     { label: 'Experience', href: '#experience' },
-    { label: 'Education', href: '#education' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Highlights', href: '#achievements' },
+    { label: 'Background', href: '#background' },
     { label: 'Contact', href: '#contact' },
   ],
   education: [
@@ -196,7 +204,7 @@ export const content: SiteContent = {
       context:
         'Two collaborative research efforts examine how external structure changes LLM-agent behavior: one grounds simulated daily decisions in real activity data, while the other studies what passes between RAG agents when they share model state.',
       highlights: [
-        'For AURA, I built and evaluate a K-validation controller that scores four LLM proposals alongside ATUS time-slot priors and transitions, with policy selections and execution analyzed separately.',
+        'For AURA, I built and am evaluating a K-validation controller that scores four LLM proposals alongside ATUS time-slot priors and transitions, with policy selection and execution analyzed separately.',
         'For the multi-agent RAG study, I help analyze what a downstream judge inherits through shared KV caches, using matched perturbation controls to test the mechanism rather than crediting one compression format.',
       ],
     },
@@ -208,10 +216,10 @@ export const content: SiteContent = {
       category: 'teaching',
       logo: '/logos/psu.png',
       context:
-        'The role supports CMPSC 461 and CMPSC 311 instruction and extends into undergraduate honors mentoring on secure code generation.',
+        'I support undergraduate computing instruction through office hours, course-question preparation, and one-on-one help with implementation and project questions.',
       highlights: [
-        'I prepare course questions, hold office hours, and help students work through assignments and projects.',
-        'I mentor secure-coding work and support its experimental design and analysis.',
+        'I explain course concepts in plain language and help students debug implementations or turn unclear requirements into a concrete next step.',
+        'I help students prepare questions and make steady progress on longer programming projects.',
       ],
     },
     {
@@ -253,8 +261,7 @@ export const content: SiteContent = {
         'The product work focused on making analytics workflows easier to author and share, from natural-language formula creation to collaborative configuration and Power BI utilities.',
       highlights: [
         'I built a TypeScript RAG assistant that translated natural-language requests into Inforiver Matrix formulas.',
-        'I built a collaborative JSON editor with React, Node.js, and WebSockets, including real-time shared state and multi-user testing.',
-        'I contributed Power BI utilities for parsing Microsoft Project data and generating reusable report themes.',
+        'I built a collaborative JSON editor with React, Node.js, and WebSockets, and contributed Power BI utilities for parsing Microsoft Project data and generating reusable report themes.',
       ],
     },
     {
@@ -318,7 +325,7 @@ export const content: SiteContent = {
         'In the adaptation arm, the heatwave target is withheld from the simulator and used only after the run for evaluation.',
         'The next evaluation is a preregistered paired, multi-seed pilot; no pilot result is reported yet.',
       ],
-      status: 'Private research repository',
+      status: 'Pilot pending',
     },
     {
       id: 'attention-bias-rag',
@@ -326,9 +333,9 @@ export const content: SiteContent = {
       period: 'Feb 2026 to Present',
       kind: 'research',
       question:
-        'When one RAG agent hands its KV cache to a downstream judge, does the judge inherit a decision bias along with the saved context?',
+        'When one retrieval agent hands its saved key-value (KV) cache to a downstream judge, does the judge inherit a decision bias along with the saved context?',
       approach:
-        'This collaborative study follows context through a multi-agent RAG pipeline across three models and two datasets. It compares ordinary text re-prefill with FP16 cache transfer, INT4 round trips, and matched-noise controls to separate cache sharing from the perturbations introduced by compression.',
+        'This collaborative study follows context through a multi-agent retrieval-augmented generation (RAG) pipeline across three models and two datasets. It compares ordinary text re-prefill with FP16 cache transfer, INT4 round trips, and matched-noise controls to separate cache sharing from the perturbations introduced by compression.',
       contribution:
         'I helped build the LangGraph pipeline and analyze the decision-level effects, including the controls needed to test whether INT4 itself was responsible.',
       tags: ['Python', 'PyTorch', 'LangGraph', 'RAG', 'KV Cache'],
@@ -353,23 +360,16 @@ export const content: SiteContent = {
       question:
         'Can search spend extra compute on the first 6–10 SQL tokens, where an early schema or structural mistake can doom the entire query?',
       approach:
-        'The project extends genlm/genlm-control with a hybrid decoder: grammar- and schema-aware MCTS searches the high-leverage SQL prefix, then greedy decoding completes the query. Oracle and deployable settings are evaluated separately.',
+        'The project extends genlm/genlm-control with a hybrid decoder: grammar- and schema-aware Monte Carlo tree search (MCTS) explores the high-leverage SQL prefix, then greedy decoding completes the query. Oracle and deployable settings are evaluated separately.',
       contribution:
-        'Working in a fork of the upstream project, I implemented the hybrid decoder, bounded its parser cache, and replaced memory-heavy rollouts with a heuristic for the current evaluation harness.',
+        'Working in a fork of the upstream project, I implemented the hybrid decoder and evaluation harness, keeping grammar/schema-valid search and oracle versus deployable paths distinct.',
       tags: ['Python', 'PyTorch', 'MCTS', 'Text-to-SQL', 'SPIDER'],
       evidence: [
         'The benchmark separates SMC, oracle MCTS, and deployable non-oracle MCTS instead of mixing gold-assisted and test-time settings.',
-        'A bounded Earley-parser cache and rollout-free heuristic took a 64-simulation prompt from a 48 GB OOM to about 10 GB.',
+        'The decoder explores the first 6–10 SQL tokens before greedy completion, where early schema or structural mistakes can compound.',
         'End-to-end metrics are being regenerated under a clean harness; the deprecated result table is not used here.',
       ],
       status: 'Evaluation in progress',
-      links: [
-        {
-          label: 'Project fork',
-          href: 'https://github.com/Achintya-Lakshmanan/MCTS-for-controlled-text-generation',
-          kind: 'github',
-        },
-      ],
     },
     {
       id: 'notchnest',
@@ -386,21 +386,14 @@ export const content: SiteContent = {
       evidence: [
         'System integrations are event-driven where timing matters, including Bluetooth connect and disconnect notifications.',
         'The app coordinates native panels, permissions, media controls, EventKit, IOKit, CoreAudio, and login-item behavior.',
-        'The public repository includes the source, architecture, build script, and macOS permission requirements.',
-      ],
-      links: [
-        {
-          label: 'NotchNest repository',
-          href: 'https://github.com/Achintya-Lakshmanan/NotchNest',
-          kind: 'github',
-        },
+        'Native permission flows cover the camera, media, calendar, and login-item surfaces used by the accessory.',
       ],
     },
     {
       id: 'haze-removal',
       title: 'Dense Non-Homogeneous Haze Removal',
       period: 'Jan to Apr 2024',
-      kind: 'build',
+      kind: 'research',
       question:
         'How much restoration quality can a compact vision model recover under a four-hour challenge training budget?',
       approach:
@@ -437,6 +430,18 @@ export const content: SiteContent = {
           kind: 'github',
         },
       ],
+    },
+  ],
+  researchArtifacts: [
+    {
+      id: 'secure-code-generation',
+      title: 'Improving LLM-Assisted Secure Code Generation through Retrieval-Augmented Generation and Multi-Tool Feedback',
+      period: 'arXiv · 2026',
+      summary:
+        'Coauthored research combining retrieval with compiler diagnostics, CodeQL, and KLEE. The study evaluates 3,242 generated programs from DeepSeek-Coder-1.3B and CodeLlama-7B in a controlled offline C/C++ benchmark.',
+      link: 'https://arxiv.org/abs/2601.00509',
+      linkLabel: 'Read the paper',
+      status: 'Coauthored preprint · individual contributions in paper',
     },
   ],
   skills: [

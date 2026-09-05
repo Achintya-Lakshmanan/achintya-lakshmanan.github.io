@@ -9,31 +9,23 @@ export function About() {
       wash
       compact
       title="Currently exploring"
-      subtitle="Three questions I’m actively building and testing around language-model systems."
+      subtitle="The questions currently shaping my experiments. The work above carries the evidence; these are the next tests."
     >
-      <ol className="grid overflow-hidden border-2 border-ink bg-surface md:grid-cols-3">
-        {content.currentThreads.map((thread, i) => (
+      <ol className="divide-y-2 divide-ink border-y-2 border-ink bg-surface">
+        {content.currentThreads.map((thread, index) => (
           <Reveal
             key={thread.label}
-            delay={0.05 + i * 0.06}
+            delay={Math.min(index * 0.05, 0.15)}
             as="li"
-            className={`relative p-5 sm:p-6 ${i > 0 ? 'border-t-2 border-ink md:border-l-2 md:border-t-0' : ''}`}
+            className="grid gap-3 px-4 py-4 sm:grid-cols-[8rem_minmax(0,0.8fr)_minmax(0,1.2fr)] sm:items-start sm:gap-6 sm:px-6"
           >
-            <div className="mb-5 flex items-center justify-between gap-4">
-              <span className="border-2 border-ink bg-[#c9f31d] px-2.5 py-1 text-[0.7rem] font-bold uppercase tracking-[0.14em]">
-                {thread.status}
-              </span>
-              <span
-                className="font-display text-sm font-bold text-accent"
-                aria-hidden="true"
-              >
-                {String(i + 1).padStart(2, '0')}
-              </span>
-            </div>
-            <h3 className="font-display text-xl font-bold leading-tight sm:text-2xl">
+            <span className="text-sm font-bold uppercase tracking-[0.12em] text-accent-cyan">
+              {thread.status}
+            </span>
+            <h3 className="font-display text-xl font-bold leading-tight">
               {thread.label}
             </h3>
-            <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">
+            <p className="text-base leading-relaxed text-ink-muted">
               {thread.text}
             </p>
           </Reveal>
