@@ -7,8 +7,8 @@ export function Skills() {
     <Section
       id="skills"
       compact
-      title="Tools I use"
-      subtitle="A focused list of tools that appear in the projects and roles above."
+      title="Skills"
+      subtitle="Two concise toolkits drawn from the projects and roles above: research systems and software products."
     >
       <div className="grid border-y border-ink/30 sm:grid-cols-2">
         {content.skills.map((group, index) => (

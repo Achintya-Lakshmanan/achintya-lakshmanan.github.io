@@ -5,12 +5,15 @@ import { useActiveSection } from '../hooks/useScrollSpy'
 import { IconClose, IconMenu } from './Icons'
 
 const sectionIds = content.nav.map((n) => n.href.replace('#', ''))
+const workLaneIds = new Set(['research-work', 'software-work'])
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
+  const [chosenWorkLane, setChosenWorkLane] = useState('')
   const toggleRef = useRef<HTMLButtonElement>(null)
   const active = useActiveSection(sectionIds)
   const shouldReduce = useReducedMotion()
+  const activeNavItem = workLaneIds.has(active) ? chosenWorkLane || active : active
 
   useEffect(() => {
     if (!open) return
@@ -35,7 +38,7 @@ export function Navbar() {
 
   const linkClass = (id: string) =>
     `relative text-sm font-bold transition-colors duration-200 ${
-      active === id ? 'text-ink' : 'text-ink-muted hover:text-ink'
+      activeNavItem === id ? 'text-ink' : 'text-ink-muted hover:text-ink'
     }`
 
   return (
@@ -52,7 +55,7 @@ export function Navbar() {
           <span className="grid h-9 w-9 -rotate-3 place-items-center border-2 border-ink bg-accent-cyan text-white transition-transform group-hover:rotate-0">
             AL
           </span>
-          <span className="hidden sm:inline">ML / research engineer</span>
+          <span className="hidden sm:inline">ML / research + software</span>
         </a>
 
         <ul className="hidden items-center gap-5 md:flex xl:gap-7">
@@ -63,16 +66,17 @@ export function Navbar() {
                 <a
                   href={item.href}
                   className={linkClass(id)}
-                  aria-current={active === id ? 'location' : undefined}
+                  aria-current={activeNavItem === id ? 'location' : undefined}
+                  onClick={() => setChosenWorkLane(workLaneIds.has(id) ? id : '')}
                 >
-                  {active === id && !shouldReduce && (
+                  {activeNavItem === id && !shouldReduce && (
                     <motion.span
                       layoutId="nav-underline"
                       className="absolute -bottom-1 left-0 right-0 h-1 bg-[#c9f31d]"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                  {active === id && shouldReduce && (
+                  {activeNavItem === id && shouldReduce && (
                     <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#c9f31d]" />
                   )}
                   <span className="relative z-10">{item.label}</span>
@@ -113,12 +117,15 @@ export function Navbar() {
                     <a
                       href={item.href}
                       className={`block border-l-4 px-3 py-2.5 text-base font-bold ${
-                        active === id
+                        activeNavItem === id
                           ? 'border-accent-cyan bg-[#c9f31d] text-ink'
                           : 'border-transparent text-ink-muted hover:border-ink hover:text-ink'
                       }`}
-                      aria-current={active === id ? 'location' : undefined}
-                      onClick={() => setOpen(false)}
+                      aria-current={activeNavItem === id ? 'location' : undefined}
+                      onClick={() => {
+                        setChosenWorkLane(workLaneIds.has(id) ? id : '')
+                        setOpen(false)
+                      }}
                     >
                       {item.label}
                     </a>

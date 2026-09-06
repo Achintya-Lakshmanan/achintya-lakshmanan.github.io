@@ -36,7 +36,7 @@ Append an object to `content.projects`:
   contribution: 'What you personally designed, built, or evaluated.',
   tags: ['Python', 'PyTorch'],
   evidence: ['A result, limitation, or honest current status.'],
-  status: 'Private research repository', // optional
+  status: 'Evaluation in progress', // optional
   links: [ // optional; only add verified public URLs
     { label: 'Project repository', href: 'https://...', kind: 'github' },
   ],
@@ -65,7 +65,7 @@ Append to `content.experience`. Set `category` to `'research'`, `'teaching'`, or
 - **Education** → `content.education` (`Education` interface)
 - **Skills** → `content.skills` (group by category, list skill strings)
 - **Achievements** → `content.achievements`
-- **Hero / about / socials** → top-level fields on `content` (`positioning`, `bio`, `aboutResearch`, `socials`, etc.)
+- **Hero / exploring / socials** → top-level fields on `content` (`positioning`, `bio`, `currentThreads`, `socials`, etc.)
 
 ## Deploy to GitHub Pages
 
@@ -99,6 +99,6 @@ src/
 
 ## Content and metadata
 
-- Treat public, versioned notes and the current CV as evidence for factual claims; do not publish local paths, private repository details, or draft metrics.
+- Treat public, versioned notes and the current CV as evidence for factual claims; do not publish local paths, non-public repository details, or draft metrics.
 - Projects use question → contribution → evidence/status so in-progress research is not presented as a finished result.
 - Update `index.html`, `public/social-card.svg`, `public/social-card.png`, `public/robots.txt`, and `public/sitemap.xml` together when the canonical URL or public positioning changes.

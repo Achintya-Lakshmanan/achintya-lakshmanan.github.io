@@ -32,6 +32,17 @@ function byStartDateDesc(a: ExperienceEntry, b: ExperienceEntry): number {
   return startDateMs(b.period) - startDateMs(a.period)
 }
 
+function categoryLabel(category: ExperienceEntry['category']): string {
+  if (category === 'industry') return 'Product / software'
+  return category
+}
+
+function categoryClass(category: ExperienceEntry['category']): string {
+  if (category === 'industry') return 'border border-ink/30 bg-[#c9f31d] px-2 py-0.5 text-ink'
+  if (category === 'teaching') return 'border border-ink/20 bg-[#fffaf0] px-2 py-0.5 text-ink-muted'
+  return 'text-accent-cyan'
+}
+
 /** Renders highlight text with optional [label](url) markdown links. */
 function HighlightText({ text }: { text: string }) {
   const nodes: ReactNode[] = []
@@ -67,7 +78,7 @@ export function Experience() {
       id="experience"
       wash
       title="Experience"
-      subtitle="The teams and products behind the work, with my contribution and the evidence I can stand behind."
+      subtitle="Chronological roles across research, teaching, and product teams; each entry shows what I owned or contributed."
     >
       <ol className="timeline-list border-t border-ink/30">
         {items.map((item, index) => {
@@ -95,8 +106,8 @@ export function Experience() {
                       <h3 className="font-display text-2xl font-bold leading-tight tracking-[-0.02em]">
                         {item.title}
                       </h3>
-                      <span className="text-sm font-bold uppercase tracking-[0.1em] text-accent-cyan">
-                        {item.category}
+                      <span className={`text-sm font-bold uppercase tracking-[0.1em] ${categoryClass(item.category)}`}>
+                        {categoryLabel(item.category)}
                       </span>
                     </div>
                     <p className="mt-1 text-base font-semibold text-ink-muted">{item.organization}</p>

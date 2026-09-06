@@ -12,7 +12,7 @@ export function Contact() {
       id="contact"
       className="border-y border-ink bg-accent-cyan"
       title="Let’s talk"
-      subtitle="For ML and research engineering roles, collaboration, or a thoughtful question about the work."
+      subtitle="For ML, research engineering, and software roles, collaboration, or a thoughtful question about the work."
       headerTone="on-accent"
     >
       <Reveal>

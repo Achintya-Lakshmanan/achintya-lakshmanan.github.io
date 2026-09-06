@@ -40,6 +40,7 @@ export interface Project {
   title: string
   period: string
   kind: 'research' | 'build'
+  scope?: 'professional'
   question: string
   approach: string
   contribution: string
@@ -112,9 +113,8 @@ export const content: SiteContent = {
   email: 'aql6062@psu.edu',
   location: 'University Park, PA',
   photo: '/me.jpg',
-  positioning:
-    'ML / research engineer building and evaluating LLM systems.',
-  bio: 'Graduate Researcher at Penn State, focused on data-grounded agents, multi-agent RAG, and search-time decoding. I have also shipped ML and full-stack products.',
+  positioning: 'Software engineer and ML researcher.',
+  bio: 'I’m a Graduate Researcher and MS CSE student at Penn State. My work spans full-stack applications, native macOS tools, and research on language-model systems.',
   currentThreads: [
     {
       status: 'Evaluating',
@@ -133,7 +133,7 @@ export const content: SiteContent = {
     },
   ],
   contactCopy:
-    'I’m looking for ML and research engineering opportunities where careful experiments can become dependable systems. If that sounds like your team, send me a note.',
+    'I’m looking for ML, research engineering, and software opportunities where careful experiments can become dependable systems. If that sounds like your team, send me a note.',
   socials: [
     {
       label: 'GitHub',
@@ -152,7 +152,8 @@ export const content: SiteContent = {
     },
   ],
   nav: [
-    { label: 'Work', href: '#projects' },
+    { label: 'Research', href: '#research-work' },
+    { label: 'Software', href: '#software-work' },
     { label: 'Experience', href: '#experience' },
     { label: 'Background', href: '#background' },
     { label: 'Contact', href: '#contact' },
@@ -202,10 +203,10 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/psu.png',
       context:
-        'Two collaborative research efforts examine how external structure changes LLM-agent behavior: one grounds simulated daily decisions in real activity data, while the other studies what passes between RAG agents when they share model state.',
+        'Collaborative Penn State NLP work on data-grounded simulation and information flow between RAG agents.',
       highlights: [
-        'For AURA, I built and am evaluating a K-validation controller that scores four LLM proposals alongside ATUS time-slot priors and transitions, with policy selection and execution analyzed separately.',
-        'For the multi-agent RAG study, I help analyze what a downstream judge inherits through shared KV caches, using matched perturbation controls to test the mechanism rather than crediting one compression format.',
+        'Built AURA’s ATUS-grounded K-validation controller to score four LLM proposals against time-slot priors and transitions, separating policy choice from executed action.',
+        'Helped build LangGraph controls for shared KV-cache experiments, comparing re-prefill, quantized transfer, and matched perturbations at the decision level.',
       ],
     },
     {
@@ -216,10 +217,10 @@ export const content: SiteContent = {
       category: 'teaching',
       logo: '/logos/psu.png',
       context:
-        'I support undergraduate computing instruction through office hours, course-question preparation, and one-on-one help with implementation and project questions.',
+        'Undergraduate computing support through office hours, course-question preparation, and project help.',
       highlights: [
-        'I explain course concepts in plain language and help students debug implementations or turn unclear requirements into a concrete next step.',
-        'I help students prepare questions and make steady progress on longer programming projects.',
+        'Explain course concepts in plain language and help students debug implementations.',
+        'Help students scope longer course projects and turn unclear requirements into concrete next steps.',
       ],
     },
     {
@@ -230,10 +231,10 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/snu.svg',
       context:
-        'The lab projects explored medical-image reconstruction and segmentation where observations are sparse, noisy, or low contrast.',
+        'Medical-image reconstruction and segmentation work in sparse, noisy, low-contrast settings.',
       highlights: [
-        'I built and evaluated a Mamba-enhanced NeRF pipeline for reconstructing 3D bone structure from a single X-ray.',
-        'For a fetal-ultrasound challenge, I tested Semi-Mamba and a mutual-learning VMUNet variant on noisy, low-contrast scans.',
+        'Built and evaluated a Mamba-enhanced NeRF pipeline for reconstructing 3D bone structure from one X-ray.',
+        'Tested Semi-Mamba and a mutual-learning VMUNet variant for noisy fetal-ultrasound segmentation.',
       ],
     },
     {
@@ -244,10 +245,10 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/snu.svg',
       context:
-        'The lab was developing Tamil speech systems and voice transcreation for educational material, where naturalness and usable inference mattered alongside model quality.',
+        'Tamil speech and voice-transcreation work for IIT educational content.',
       highlights: [
-        'I built Tamil text-to-speech and voice-cloning experiments with encoder-decoder and Tacotron models.',
-        'I contributed to voice transcreation for IIT online courses.',
+        'Built text-to-speech and voice-cloning experiments with encoder-decoder and Tacotron models.',
+        'Contributed voice transcreation for IIT online courses.',
       ],
     },
     {
@@ -258,10 +259,10 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/lumel.svg',
       context:
-        'The product work focused on making analytics workflows easier to author and share, from natural-language formula creation to collaborative configuration and Power BI utilities.',
+        'Product team building analytics authoring and collaboration tools.',
       highlights: [
-        'I built a TypeScript RAG assistant that translated natural-language requests into Inforiver Matrix formulas.',
-        'I built a collaborative JSON editor with React, Node.js, and WebSockets, and contributed Power BI utilities for parsing Microsoft Project data and generating reusable report themes.',
+        'Built a TypeScript RAG assistant translating natural-language requests into Inforiver Matrix formulas.',
+        'Contributed Power BI utilities for Microsoft Project parsing and reusable report themes.',
       ],
     },
     {
@@ -272,10 +273,10 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/phosphene.png',
       context:
-        'A five-person team developed a deepfake-detection pipeline designed to remain useful across compression, blur, color variation, and videos containing multiple identities.',
+        'Five-person team developing deepfake detection across compression, blur, color variation, and multi-identity video.',
       highlights: [
-        'I led the team’s implementation and evaluation of the PyTorch detector.',
-        'I added blur, compression, and color-jitter augmentation and tested MINTIME on multi-identity videos.',
+        'Led the PyTorch detector implementation and evaluation across varied video conditions.',
+        'Added blur, compression, and color-jitter augmentation; tested MINTIME on multi-identity videos.',
       ],
     },
     {
@@ -286,10 +287,10 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/culvii.svg',
       context:
-        'The product connected day-to-day student management with a gamified learning experience and in-product conversational assistance.',
+        'Student-management and gamified learning products with conversational assistance.',
       highlights: [
-        'I built parts of the student-management portal in Next.js and Node.js, including class tracking and onboarding.',
-        'I added GPT-based assistants to the learning product and worked on conversation flow and response latency.',
+        'Built Next.js and Node.js portal features for class tracking and onboarding.',
+        'Added GPT-based learning assistants and improved conversation flow and response latency.',
       ],
     },
     {
@@ -300,10 +301,10 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/optisol.png',
       context:
-        'The internship spanned three applied-ML products: image generation for design workflows, GPT-assisted issue resolution, and edge vision for industrial monitoring.',
+        'Applied-ML internship spanning design image generation, issue resolution, and edge vision.',
       highlights: [
-        'I built a React and FastAPI image-generation application around Stable Diffusion and worked on model fine-tuning.',
-        'I built a GPT-4 issue-resolution prototype and deployed a YOLOv8 soot detector on a Jetson Nano.',
+        'Built a React/FastAPI Stable Diffusion app and contributed model fine-tuning.',
+        'Built a GPT-4 issue-resolution prototype and deployed YOLOv8 soot detection on a Jetson Nano.',
       ],
     },
   ],
@@ -390,6 +391,25 @@ export const content: SiteContent = {
       ],
     },
     {
+      id: 'lumel-json-editor',
+      title: 'Collaborative JSON Editor at Lumel',
+      period: 'Mar to Jun 2025',
+      kind: 'build',
+      scope: 'professional',
+      question:
+        'Could analytics teams edit and share structured configuration together without losing track of changes?',
+      approach:
+        'A React editor paired with Node.js and WebSockets to keep JSON configuration synchronized for collaborative analytics authoring.',
+      contribution:
+        'I built the editor’s shared-state and synchronization flows in React, Node.js, and WebSockets.',
+      tags: ['React', 'Node.js', 'WebSockets', 'TypeScript'],
+      evidence: [
+        'Professional product work completed during my Lumel Technologies internship.',
+        'Built the editor as part of the team’s analytics authoring and collaboration workflow.',
+      ],
+      status: 'Lumel Technologies',
+    },
+    {
       id: 'haze-removal',
       title: 'Dense Non-Homogeneous Haze Removal',
       period: 'Jan to Apr 2024',
@@ -406,6 +426,7 @@ export const content: SiteContent = {
         'The submitted model reported 14.4 dB PSNR after about four hours of training.',
         'Kept the architecture small enough for practical per-image inference.',
       ],
+      status: 'Challenge result',
     },
     {
       id: 'krypton',
@@ -417,7 +438,7 @@ export const content: SiteContent = {
       approach:
         'Krypton was a team-built hackathon prototype that combined transaction anomaly scoring, spam and phishing checks, IP lookup, and a React and Node.js investigation dashboard in one end-to-end workflow.',
       contribution:
-        'I contributed across the ML and application stack as the team integrated the random-forest model, APIs, storage, and analyst-facing interface.',
+        'I contributed to model building and frontend integration while the team connected APIs, storage, and the analyst-facing workflow.',
       tags: ['Python', 'React', 'Node.js', 'MongoDB', 'ML'],
       evidence: [
         'Won the Encryptcon Shaastra Hackathon organized with IIT Madras and Temenos.',
@@ -447,7 +468,7 @@ export const content: SiteContent = {
   skills: [
     {
       id: 'research',
-      category: 'ML & research systems',
+      category: 'Research & ML systems',
       skills: [
         'Python',
         'PyTorch',
@@ -455,22 +476,25 @@ export const content: SiteContent = {
         'vLLM',
         'LangGraph',
         'scikit-learn',
+        'NumPy / Pandas',
+        'OpenCV',
+        'MCTS / search',
       ],
     },
     {
-      id: 'web',
-      category: 'Web systems',
-      skills: ['TypeScript', 'React', 'Node.js', 'Next.js', 'FastAPI', 'WebSockets'],
-    },
-    {
-      id: 'apps',
-      category: 'Native & systems',
-      skills: ['Swift', 'SwiftUI', 'AppKit', 'C/C++', 'SQL', 'Git', 'Docker'],
-    },
-    {
-      id: 'data',
-      category: 'Data & applied ML',
-      skills: ['NumPy', 'Pandas', 'OpenCV', 'MongoDB', 'Power BI'],
+      id: 'software',
+      category: 'Software & product',
+      skills: [
+        'TypeScript',
+        'React',
+        'Node.js',
+        'Next.js',
+        'FastAPI',
+        'WebSockets',
+        'Swift / SwiftUI / AppKit',
+        'SQL / MongoDB',
+        'Docker / Power BI',
+      ],
     },
   ],
   achievements: [
