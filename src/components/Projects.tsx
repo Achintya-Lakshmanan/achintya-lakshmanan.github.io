@@ -3,8 +3,8 @@ import { IconExternal, IconGitHub } from './Icons'
 import { Reveal } from './Reveal'
 import { Section } from './Section'
 
-const primaryResearchOrder = ['attention-bias-rag', 'mcts-llm']
-const secondaryResearchOrder = ['aura', 'haze-removal']
+const primaryResearchOrder = ['aura', 'attention-bias-rag']
+const secondaryResearchOrder = ['mcts-llm', 'haze-removal']
 
 export function Projects() {
   const primaryResearchProjects = primaryResearchOrder
@@ -52,12 +52,12 @@ export function Projects() {
             description="Collaborative work where the question, controls, and limits of the evidence stay visible."
           />
 
-          <ResearchArtifact />
           <div className="mt-4 space-y-4">
             {primaryResearchProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
+              <ProjectCard key={project.id} project={project} featured={project.id === 'aura'} />
             ))}
           </div>
+          <ResearchArtifact />
           <div className="mt-5 border-t-2 border-ink pt-4">
             <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
               <h4 className="font-display text-xl font-bold tracking-[-0.02em]">Earlier research</h4>
@@ -106,7 +106,7 @@ function ResearchArtifact() {
       <article className="border border-ink/35 bg-surface p-4 sm:p-5">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-sm font-bold uppercase tracking-[0.12em] text-accent-cyan">
-            Public research artifact · {artifact.period}
+            Supporting public research artifact · {artifact.period}
           </p>
           <span className="text-sm text-ink-muted">{artifact.status}</span>
         </div>
@@ -127,7 +127,7 @@ function ResearchArtifact() {
   )
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
   const isResearch = project.kind === 'research'
   const evidence = project.evidence ?? []
   const links = project.links ?? []
@@ -144,7 +144,9 @@ function ProjectCard({ project }: { project: Project }) {
           <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
             <p className="text-sm font-bold uppercase tracking-[0.12em] text-accent-cyan">
               {isResearch
-                ? 'Research project'
+                ? featured
+                  ? 'Featured research'
+                  : 'Research project'
                 : project.scope === 'professional'
                   ? 'Professional / company project'
                   : 'Software project'}
@@ -166,6 +168,9 @@ function ProjectCard({ project }: { project: Project }) {
             {project.title}
           </h4>
           <p className="mt-3 text-base font-medium leading-relaxed text-ink">{project.question}</p>
+          {project.summary && (
+            <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">{project.summary}</p>
+          )}
 
           <div className="mt-4 grid gap-4 border-t border-ink/20 pt-4 sm:grid-cols-2 sm:gap-5">
             <InfoBlock label="My contribution" text={project.contribution} />

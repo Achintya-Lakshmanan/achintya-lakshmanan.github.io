@@ -42,6 +42,7 @@ export interface Project {
   kind: 'research' | 'build'
   scope?: 'professional'
   question: string
+  summary?: string
   approach: string
   contribution: string
   tags: string[]
@@ -91,6 +92,7 @@ export interface Achievement {
 export interface SiteContent {
   name: string
   email: string
+  copyrightYear: string
   positioning: string
   bio: string
   currentThreads: CurrentThread[]
@@ -111,15 +113,16 @@ export interface SiteContent {
 export const content: SiteContent = {
   name: 'Achintya Lakshmanan',
   email: 'aql6062@psu.edu',
+  copyrightYear: '2026',
   location: 'University Park, PA',
   photo: '/me.jpg',
-  positioning: 'Software engineer and ML researcher.',
-  bio: 'I’m a Graduate Researcher and MS CSE student at Penn State. My work spans full-stack applications, native macOS tools, and research on language-model systems.',
+  positioning: 'Software engineer and ML research engineer.',
+  bio: 'I’m a Graduate Researcher and MS CSE student at Penn State (expected May 2027), based in University Park, PA. I build full-stack and native macOS software and research language-model systems.',
   currentThreads: [
     {
       status: 'Evaluating',
       label: 'Data-grounded agent planning',
-      text: 'Testing whether real activity patterns can keep simulated decisions plausible—and whether AURA’s evaluation can separate adaptation from routine.',
+      text: 'Evaluating how heatwave plans change ordinary daily routines—and whether AURA can separate model-driven choices from the structure of observed activity.',
     },
     {
       status: 'Investigating',
@@ -311,22 +314,23 @@ export const content: SiteContent = {
   projects: [
     {
       id: 'aura',
-      title: 'AURA: Data-Grounded Agents for Heatwave Simulation',
+      title: 'AURA: Adapting Daily Routines to Extreme Heat',
       period: 'Apr 2026 to Present',
       kind: 'research',
       question:
-        'Can an agent model heatwave adaptation without mistaking ordinary daily structure for evidence that the LLM adapted?',
+        'Can simulated agents adapt their daily routines to extreme heat?',
+      summary:
+        'AURA explores how simulated agents adjust daily routines during heatwaves. It combines observed time-use patterns with language-model activity proposals, then compares runs with and without model input to test what the model adds.',
       approach:
-        'AURA is a collaborative simulation effort that combines LLM activity proposals with American Time Use Survey priors and transition structure. The system keeps policy selection separate from executed actions so evaluation can distinguish a model-driven change from ordinary routine.',
+        'AURA combines observed American Time Use Survey (ATUS) patterns and activity transitions with four LLM activity proposals. I built the ATUS-grounded K-validation controller to score those proposals before execution, keeping the controller’s chosen plan separate from the action executed so evaluation can test what model input adds.',
       contribution:
-        'I built the ATUS-grounded K-validation and evaluation pipeline: at each decision, it scores four model proposals against the time-slot prior and preceding-activity transition.',
+        'I built and am evaluating the controller that scores candidate activity plans before the simulator executes them.',
       tags: ['Python', 'vLLM', 'LLM Agents', 'Simulation', 'Evaluation'],
       evidence: [
-        'Matched controls compare the same controller with and without LLM proposals.',
-        'In the adaptation arm, the heatwave target is withheld from the simulator and used only after the run for evaluation.',
-        'The next evaluation is a preregistered paired, multi-seed pilot; no pilot result is reported yet.',
+        'Ongoing evaluation compares matched runs with and without model input; no adaptation result is reported yet.',
+        'The heatwave target is withheld from the simulator and used only after the run for evaluation.',
       ],
-      status: 'Pilot pending',
+      status: 'Ongoing evaluation',
     },
     {
       id: 'attention-bias-rag',

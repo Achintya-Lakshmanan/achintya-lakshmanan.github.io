@@ -1,10 +1,9 @@
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { content } from '../data/content'
 import { IconEmail, IconGitHub, IconLinkedIn } from './Icons'
 import { HeroBackground } from './HeroBackground'
 
 export function Hero() {
-  const shouldReduce = useReducedMotion()
   const github = content.socials.find((social) => social.icon === 'github')
   const linkedin = content.socials.find((social) => social.icon === 'linkedin')
 
@@ -20,7 +19,7 @@ export function Hero() {
           <div className="min-w-0">
             <motion.p
               className="mb-6 inline-flex max-w-full items-center gap-2 border-2 border-ink bg-[#c9f31d] px-3 py-1.5 text-sm font-bold uppercase tracking-[0.12em] shadow-[3px_3px_0_#171717]"
-              initial={shouldReduce ? false : { opacity: 0, y: 14 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45 }}
             >
@@ -30,7 +29,7 @@ export function Hero() {
 
             <motion.h1
               className="max-w-4xl font-display text-[clamp(2.5rem,12vw,7rem)] font-bold leading-[0.86] tracking-[-0.07em]"
-              initial={shouldReduce ? false : { opacity: 0, y: 18 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.06 }}
             >
@@ -40,7 +39,7 @@ export function Hero() {
 
             <motion.p
               className="mt-7 max-w-2xl font-display text-[clamp(1.35rem,2.6vw,2rem)] font-semibold leading-tight tracking-[-0.025em]"
-              initial={shouldReduce ? false : { opacity: 0, y: 18 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.12 }}
             >
@@ -49,7 +48,7 @@ export function Hero() {
 
             <motion.p
               className="mt-4 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg"
-              initial={shouldReduce ? false : { opacity: 0, y: 18 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.18 }}
             >
@@ -58,7 +57,7 @@ export function Hero() {
 
             <motion.div
               className="mt-8 flex flex-wrap items-center gap-3"
-              initial={shouldReduce ? false : { opacity: 0, y: 18 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.24 }}
             >
@@ -79,7 +78,7 @@ export function Hero() {
 
             <motion.div
               className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium text-ink-muted"
-              initial={shouldReduce ? false : { opacity: 0, y: 18 }}
+              initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
@@ -116,7 +115,6 @@ export function Hero() {
             <ProfilePhoto
               src={content.photo}
               name={content.name}
-              shouldReduce={!!shouldReduce}
             />
           )}
         </div>
@@ -129,14 +127,13 @@ export function Hero() {
 interface ProfilePhotoProps {
   src: string
   name: string
-  shouldReduce: boolean
 }
 
-function ProfilePhoto({ src, name, shouldReduce }: ProfilePhotoProps) {
+function ProfilePhoto({ src, name }: ProfilePhotoProps) {
   return (
     <motion.figure
       className="relative mx-auto w-full max-w-[18rem] lg:mr-0"
-      initial={shouldReduce ? false : { opacity: 0, scale: 0.95, y: 14 }}
+      initial={false}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.14, type: 'spring' }}
     >

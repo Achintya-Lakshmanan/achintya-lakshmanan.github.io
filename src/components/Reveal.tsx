@@ -28,7 +28,8 @@ export function Reveal({
 
   const motionProps = {
     className,
-    initial: 'hidden' as const,
+    // Keep server-rendered content visible before JavaScript hydrates.
+    initial: false as const,
     whileInView: 'visible' as const,
     viewport: { once: true, margin: '-60px' as const },
     variants,

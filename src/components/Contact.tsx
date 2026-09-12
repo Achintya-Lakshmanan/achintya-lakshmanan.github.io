@@ -58,11 +58,10 @@ export function Contact() {
 }
 
 export function Footer() {
-  const year = new Date().getFullYear()
   return (
     <footer className="bg-ink py-7 text-white">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-2 px-5 text-sm sm:flex-row sm:items-center sm:px-8">
-        <p className="font-bold">© {year} {content.name}</p>
+        <p className="font-bold">© {content.copyrightYear} {content.name}</p>
         <p className="text-sm text-white/70">Built around the questions worth testing.</p>
       </div>
     </footer>
