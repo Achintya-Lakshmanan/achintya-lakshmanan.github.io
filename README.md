@@ -32,7 +32,7 @@ Append an object to `content.projects`:
   title: 'Project Title',
   period: 'Jan 2026 to Present',
   kind: 'research', // or 'build'
-  question: 'The concrete question or problem.',
+  summary: 'A concise description of the project and the problem it addresses.',
   contribution: 'What you personally designed, built, or evaluated.',
   tags: ['Python', 'PyTorch'],
   evidence: ['A result, limitation, or honest current status.'],
@@ -65,7 +65,7 @@ Append to `content.experience`. Set `category` to `'research'`, `'teaching'`, or
 - **Education** → `content.education` (`Education` interface)
 - **Skills** → `content.skills` (group by category, list skill strings)
 - **Achievements** → `content.achievements`
-- **Hero / exploring / socials** → top-level fields on `content` (`positioning`, `bio`, `currentThreads`, `socials`, etc.)
+- **Hero / socials** → top-level fields on `content` (`positioning`, `bio`, `socials`, etc.)
 
 ## Deploy to GitHub Pages
 
@@ -100,5 +100,5 @@ src/
 ## Content and metadata
 
 - Treat public, versioned notes and the current CV as evidence for factual claims; do not publish local paths, non-public repository details, or draft metrics.
-- Projects use question → contribution → evidence/status so in-progress research is not presented as a finished result.
+- Projects use a direct summary → role → evidence/status structure so in-progress research is not presented as a finished result.
 - Update `index.html`, `public/social-card.svg`, `public/social-card.png`, `public/robots.txt`, and `public/sitemap.xml` together when the canonical URL or public positioning changes.

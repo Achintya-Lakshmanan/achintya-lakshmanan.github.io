@@ -41,8 +41,7 @@ export interface Project {
   period: string
   kind: 'research' | 'build'
   scope?: 'professional'
-  question: string
-  summary?: string
+  summary: string
   approach: string
   contribution: string
   tags: string[]
@@ -67,12 +66,6 @@ export interface ResearchArtifact {
   status: string
 }
 
-export interface CurrentThread {
-  status: string
-  label: string
-  text: string
-}
-
 export interface SkillGroup {
   id: string
   category: string
@@ -95,7 +88,6 @@ export interface SiteContent {
   copyrightYear: string
   positioning: string
   bio: string
-  currentThreads: CurrentThread[]
   contactCopy: string
   location: string
   /** Profile photo path under /public (e.g. /me.jpg). Optional. */
@@ -117,24 +109,7 @@ export const content: SiteContent = {
   location: 'University Park, PA',
   photo: '/me.jpg',
   positioning: 'Software engineer and ML research engineer.',
-  bio: 'I’m a Graduate Researcher and MS CSE student at Penn State (expected May 2027), based in University Park, PA. I build full-stack and native macOS software and research language-model systems.',
-  currentThreads: [
-    {
-      status: 'Evaluating',
-      label: 'Data-grounded agent planning',
-      text: 'Evaluating how heatwave plans change ordinary daily routines—and whether AURA can separate model-driven choices from the structure of observed activity.',
-    },
-    {
-      status: 'Investigating',
-      label: 'Shared context, inherited bias',
-      text: 'Studying what a downstream RAG agent picks up when collaborators share KV caches or other altered forms of context.',
-    },
-    {
-      status: 'Building',
-      label: 'Search-time constrained decoding',
-      text: 'Using grammar-aware MCTS to spend extra compute on the early choices that can make or break a structured answer.',
-    },
-  ],
+  bio: 'I’m a Graduate Researcher and MS CSE student at Penn State (expected May 2027), based in University Park, PA. I build full-stack and native macOS software and research language-model systems. I’m interested in where reinforcement learning meets LLMs, and I love vibe-coding macOS apps and useful little tools.',
   contactCopy:
     'I’m looking for ML, research engineering, and software opportunities where careful experiments can become dependable systems. If that sounds like your team, send me a note.',
   socials: [
@@ -317,18 +292,16 @@ export const content: SiteContent = {
       title: 'AURA: Adapting Daily Routines to Extreme Heat',
       period: 'Apr 2026 to Present',
       kind: 'research',
-      question:
-        'Can simulated agents adapt their daily routines to extreme heat?',
       summary:
-        'AURA explores how simulated agents adjust daily routines during heatwaves. It combines observed time-use patterns with language-model activity proposals, then compares runs with and without model input to test what the model adds.',
+        'AURA is a simulation project studying how daily routines change during extreme heat. It combines observed time-use patterns with language-model activity proposals to test what the model adds.',
       approach:
-        'AURA combines observed American Time Use Survey (ATUS) patterns and activity transitions with four LLM activity proposals. I built the ATUS-grounded K-validation controller to score those proposals before execution, keeping the controller’s chosen plan separate from the action executed so evaluation can test what model input adds.',
+        'The system combines American Time Use Survey (ATUS) time-slot priors and activity transitions with four LLM proposals. A K-validation controller scores proposals before execution and keeps the chosen plan separate from the action executed.',
       contribution:
-        'I built and am evaluating the controller that scores candidate activity plans before the simulator executes them.',
+        'I built the controller that scores candidate activities before the simulator runs them, and I’m evaluating it on heatwave scenarios.',
       tags: ['Python', 'vLLM', 'LLM Agents', 'Simulation', 'Evaluation'],
       evidence: [
-        'Ongoing evaluation compares matched runs with and without model input; no adaptation result is reported yet.',
-        'The heatwave target is withheld from the simulator and used only after the run for evaluation.',
+        'Matched runs compare the simulator with and without model input.',
+        'The heatwave target is withheld from the simulator and used only for post-run evaluation.',
       ],
       status: 'Ongoing evaluation',
     },
@@ -337,17 +310,16 @@ export const content: SiteContent = {
       title: 'Attention Bias in Multi-Agent RAG',
       period: 'Feb 2026 to Present',
       kind: 'research',
-      question:
-        'When one retrieval agent hands its saved key-value (KV) cache to a downstream judge, does the judge inherit a decision bias along with the saved context?',
+      summary:
+        'This collaborative RAG study tests whether a downstream agent’s decision changes when it receives another agent’s saved context. It compares text re-prefill and KV-cache transfer with matched perturbation controls.',
       approach:
-        'This collaborative study follows context through a multi-agent retrieval-augmented generation (RAG) pipeline across three models and two datasets. It compares ordinary text re-prefill with FP16 cache transfer, INT4 round trips, and matched-noise controls to separate cache sharing from the perturbations introduced by compression.',
+        'The pipeline compares FP16 cache transfer, INT4 round trips, and matched Gaussian and dropout controls across three models and two datasets.',
       contribution:
-        'I helped build the LangGraph pipeline and analyze the decision-level effects, including the controls needed to test whether INT4 itself was responsible.',
+        'I helped build the LangGraph pipeline and analyze decision-level effects, including the controls needed to test whether INT4 itself was responsible.',
       tags: ['Python', 'PyTorch', 'LangGraph', 'RAG', 'KV Cache'],
       evidence: [
-        'Cache transfer changed downstream decisions in most model-and-dataset settings.',
-        'Matched Gaussian and dropout controls tied or beat INT4 in most comparisons, pointing to perturbation magnitude—not INT4 itself.',
-        'End-task EM and F1 stayed flat, so whether the decision-level effect improves answer correctness remains unresolved.',
+        'Cache transfer changed downstream decisions, but final-answer scores (EM/F1) stayed flat.',
+        'Matched Gaussian and dropout controls tied or beat INT4 in most comparisons, pointing to perturbation magnitude rather than INT4 itself.',
       ],
       links: [
         {
@@ -362,17 +334,16 @@ export const content: SiteContent = {
       title: 'MCTS for Controlled Text-to-SQL',
       period: 'Feb 2026 to Present',
       kind: 'research',
-      question:
-        'Can search spend extra compute on the first 6–10 SQL tokens, where an early schema or structural mistake can doom the entire query?',
+      summary:
+        'A controlled text-to-SQL decoder uses grammar- and schema-aware search on the opening SQL prefix, then greedily completes the query.',
       approach:
-        'The project extends genlm/genlm-control with a hybrid decoder: grammar- and schema-aware Monte Carlo tree search (MCTS) explores the high-leverage SQL prefix, then greedy decoding completes the query. Oracle and deployable settings are evaluated separately.',
+        'The hybrid decoder uses grammar- and schema-aware Monte Carlo tree search (MCTS) for the opening SQL prefix, then greedy decoding completes the query. Oracle and deployable settings are evaluated separately.',
       contribution:
-        'Working in a fork of the upstream project, I implemented the hybrid decoder and evaluation harness, keeping grammar/schema-valid search and oracle versus deployable paths distinct.',
+        'I implemented the hybrid decoder and evaluation harness in a fork of the upstream project, keeping oracle and deployable paths distinct.',
       tags: ['Python', 'PyTorch', 'MCTS', 'Text-to-SQL', 'SPIDER'],
       evidence: [
-        'The benchmark separates SMC, oracle MCTS, and deployable non-oracle MCTS instead of mixing gold-assisted and test-time settings.',
-        'The decoder explores the first 6–10 SQL tokens before greedy completion, where early schema or structural mistakes can compound.',
-        'End-to-end metrics are being regenerated under a clean harness; the deprecated result table is not used here.',
+        'The benchmark keeps SMC, oracle MCTS, and deployable non-oracle MCTS separate.',
+        'The decoder searches the first 6–10 SQL tokens before greedy completion.',
       ],
       status: 'Evaluation in progress',
     },
@@ -381,17 +352,15 @@ export const content: SiteContent = {
       title: 'NotchNest',
       period: '2026',
       kind: 'build',
-      question:
-        'The MacBook notch takes permanent screen space. Could it become a useful, quiet HUD instead?',
+      summary:
+        'NotchNest is a native macOS app that brings music controls, calendar events, and everyday utilities to the MacBook notch.',
       approach:
-        'NotchNest is a native macOS 14+ accessory that turns the notch into compact and expanded surfaces for music, meetings, files, weather, timers, and a camera mirror. It is designed to feel like part of the system rather than another floating dashboard.',
+        'Native AppKit and SwiftUI panels expand on demand and respond to system events and permissions, keeping the accessory compact until more detail is needed.',
       contribution:
         'I designed and built the app in Swift 6, AppKit, and SwiftUI, including its native integrations, permission flows, and event-driven state changes.',
       tags: ['Swift 6', 'AppKit', 'SwiftUI', 'macOS'],
       evidence: [
-        'System integrations are event-driven where timing matters, including Bluetooth connect and disconnect notifications.',
-        'The app coordinates native panels, permissions, media controls, EventKit, IOKit, CoreAudio, and login-item behavior.',
-        'Native permission flows cover the camera, media, calendar, and login-item surfaces used by the accessory.',
+        'The app coordinates media, calendar, camera, audio, and login-item integrations through native APIs and permission flows.',
       ],
     },
     {
@@ -400,16 +369,15 @@ export const content: SiteContent = {
       period: 'Mar to Jun 2025',
       kind: 'build',
       scope: 'professional',
-      question:
-        'Could analytics teams edit and share structured configuration together without losing track of changes?',
+      summary:
+        'A collaborative JSON editor for analytics authoring, built with React, Node.js, and WebSockets to keep shared configuration synchronized.',
       approach:
-        'A React editor paired with Node.js and WebSockets to keep JSON configuration synchronized for collaborative analytics authoring.',
+        'React shared state pairs with a Node.js and WebSocket synchronization layer for collaborative analytics authoring.',
       contribution:
-        'I built the editor’s shared-state and synchronization flows in React, Node.js, and WebSockets.',
+        'I built the editor’s shared-state and synchronization flows during my Lumel Technologies internship.',
       tags: ['React', 'Node.js', 'WebSockets', 'TypeScript'],
       evidence: [
-        'Professional product work completed during my Lumel Technologies internship.',
-        'Built the editor as part of the team’s analytics authoring and collaboration workflow.',
+        'Shipped as part of Lumel Technologies’ analytics authoring and collaboration workflow.',
       ],
       status: 'Lumel Technologies',
     },
@@ -418,10 +386,10 @@ export const content: SiteContent = {
       title: 'Dense Non-Homogeneous Haze Removal',
       period: 'Jan to Apr 2024',
       kind: 'research',
-      question:
-        'How much restoration quality can a compact vision model recover under a four-hour challenge training budget?',
+      summary:
+        'A compact image-restoration model that removes dense, uneven haze under a four-hour training budget.',
       approach:
-        'This challenge entry targeted dense, uneven haze with a compact ResNet U-Net and histogram equalization, balancing restoration quality against a tightly limited training run and practical per-image inference.',
+        'A compact ResNet U-Net with histogram equalization balanced restoration quality with the challenge’s training budget and practical per-image inference.',
       contribution:
         'I built and trained the restoration pipeline and prepared the submitted model under the four-hour budget.',
       tags: ['Python', 'PyTorch', 'Computer Vision', 'U-Net'],
@@ -437,16 +405,16 @@ export const content: SiteContent = {
       title: 'Krypton: Financial Investigation Dashboard',
       period: 'Jan to Mar 2024',
       kind: 'build',
-      question:
-        'Could one investigation view bring transaction anomalies, phishing signals, and network context together for a hackathon analyst?',
+      summary:
+        'Krypton is a team-built fraud-investigation app that combines transaction anomaly scoring, phishing checks, IP lookup, and an analyst dashboard.',
       approach:
-        'Krypton was a team-built hackathon prototype that combined transaction anomaly scoring, spam and phishing checks, IP lookup, and a React and Node.js investigation dashboard in one end-to-end workflow.',
+        'The React and Node.js prototype connects model predictions and external signals in one investigation view.',
       contribution:
-        'I contributed to model building and frontend integration while the team connected APIs, storage, and the analyst-facing workflow.',
+        'I built the investigation models and frontend integration; teammates handled the API and storage layers.',
       tags: ['Python', 'React', 'Node.js', 'MongoDB', 'ML'],
       evidence: [
         'Won the Encryptcon Shaastra Hackathon organized with IIT Madras and Temenos.',
-        'Delivered an end-to-end prototype spanning model inference, APIs, data storage, and the analyst-facing UI.',
+        'Delivered an end-to-end prototype for tracing fraud signals.',
       ],
       links: [
         {
@@ -463,10 +431,10 @@ export const content: SiteContent = {
       title: 'Improving LLM-Assisted Secure Code Generation through Retrieval-Augmented Generation and Multi-Tool Feedback',
       period: 'arXiv · 2026',
       summary:
-        'Coauthored research combining retrieval with compiler diagnostics, CodeQL, and KLEE. The study evaluates 3,242 generated programs from DeepSeek-Coder-1.3B and CodeLlama-7B in a controlled offline C/C++ benchmark.',
+        'Coauthored research combining retrieval with compiler diagnostics, CodeQL, and KLEE to evaluate secure C/C++ generation across 3,242 programs from DeepSeek-Coder-1.3B and CodeLlama-7B.',
       link: 'https://arxiv.org/abs/2601.00509',
       linkLabel: 'Read the paper',
-      status: 'Coauthored preprint · individual contributions in paper',
+      status: 'Coauthored preprint',
     },
   ],
   skills: [

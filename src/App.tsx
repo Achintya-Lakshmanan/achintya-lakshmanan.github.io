@@ -1,4 +1,3 @@
-import { About } from './components/About'
 import { Achievements } from './components/Achievements'
 import { Contact, Footer } from './components/Contact'
 import { Education } from './components/Education'
@@ -19,7 +18,6 @@ export default function App() {
         <Hero />
         <Projects />
         <Experience />
-        <About />
         <div id="background" className="scroll-mt-20">
           <Education />
           <Skills />

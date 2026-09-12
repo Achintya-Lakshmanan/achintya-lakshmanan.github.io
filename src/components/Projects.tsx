@@ -19,7 +19,7 @@ export function Projects() {
     <Section
       id="projects"
       title="Selected work"
-      subtitle="Two connected ways of working: research systems with careful evaluation, and software that has to hold together in use."
+      subtitle="Research systems I evaluate carefully, and software I build to work in practice."
     >
       <div className="grid items-start gap-6 lg:grid-cols-2">
         <section
@@ -31,7 +31,7 @@ export function Projects() {
             id="software-work-title"
             eyebrow="Software / product"
             title="Software"
-            description="Native and full-stack builds where interfaces, integrations, and handoffs have to work together."
+            description="Native and full-stack products with clear interfaces, integrations, and reliable handoffs."
           />
           <div className="space-y-4">
             {softwareProjects.map((project) => (
@@ -49,7 +49,7 @@ export function Projects() {
             id="research-work-title"
             eyebrow="Research / evaluation"
             title="Research"
-            description="Collaborative work where the question, controls, and limits of the evidence stay visible."
+            description="Collaborative studies with explicit controls and evidence."
           />
 
           <div className="mt-4 space-y-4">
@@ -167,13 +167,10 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
           >
             {project.title}
           </h4>
-          <p className="mt-3 text-base font-medium leading-relaxed text-ink">{project.question}</p>
-          {project.summary && (
-            <p className="mt-3 text-sm leading-relaxed text-ink-muted sm:text-base">{project.summary}</p>
-          )}
+          <p className="mt-3 text-base font-medium leading-relaxed text-ink">{project.summary}</p>
 
           <div className="mt-4 grid gap-4 border-t border-ink/20 pt-4 sm:grid-cols-2 sm:gap-5">
-            <InfoBlock label="My contribution" text={project.contribution} />
+            <InfoBlock label="My role" text={project.contribution} />
             {firstEvidence && (
               <InfoBlock label={isResearch ? 'Evidence so far' : 'Result'} text={firstEvidence} />
             )}
@@ -251,11 +248,11 @@ function SecondaryResearchRow({ project }: { project: Project }) {
               )}
             </div>
           </div>
-          <p className="mt-2 text-sm font-medium leading-relaxed text-ink">{project.question}</p>
+          <p className="mt-2 text-sm font-medium leading-relaxed text-ink">{project.summary}</p>
         </div>
 
         <div className="grid gap-3 border-t border-ink/20 px-3 py-3 sm:grid-cols-2 sm:gap-5 sm:px-4">
-          <InfoBlock label="My contribution" text={project.contribution} />
+          <InfoBlock label="My role" text={project.contribution} />
           {firstEvidence && (
             <InfoBlock label={isChallenge ? 'Reported result' : 'Evidence so far'} text={firstEvidence} />
           )}
