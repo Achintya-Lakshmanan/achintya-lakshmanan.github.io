@@ -21,25 +21,7 @@ export function Projects() {
       title="Selected work"
       subtitle="Research systems I evaluate carefully, and software I build to work in practice."
     >
-      <div className="grid items-start gap-6 lg:grid-cols-2">
-        <section
-          id="software-work"
-          aria-labelledby="software-work-title"
-          className="scroll-mt-24 border-2 border-ink bg-[#fffaf0] p-4 shadow-[8px_8px_0_#c83d22] sm:p-6"
-        >
-          <LaneHeader
-            id="software-work-title"
-            eyebrow="Software / product"
-            title="Software"
-            description="Native and full-stack products with clear interfaces, integrations, and reliable handoffs."
-          />
-          <div className="space-y-4">
-            {softwareProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </div>
-        </section>
-
+      <div className="space-y-6">
         <section
           id="research-work"
           aria-labelledby="research-work-title"
@@ -68,6 +50,24 @@ export function Projects() {
                 <SecondaryResearchRow key={project.id} project={project} />
               ))}
             </div>
+          </div>
+        </section>
+
+        <section
+          id="software-work"
+          aria-labelledby="software-work-title"
+          className="scroll-mt-24 border-2 border-ink bg-[#fffaf0] p-4 shadow-[8px_8px_0_#c83d22] sm:p-6"
+        >
+          <LaneHeader
+            id="software-work-title"
+            eyebrow="Software / product"
+            title="Software"
+            description="Native and full-stack products with clear interfaces, integrations, and reliable handoffs."
+          />
+          <div className="space-y-4">
+            {softwareProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
           </div>
         </section>
       </div>
