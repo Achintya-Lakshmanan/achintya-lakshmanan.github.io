@@ -19,7 +19,7 @@ export function Projects() {
     <Section
       id="projects"
       title="Selected work"
-      subtitle="Research systems I evaluate carefully, and software I build to work in practice."
+      subtitle="LLM experiments, native macOS apps, and full-stack software."
     >
       <div className="space-y-6">
         <section
@@ -31,7 +31,7 @@ export function Projects() {
             id="research-work-title"
             eyebrow="Research / evaluation"
             title="Research"
-            description="Collaborative studies with explicit controls and evidence."
+            description="Agent simulation, context sharing, and controlled generation with LLMs."
           />
 
           <div className="mt-4 space-y-4">
@@ -43,7 +43,7 @@ export function Projects() {
           <div className="mt-5 border-t-2 border-ink pt-4">
             <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
               <h4 className="font-display text-xl font-bold tracking-[-0.02em]">Earlier research</h4>
-              <p className="text-sm text-ink-muted">Secondary projects and challenge work</p>
+              <p className="text-sm text-ink-muted">Text-to-SQL decoding and image restoration</p>
             </div>
             <div className="space-y-3">
               {secondaryResearchProjects.map((project) => (
@@ -62,7 +62,7 @@ export function Projects() {
             id="software-work-title"
             eyebrow="Software / product"
             title="Software"
-            description="Native and full-stack products with clear interfaces, integrations, and reliable handoffs."
+            description="Personal apps and team projects spanning native interfaces, real-time collaboration, and ML-backed tools."
           />
           <div className="space-y-4">
             {softwareProjects.map((project) => (

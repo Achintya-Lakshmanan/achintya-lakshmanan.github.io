@@ -78,7 +78,7 @@ export function Experience() {
       id="experience"
       wash
       title="Experience"
-      subtitle="Chronological roles across research, teaching, and product teams; each entry shows what I owned or contributed."
+      subtitle="Research, software development, and teaching across university labs and product teams."
     >
       <ol className="timeline-list border-t border-ink/30">
         {items.map((item, index) => {

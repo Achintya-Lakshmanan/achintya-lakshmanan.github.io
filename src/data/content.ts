@@ -111,7 +111,7 @@ export const content: SiteContent = {
   positioning: 'Software engineer and ML research engineer.',
   bio: 'I’m a Graduate Researcher and MS CSE student at Penn State (expected May 2027), based in University Park, PA. I build full-stack and native macOS software and research language-model systems. I’m interested in where reinforcement learning meets LLMs, and I love vibe-coding macOS apps and useful little tools.',
   contactCopy:
-    'I’m looking for ML, research engineering, and software opportunities where careful experiments can become dependable systems. If that sounds like your team, send me a note.',
+    'I’m interested in software engineering, ML, and research engineering roles. If your team works on LLMs, reinforcement learning, or useful software, I’d love to hear about it.',
   socials: [
     {
       label: 'GitHub',
@@ -181,10 +181,10 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/psu.png',
       context:
-        'Collaborative Penn State NLP work on data-grounded simulation and information flow between RAG agents.',
+        'Research on LLM-driven behavior in daily-routine simulations and context sharing between retrieval-augmented generation (RAG) agents.',
       highlights: [
-        'Built AURA’s ATUS-grounded K-validation controller to score four LLM proposals against time-slot priors and transitions, separating policy choice from executed action.',
-        'Helped build LangGraph controls for shared KV-cache experiments, comparing re-prefill, quantized transfer, and matched perturbations at the decision level.',
+        'Built AURA’s controller to score four proposed activities against American Time Use Survey patterns, with separate records of selected plans and executed actions.',
+        'Helped build LangGraph experiments comparing text-based context sharing with KV-cache transfer, using quantization and matched-noise controls to study downstream decisions.',
       ],
     },
     {
@@ -195,7 +195,7 @@ export const content: SiteContent = {
       category: 'teaching',
       logo: '/logos/psu.png',
       context:
-        'Undergraduate computing support through office hours, course-question preparation, and project help.',
+        'Support undergraduate computing students through office hours, concept explanations, and project guidance.',
       highlights: [
         'Explain course concepts in plain language and help students debug implementations.',
         'Help students scope longer course projects and turn unclear requirements into concrete next steps.',
@@ -209,10 +209,10 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/snu.svg',
       context:
-        'Medical-image reconstruction and segmentation work in sparse, noisy, low-contrast settings.',
+        'Medical-imaging research on reconstructing 3D anatomy from limited views and segmenting noisy, low-contrast ultrasound images.',
       highlights: [
-        'Built and evaluated a Mamba-enhanced NeRF pipeline for reconstructing 3D bone structure from one X-ray.',
-        'Tested Semi-Mamba and a mutual-learning VMUNet variant for noisy fetal-ultrasound segmentation.',
+        'Built and evaluated a Mamba-enhanced neural radiance field (NeRF) pipeline for reconstructing 3D bone structure from a single X-ray.',
+        'Evaluated Semi-Mamba and a VMUNet variant with mutual learning for fetal-ultrasound segmentation under noisy imaging conditions.',
       ],
     },
     {
@@ -223,10 +223,10 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/snu.svg',
       context:
-        'Tamil speech and voice-transcreation work for IIT educational content.',
+        'Speech synthesis and voice cloning for Tamil versions of IIT educational content.',
       highlights: [
-        'Built text-to-speech and voice-cloning experiments with encoder-decoder and Tacotron models.',
-        'Contributed voice transcreation for IIT online courses.',
+        'Built text-to-speech and voice-cloning experiments using encoder–decoder architectures and Tacotron models.',
+        'Contributed to adapting IIT online-course narration into Tamil.',
       ],
     },
     {
@@ -237,10 +237,10 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/lumel.svg',
       context:
-        'Product team building analytics authoring and collaboration tools.',
+        'Built tools for analytics teams to generate formulas, edit shared JSON configuration, and prepare Power BI reports.',
       highlights: [
-        'Built a TypeScript RAG assistant translating natural-language requests into Inforiver Matrix formulas.',
-        'Contributed Power BI utilities for Microsoft Project parsing and reusable report themes.',
+        'Developed a TypeScript RAG assistant for Inforiver Matrix formula generation and a React/Node.js JSON editor with WebSocket synchronization.',
+        'Contributed Microsoft Project data parsing and reusable theme utilities for Power BI reporting workflows.',
       ],
     },
     {
@@ -251,10 +251,10 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/phosphene.png',
       context:
-        'Five-person team developing deepfake detection across compression, blur, color variation, and multi-identity video.',
+        'Worked in a five-person team on video deepfake detection under compression, blur, color changes, and multiple identities.',
       highlights: [
-        'Led the PyTorch detector implementation and evaluation across varied video conditions.',
-        'Added blur, compression, and color-jitter augmentation; tested MINTIME on multi-identity videos.',
+        'Led implementation of the PyTorch detector and evaluated its performance across varied video conditions.',
+        'Added blur, compression, and color-jitter augmentation to training; tested MINTIME on videos containing multiple identities.',
       ],
     },
     {
@@ -265,10 +265,10 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/culvii.svg',
       context:
-        'Student-management and gamified learning products with conversational assistance.',
+        'Developed student-management and gamified learning products with GPT-powered conversational assistance.',
       highlights: [
-        'Built Next.js and Node.js portal features for class tracking and onboarding.',
-        'Added GPT-based learning assistants and improved conversation flow and response latency.',
+        'Built class-tracking and onboarding features across the Next.js interface and Node.js backend.',
+        'Integrated GPT-based learning assistants and worked on conversation flow and response latency.',
       ],
     },
     {
@@ -279,10 +279,10 @@ export const content: SiteContent = {
       category: 'industry',
       logo: '/logos/optisol.png',
       context:
-        'Applied-ML internship spanning design image generation, issue resolution, and edge vision.',
+        'Applied ML to image generation, automated issue resolution, and computer vision on edge hardware.',
       highlights: [
-        'Built a React/FastAPI Stable Diffusion app and contributed model fine-tuning.',
-        'Built a GPT-4 issue-resolution prototype and deployed YOLOv8 soot detection on a Jetson Nano.',
+        'Built a Stable Diffusion application with a React interface and FastAPI backend, and contributed to model fine-tuning.',
+        'Developed a GPT-4 issue-resolution prototype and deployed a YOLOv8 soot detector on an NVIDIA Jetson Nano.',
       ],
     },
   ],
@@ -293,15 +293,15 @@ export const content: SiteContent = {
       period: 'Apr 2026 to Present',
       kind: 'research',
       summary:
-        'AURA is a simulation project studying how daily routines change during extreme heat. It combines observed time-use patterns with language-model activity proposals to test what the model adds.',
+        'AURA simulates how daily routines change during extreme heat, combining observed human activity patterns with LLM-generated plans. It tests whether model input changes behavior beyond what the data-driven simulator already produces.',
       approach:
-        'The system combines American Time Use Survey (ATUS) time-slot priors and activity transitions with four LLM proposals. A K-validation controller scores proposals before execution and keeps the chosen plan separate from the action executed.',
+        'The controller scores four proposed activities against time-of-day activity probabilities and transitions from the American Time Use Survey (ATUS). It records selected plans separately from executed actions to distinguish model choices from simulator behavior.',
       contribution:
-        'I built the controller that scores candidate activities before the simulator runs them, and I’m evaluating it on heatwave scenarios.',
+        'I built the activity-scoring controller and am evaluating how its selected plans translate into simulated behavior during heatwaves.',
       tags: ['Python', 'vLLM', 'LLM Agents', 'Simulation', 'Evaluation'],
       evidence: [
-        'Matched runs compare the simulator with and without model input.',
-        'The heatwave target is withheld from the simulator and used only for post-run evaluation.',
+        'Ongoing evaluation compares matched runs with and without LLM input to isolate the model’s contribution.',
+        'Heatwave behavior is assessed after each run against an evaluation target withheld from the simulator.',
       ],
       status: 'Ongoing evaluation',
     },
@@ -311,15 +311,15 @@ export const content: SiteContent = {
       period: 'Feb 2026 to Present',
       kind: 'research',
       summary:
-        'This collaborative RAG study tests whether a downstream agent’s decision changes when it receives another agent’s saved context. It compares text re-prefill and KV-cache transfer with matched perturbation controls.',
+        'A collaborative study of how context sharing affects decisions in multi-agent question answering. It compares passing context as text with transferring an agent’s cached attention state—the key–value (KV) cache—to the next agent.',
       approach:
-        'The pipeline compares FP16 cache transfer, INT4 round trips, and matched Gaussian and dropout controls across three models and two datasets.',
+        'Across three models and two datasets, the pipeline compares text re-prefill, FP16 cache transfer, and INT4 quantization round trips. Matched Gaussian-noise and dropout controls test whether effects come from quantization specifically or from perturbing the cache.',
       contribution:
-        'I helped build the LangGraph pipeline and analyze decision-level effects, including the controls needed to test whether INT4 itself was responsible.',
+        'I helped build the LangGraph experiment pipeline, implement comparison controls, and analyze changes in downstream agent decisions.',
       tags: ['Python', 'PyTorch', 'LangGraph', 'RAG', 'KV Cache'],
       evidence: [
-        'Cache transfer changed downstream decisions, but final-answer scores (EM/F1) stayed flat.',
-        'Matched Gaussian and dropout controls tied or beat INT4 in most comparisons, pointing to perturbation magnitude rather than INT4 itself.',
+        'Cache transfer changed downstream decisions, but final-answer exact-match and F1 scores stayed flat.',
+        'Matched noise and dropout controls tied or beat INT4 in most comparisons, so the observed effects were not unique to INT4 quantization.',
       ],
       links: [
         {
@@ -335,15 +335,15 @@ export const content: SiteContent = {
       period: 'Feb 2026 to Present',
       kind: 'research',
       summary:
-        'A controlled text-to-SQL decoder uses grammar- and schema-aware search on the opening SQL prefix, then greedily completes the query.',
+        'A text-to-SQL decoder that concentrates search on the first few query tokens, where early choices shape the rest of the SQL. Grammar and database-schema constraints guide this search before ordinary greedy decoding takes over.',
       approach:
-        'The hybrid decoder uses grammar- and schema-aware Monte Carlo tree search (MCTS) for the opening SQL prefix, then greedy decoding completes the query. Oracle and deployable settings are evaluated separately.',
+        'Monte Carlo tree search (MCTS) explores candidate continuations for the first 6–10 SQL tokens under grammar and schema constraints. Greedy decoding completes the query. The evaluation separates oracle-assisted search from the non-oracle configuration intended for deployment.',
       contribution:
-        'I implemented the hybrid decoder and evaluation harness in a fork of the upstream project, keeping oracle and deployable paths distinct.',
+        'I implemented the hybrid search/greedy decoder and evaluation harness in an upstream-project fork, with separate oracle and non-oracle test paths.',
       tags: ['Python', 'PyTorch', 'MCTS', 'Text-to-SQL', 'SPIDER'],
       evidence: [
-        'The benchmark keeps SMC, oracle MCTS, and deployable non-oracle MCTS separate.',
-        'The decoder searches the first 6–10 SQL tokens before greedy completion.',
+        'Evaluation compares decoding baselines and keeps oracle-assisted results separate from deployable settings; final benchmarking is in progress.',
+        'Search is limited to the first 6–10 SQL tokens rather than applied throughout query generation.',
       ],
       status: 'Evaluation in progress',
     },
@@ -355,12 +355,12 @@ export const content: SiteContent = {
       summary:
         'NotchNest is a native macOS app that brings music controls, calendar events, and everyday utilities to the MacBook notch.',
       approach:
-        'Native AppKit and SwiftUI panels expand on demand and respond to system events and permissions, keeping the accessory compact until more detail is needed.',
+        'AppKit and SwiftUI power expandable native panels. System events drive state updates across media, calendar, and other utilities, while permission flows govern access to protected macOS services.',
       contribution:
-        'I designed and built the app in Swift 6, AppKit, and SwiftUI, including its native integrations, permission flows, and event-driven state changes.',
+        'I designed and built the Swift 6 app, from its native interface to system integrations, permission handling, and event-driven state management.',
       tags: ['Swift 6', 'AppKit', 'SwiftUI', 'macOS'],
       evidence: [
-        'The app coordinates media, calendar, camera, audio, and login-item integrations through native APIs and permission flows.',
+        'Integrates media, calendar, camera, audio, and launch-at-login features in one native macOS utility.',
       ],
     },
     {
@@ -370,11 +370,11 @@ export const content: SiteContent = {
       kind: 'build',
       scope: 'professional',
       summary:
-        'A collaborative JSON editor for analytics authoring, built with React, Node.js, and WebSockets to keep shared configuration synchronized.',
+        'A collaborative editor for the JSON configuration behind analytics reports. Multiple users work on shared configuration, with changes synchronized through a React interface and Node.js WebSocket layer.',
       approach:
-        'React shared state pairs with a Node.js and WebSocket synchronization layer for collaborative analytics authoring.',
+        'React manages the editing interface and client-side state; a Node.js WebSocket layer carries updates between connected sessions. The shared-state and synchronization flows keep the editor aligned with incoming changes.',
       contribution:
-        'I built the editor’s shared-state and synchronization flows during my Lumel Technologies internship.',
+        'I implemented the editor’s shared-state logic and synchronization flows, connecting collaborative editing behavior across the frontend and backend.',
       tags: ['React', 'Node.js', 'WebSockets', 'TypeScript'],
       evidence: [
         'Shipped as part of Lumel Technologies’ analytics authoring and collaboration workflow.',
@@ -387,16 +387,15 @@ export const content: SiteContent = {
       period: 'Jan to Apr 2024',
       kind: 'research',
       summary:
-        'A compact image-restoration model that removes dense, uneven haze under a four-hour training budget.',
+        'An image-restoration pipeline for dense, uneven haze, pairing a compact ResNet U-Net with histogram equalization. The model was developed for a challenge with a four-hour training budget.',
       approach:
-        'A compact ResNet U-Net with histogram equalization balanced restoration quality with the challenge’s training budget and practical per-image inference.',
+        'The pipeline combines histogram equalization for contrast adjustment with a compact ResNet U-Net for learned image restoration. Model development and training were constrained by the challenge’s four-hour budget.',
       contribution:
-        'I built and trained the restoration pipeline and prepared the submitted model under the four-hour budget.',
+        'I implemented the restoration pipeline, trained the model within the fixed budget, and prepared the challenge submission.',
       tags: ['Python', 'PyTorch', 'Computer Vision', 'U-Net'],
       evidence: [
-        'Placed 16th out of 128 challenge submissions.',
-        'The submitted model reported 14.4 dB PSNR after about four hours of training.',
-        'Kept the architecture small enough for practical per-image inference.',
+        'Placed 16th out of 128 challenge submissions, with a reported 14.4 dB peak signal-to-noise ratio (PSNR).',
+        'The submitted model was trained in approximately four hours.',
       ],
       status: 'Challenge result',
     },
@@ -406,15 +405,15 @@ export const content: SiteContent = {
       period: 'Jan to Mar 2024',
       kind: 'build',
       summary:
-        'Krypton is a team-built fraud-investigation app that combines transaction anomaly scoring, phishing checks, IP lookup, and an analyst dashboard.',
+        'Krypton is a team-built financial-fraud prototype combining transaction classification, IP-based location checks, and a companion spam/phishing detection app.',
       approach:
-        'The React and Node.js prototype connects model predictions and external signals in one investigation view.',
+        'A Random Forest uses transaction features, time intervals, and distances between successive locations to identify suspicious activity in a synthetic fraud dataset. A React interface connects to Python inference services, with IP lookups supporting investigation.',
       contribution:
-        'I built the investigation models and frontend integration; teammates handled the API and storage layers.',
-      tags: ['Python', 'React', 'Node.js', 'MongoDB', 'ML'],
+        'I built the fraud-detection models and integrated their predictions into the React frontend; teammates owned the API and storage layers.',
+      tags: ['Python', 'React', 'FastAPI', 'MongoDB', 'Random Forest'],
       evidence: [
         'Won the Encryptcon Shaastra Hackathon organized with IIT Madras and Temenos.',
-        'Delivered an end-to-end prototype for tracing fraud signals.',
+        'The team delivered a working prototype connecting model inference, external checks, data storage, and the analyst interface.',
       ],
       links: [
         {
@@ -431,7 +430,7 @@ export const content: SiteContent = {
       title: 'Improving LLM-Assisted Secure Code Generation through Retrieval-Augmented Generation and Multi-Tool Feedback',
       period: 'arXiv · 2026',
       summary:
-        'Coauthored research combining retrieval with compiler diagnostics, CodeQL, and KLEE to evaluate secure C/C++ generation across 3,242 programs from DeepSeek-Coder-1.3B and CodeLlama-7B.',
+        'Coauthored a study of iterative C/C++ code repair using retrieved examples, compiler diagnostics, CodeQL security checks, and KLEE symbolic execution. Tool feedback guides successive revisions, evaluated offline on 3,242 programs generated by DeepSeek-Coder-1.3B and CodeLlama-7B.',
       link: 'https://arxiv.org/abs/2601.00509',
       linkLabel: 'Read the paper',
       status: 'Coauthored preprint',
