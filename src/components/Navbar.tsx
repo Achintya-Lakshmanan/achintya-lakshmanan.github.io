@@ -1,141 +1,59 @@
 import { useEffect, useRef, useState } from 'react'
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { content } from '../data/content'
 import { useActiveSection } from '../hooks/useScrollSpy'
 import { IconClose, IconMenu } from './Icons'
 
-const sectionIds = content.nav.map((n) => n.href.replace('#', ''))
-const workLaneIds = new Set(['research-work', 'software-work'])
+const sectionIds = content.nav.map((item) => item.href.slice(1))
 
 export function Navbar() {
   const [open, setOpen] = useState(false)
-  const [chosenWorkLane, setChosenWorkLane] = useState('')
   const toggleRef = useRef<HTMLButtonElement>(null)
+  const headerRef = useRef<HTMLElement>(null)
   const active = useActiveSection(sectionIds)
-  const shouldReduce = useReducedMotion()
-  const activeNavItem = workLaneIds.has(active) ? chosenWorkLane || active : active
 
   useEffect(() => {
     if (!open) return
-
     const desktop = window.matchMedia('(min-width: 768px)')
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key !== 'Escape') return
-      setOpen(false)
-      window.requestAnimationFrame(() => toggleRef.current?.focus())
+      if (event.key === 'Escape') {
+        setOpen(false)
+        toggleRef.current?.focus()
+      }
     }
-    const onBreakpointChange = (event: MediaQueryListEvent) => {
-      if (event.matches) setOpen(false)
+    const onOutsideClick = (event: PointerEvent) => {
+      if (event.target instanceof Node && !headerRef.current?.contains(event.target)) setOpen(false)
     }
-
+    const onBreakpointChange = () => { if (desktop.matches) setOpen(false) }
     document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('pointerdown', onOutsideClick)
     desktop.addEventListener('change', onBreakpointChange)
     return () => {
       document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('pointerdown', onOutsideClick)
       desktop.removeEventListener('change', onBreakpointChange)
     }
   }, [open])
 
-  const linkClass = (id: string) =>
-    `relative text-sm font-bold transition-colors duration-200 ${
-      activeNavItem === id ? 'text-ink' : 'text-ink-muted hover:text-ink'
-    }`
-
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/20 bg-[#f2eadc]/95 backdrop-blur-sm">
-      <nav
-        className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8"
-        aria-label="Primary navigation"
-      >
-        <a
-          href="#top"
-          className="group flex items-center gap-2 font-display text-sm font-bold uppercase tracking-[0.12em] text-ink"
-          onClick={() => setOpen(false)}
-        >
-          <span className="grid h-9 w-9 -rotate-3 place-items-center border-2 border-ink bg-accent-cyan text-white transition-transform group-hover:rotate-0">
-            AL
-          </span>
-          <span className="hidden sm:inline">ML / research + software</span>
-        </a>
-
-        <ul className="hidden items-center gap-5 md:flex xl:gap-7">
-          {content.nav.map((item) => {
-            const id = item.href.replace('#', '')
-            return (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className={linkClass(id)}
-                  aria-current={activeNavItem === id ? 'location' : undefined}
-                  onClick={() => setChosenWorkLane(workLaneIds.has(id) ? id : '')}
-                >
-                  {activeNavItem === id && !shouldReduce && (
-                    <motion.span
-                      layoutId="nav-underline"
-                      className="absolute -bottom-1 left-0 right-0 h-1 bg-[#c9f31d]"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  {activeNavItem === id && shouldReduce && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-1 bg-[#c9f31d]" />
-                  )}
-                  <span className="relative z-10">{item.label}</span>
-                </a>
-              </li>
-            )
-          })}
+    <header className="site-header" ref={headerRef}>
+      <nav className="page-width navigation" aria-label="Primary navigation">
+        <a className="wordmark" href="#top" onClick={() => setOpen(false)}>Achintya Lakshmanan<span aria-hidden>.</span></a>
+        <ul className="desktop-navigation">
+          {content.nav.map((item) => <li key={item.href}>
+            <a href={item.href} aria-current={active === item.href.slice(1) ? 'location' : undefined}>{item.label}</a>
+          </li>)}
         </ul>
-
-        <button
-          ref={toggleRef}
-          type="button"
-          className="border-2 border-ink bg-[#fffaf0] p-2 text-ink hover:bg-[#c9f31d] md:hidden"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          aria-expanded={open}
-          aria-controls="mobile-navigation"
-          onClick={() => setOpen((value) => !value)}
-        >
+        <button ref={toggleRef} className="menu-toggle" type="button" aria-expanded={open}
+          aria-controls="mobile-navigation" aria-label={open ? 'Close menu' : 'Open menu'}
+          onClick={() => setOpen((current) => !current)}>
           {open ? <IconClose /> : <IconMenu />}
         </button>
       </nav>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            id="mobile-navigation"
-            initial={shouldReduce ? false : { opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={shouldReduce ? undefined : { opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="border-b border-ink/20 bg-[#fffaf0] md:hidden"
-          >
-            <ul className="flex flex-col gap-1 px-5 py-4">
-              {content.nav.map((item) => {
-                const id = item.href.replace('#', '')
-                return (
-                  <li key={item.href}>
-                    <a
-                      href={item.href}
-                      className={`block border-l-4 px-3 py-2.5 text-base font-bold ${
-                        activeNavItem === id
-                          ? 'border-accent-cyan bg-[#c9f31d] text-ink'
-                          : 'border-transparent text-ink-muted hover:border-ink hover:text-ink'
-                      }`}
-                      aria-current={activeNavItem === id ? 'location' : undefined}
-                      onClick={() => {
-                        setChosenWorkLane(workLaneIds.has(id) ? id : '')
-                        setOpen(false)
-                      }}
-                    >
-                      {item.label}
-                    </a>
-                  </li>
-                )
-              })}
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {open && <nav id="mobile-navigation" className="mobile-navigation page-width" aria-label="Mobile navigation">
+        {content.nav.map((item) => <a key={item.href} href={item.href}
+          aria-current={active === item.href.slice(1) ? 'location' : undefined}
+          onClick={() => setOpen(false)}>{item.label}</a>)}
+      </nav>}
     </header>
   )
 }

@@ -9,7 +9,7 @@ import { Skills } from './components/Skills'
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-surface text-ink">
+    <div className="site">
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
@@ -18,7 +18,7 @@ export default function App() {
         <Hero />
         <Projects />
         <Experience />
-        <div id="background" className="scroll-mt-20">
+        <div id="background" className="background-sections">
           <Education />
           <Skills />
           <Achievements />

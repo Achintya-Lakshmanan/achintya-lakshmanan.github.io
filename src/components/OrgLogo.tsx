@@ -7,7 +7,7 @@ interface OrgLogoProps {
   className?: string
 }
 
-/** Initials from org name — up to 2 letters from significant words. */
+/** Up to 2 initials from significant words in the organization name. */
 function monogram(name: string): string {
   const skip = new Set([
     'and',
@@ -43,14 +43,14 @@ export function OrgLogo({
 
   return (
     <div
-      className={`relative shrink-0 overflow-hidden border-2 border-ink ${failed ? 'bg-[#c9f31d]' : 'bg-white'} ${className}`}
+      className={`org-logo relative shrink-0 overflow-hidden ${className}`}
       style={{ width: size, height: size }}
       aria-hidden
     >
       {failed ? (
-        <div className="flex h-full w-full items-center justify-center bg-accent-gradient">
+        <div className="flex h-full w-full items-center justify-center">
           <span
-            className="font-display font-bold leading-none text-white"
+            className="font-display font-semibold leading-none text-ink-muted"
             style={{ fontSize }}
           >
             {letters}
@@ -62,7 +62,7 @@ export function OrgLogo({
           alt=""
           loading="lazy"
           decoding="async"
-          className="h-full w-full object-contain p-1.5"
+          className="h-full w-full object-contain"
           onError={() => setFailed(true)}
         />
       )}

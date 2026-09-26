@@ -109,9 +109,9 @@ export const content: SiteContent = {
   location: 'University Park, PA',
   photo: '/me.jpg',
   positioning: 'Software engineer and ML research engineer.',
-  bio: 'I’m a Graduate Researcher and MS CSE student at Penn State (expected May 2027), based in University Park, PA. I build full-stack and native macOS software and research language-model systems. I’m interested in where reinforcement learning meets LLMs, and I love vibe-coding macOS apps and useful little tools.',
+  bio: "I'm interested in where reinforcement learning meets LLMs. At Penn State, I study how language-model agents make decisions. I also build full-stack software and love vibe-coding macOS apps.",
   contactCopy:
-    'I’m interested in software engineering, ML, and research engineering roles. If your team works on LLMs, reinforcement learning, or useful software, I’d love to hear about it.',
+    "I'd like to hear about software engineering and ML research opportunities. Email is the easiest way to reach me.",
   socials: [
     {
       label: 'GitHub',
@@ -183,7 +183,7 @@ export const content: SiteContent = {
       context:
         'Research on LLM-driven behavior in daily-routine simulations and context sharing between retrieval-augmented generation (RAG) agents.',
       highlights: [
-        'Built AURA’s controller to score four proposed activities against American Time Use Survey patterns, with separate records of selected plans and executed actions.',
+        'Built the AURA controller to score four proposed activities against American Time Use Survey patterns, with separate records of selected plans and executed actions.',
         'Helped build LangGraph experiments comparing text-based context sharing with KV-cache transfer, using quantization and matched-noise controls to study downstream decisions.',
       ],
     },
@@ -225,7 +225,7 @@ export const content: SiteContent = {
       context:
         'Speech synthesis and voice cloning for Tamil versions of IIT educational content.',
       highlights: [
-        'Built text-to-speech and voice-cloning experiments using encoder–decoder architectures and Tacotron models.',
+        'Built text-to-speech and voice-cloning experiments using encoder-decoder architectures and Tacotron models.',
         'Contributed to adapting IIT online-course narration into Tamil.',
       ],
     },
@@ -289,33 +289,33 @@ export const content: SiteContent = {
   projects: [
     {
       id: 'aura',
-      title: 'AURA: Adapting Daily Routines to Extreme Heat',
+      title: 'AURA: daily routines in extreme heat',
       period: 'Apr 2026 to Present',
       kind: 'research',
       summary:
-        'AURA simulates how daily routines change during extreme heat, combining observed human activity patterns with LLM-generated plans. It tests whether model input changes behavior beyond what the data-driven simulator already produces.',
+        "AURA tests whether LLMs can help simulated people change their routines during heatwaves. Observed time-use patterns provide a baseline, so we can separate the model's contribution from the simulator's behavior.",
       approach:
-        'The controller scores four proposed activities against time-of-day activity probabilities and transitions from the American Time Use Survey (ATUS). It records selected plans separately from executed actions to distinguish model choices from simulator behavior.',
+        'At each step, the controller scores four LLM proposals against time-of-day activity probabilities and transitions from the American Time Use Survey.',
       contribution:
-        'I built the activity-scoring controller and am evaluating how its selected plans translate into simulated behavior during heatwaves.',
+        'I built the controller that scores proposed activities and tracks the difference between a selected plan and what the simulator actually executes.',
       tags: ['Python', 'vLLM', 'LLM Agents', 'Simulation', 'Evaluation'],
       evidence: [
-        'Ongoing evaluation compares matched runs with and without LLM input to isolate the model’s contribution.',
+        'Evaluation is ongoing. Matched runs compare behavior with and without model input.',
         'Heatwave behavior is assessed after each run against an evaluation target withheld from the simulator.',
       ],
       status: 'Ongoing evaluation',
     },
     {
       id: 'attention-bias-rag',
-      title: 'Attention Bias in Multi-Agent RAG',
+      title: 'Context sharing in multi-agent RAG',
       period: 'Feb 2026 to Present',
       kind: 'research',
       summary:
-        'A collaborative study of how context sharing affects decisions in multi-agent question answering. It compares passing context as text with transferring an agent’s cached attention state—the key–value (KV) cache—to the next agent.',
+        "In this collaborative study, we compare passing text between LLM agents with transferring their key-value caches. The goal is to measure how inherited context affects the next agent's decisions.",
       approach:
-        'Across three models and two datasets, the pipeline compares text re-prefill, FP16 cache transfer, and INT4 quantization round trips. Matched Gaussian-noise and dropout controls test whether effects come from quantization specifically or from perturbing the cache.',
+        'The pipeline compares text re-prefill, FP16 cache transfer, and INT4 quantization round trips across three models and two datasets. Matched Gaussian-noise and dropout controls test whether quantization has a distinct effect.',
       contribution:
-        'I helped build the LangGraph experiment pipeline, implement comparison controls, and analyze changes in downstream agent decisions.',
+        'I helped build the LangGraph experiments and comparison controls, then analyzed changes in downstream decisions.',
       tags: ['Python', 'PyTorch', 'LangGraph', 'RAG', 'KV Cache'],
       evidence: [
         'Cache transfer changed downstream decisions, but final-answer exact-match and F1 scores stayed flat.',
@@ -331,19 +331,18 @@ export const content: SiteContent = {
     },
     {
       id: 'mcts-llm',
-      title: 'MCTS for Controlled Text-to-SQL',
+      title: 'Search-guided text-to-SQL',
       period: 'Feb 2026 to Present',
       kind: 'research',
       summary:
-        'A text-to-SQL decoder that concentrates search on the first few query tokens, where early choices shape the rest of the SQL. Grammar and database-schema constraints guide this search before ordinary greedy decoding takes over.',
+        'This decoder spends search effort on the first few SQL tokens, where early choices shape the rest of a query. It then switches to greedy decoding to finish the statement.',
       approach:
-        'Monte Carlo tree search (MCTS) explores candidate continuations for the first 6–10 SQL tokens under grammar and schema constraints. Greedy decoding completes the query. The evaluation separates oracle-assisted search from the non-oracle configuration intended for deployment.',
+        'Monte Carlo tree search explores the first 6 to 10 SQL tokens under grammar and database-schema constraints. Greedy decoding completes the query. The evaluation separates oracle-assisted search from the non-oracle configuration intended for deployment.',
       contribution:
-        'I implemented the hybrid search/greedy decoder and evaluation harness in an upstream-project fork, with separate oracle and non-oracle test paths.',
+        'I implemented the hybrid decoder and benchmarking code in a fork of the upstream project, with separate oracle-assisted and non-oracle test paths.',
       tags: ['Python', 'PyTorch', 'MCTS', 'Text-to-SQL', 'SPIDER'],
       evidence: [
-        'Evaluation compares decoding baselines and keeps oracle-assisted results separate from deployable settings; final benchmarking is in progress.',
-        'Search is limited to the first 6–10 SQL tokens rather than applied throughout query generation.',
+        'Benchmarking is in progress, with oracle-assisted results kept separate from deployable settings.',
       ],
       status: 'Evaluation in progress',
     },
@@ -357,7 +356,7 @@ export const content: SiteContent = {
       approach:
         'AppKit and SwiftUI power expandable native panels. System events drive state updates across media, calendar, and other utilities, while permission flows govern access to protected macOS services.',
       contribution:
-        'I designed and built the Swift 6 app, from its native interface to system integrations, permission handling, and event-driven state management.',
+        'I built the app in Swift 6, using AppKit and SwiftUI for its interface. I handle the native integrations, permissions, and event-driven state.',
       tags: ['Swift 6', 'AppKit', 'SwiftUI', 'macOS'],
       evidence: [
         'Integrates media, calendar, camera, audio, and launch-at-login features in one native macOS utility.',
@@ -365,43 +364,42 @@ export const content: SiteContent = {
     },
     {
       id: 'lumel-json-editor',
-      title: 'Collaborative JSON Editor at Lumel',
+      title: 'Collaborative JSON editor',
       period: 'Mar to Jun 2025',
       kind: 'build',
       scope: 'professional',
       summary:
-        'A collaborative editor for the JSON configuration behind analytics reports. Multiple users work on shared configuration, with changes synchronized through a React interface and Node.js WebSocket layer.',
+        'A shared editor for the JSON configuration behind analytics reports. Multiple users can edit the same configuration and receive changes from connected sessions.',
       approach:
-        'React manages the editing interface and client-side state; a Node.js WebSocket layer carries updates between connected sessions. The shared-state and synchronization flows keep the editor aligned with incoming changes.',
+        'The React client keeps local editing state in sync with incoming WebSocket updates. Node.js carries changes between connected sessions.',
       contribution:
-        'I implemented the editor’s shared-state logic and synchronization flows, connecting collaborative editing behavior across the frontend and backend.',
+        'I implemented the shared-state and synchronization flows during my internship at Lumel.',
       tags: ['React', 'Node.js', 'WebSockets', 'TypeScript'],
       evidence: [
-        'Shipped as part of Lumel Technologies’ analytics authoring and collaboration workflow.',
+        'Shipped in the analytics authoring and collaboration workflow at Lumel Technologies.',
       ],
       status: 'Lumel Technologies',
     },
     {
       id: 'haze-removal',
-      title: 'Dense Non-Homogeneous Haze Removal',
+      title: 'Removing dense, uneven haze',
       period: 'Jan to Apr 2024',
       kind: 'research',
       summary:
-        'An image-restoration pipeline for dense, uneven haze, pairing a compact ResNet U-Net with histogram equalization. The model was developed for a challenge with a four-hour training budget.',
+        'An image-restoration model for dense, uneven haze. A compact ResNet U-Net and histogram equalization fit the work within a four-hour challenge training budget.',
       approach:
-        'The pipeline combines histogram equalization for contrast adjustment with a compact ResNet U-Net for learned image restoration. Model development and training were constrained by the challenge’s four-hour budget.',
+        'The pipeline combines histogram equalization for contrast adjustment with a compact ResNet U-Net for learned image restoration.',
       contribution:
         'I implemented the restoration pipeline, trained the model within the fixed budget, and prepared the challenge submission.',
       tags: ['Python', 'PyTorch', 'Computer Vision', 'U-Net'],
       evidence: [
-        'Placed 16th out of 128 challenge submissions, with a reported 14.4 dB peak signal-to-noise ratio (PSNR).',
-        'The submitted model was trained in approximately four hours.',
+        'Placed 16th out of 128 submissions, with a reported peak signal-to-noise ratio of 14.4 dB.',
       ],
       status: 'Challenge result',
     },
     {
       id: 'krypton',
-      title: 'Krypton: Financial Investigation Dashboard',
+      title: 'Krypton: financial fraud investigation',
       period: 'Jan to Mar 2024',
       kind: 'build',
       summary:
@@ -430,7 +428,7 @@ export const content: SiteContent = {
       title: 'Improving LLM-Assisted Secure Code Generation through Retrieval-Augmented Generation and Multi-Tool Feedback',
       period: 'arXiv · 2026',
       summary:
-        'Coauthored a study of iterative C/C++ code repair using retrieved examples, compiler diagnostics, CodeQL security checks, and KLEE symbolic execution. Tool feedback guides successive revisions, evaluated offline on 3,242 programs generated by DeepSeek-Coder-1.3B and CodeLlama-7B.',
+        'Our preprint studies a C/C++ repair loop: retrieve examples of fixes, generate code, then use compiler, CodeQL, and KLEE feedback to revise it. We evaluated the system offline on 3,242 programs from DeepSeek-Coder-1.3B and CodeLlama-7B.',
       link: 'https://arxiv.org/abs/2601.00509',
       linkLabel: 'Read the paper',
       status: 'Coauthored preprint',
@@ -439,7 +437,7 @@ export const content: SiteContent = {
   skills: [
     {
       id: 'research',
-      category: 'Research & ML systems',
+      category: 'ML & research',
       skills: [
         'Python',
         'PyTorch',
@@ -454,7 +452,7 @@ export const content: SiteContent = {
     },
     {
       id: 'software',
-      category: 'Software & product',
+      category: 'Software',
       skills: [
         'TypeScript',
         'React',

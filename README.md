@@ -1,6 +1,6 @@
 # Achintya Lakshmanan Portfolio
 
-Personal portfolio site built with **Vite + React + TypeScript**, **Tailwind CSS**, and **Framer Motion**. Deployed as a static site to GitHub Pages at [https://achintya-lakshmanan.github.io](https://achintya-lakshmanan.github.io).
+Personal portfolio site built with Vite, React, TypeScript, and Tailwind CSS. Deployed as a static site to GitHub Pages at [https://achintya-lakshmanan.github.io](https://achintya-lakshmanan.github.io).
 
 ## Quick start
 
@@ -34,6 +34,7 @@ Append an object to `content.projects`:
   kind: 'research', // or 'build'
   summary: 'A concise description of the project and the problem it addresses.',
   contribution: 'What you personally designed, built, or evaluated.',
+  approach: 'The technical decisions and how the system works.',
   tags: ['Python', 'PyTorch'],
   evidence: ['A result, limitation, or honest current status.'],
   status: 'Evaluation in progress', // optional
@@ -45,7 +46,7 @@ Append an object to `content.projects`:
 
 ### Add experience
 
-Append to `content.experience`. Set `category` to `'research'`, `'teaching'`, or `'industry'` so the Experience filters work correctly:
+Append to `content.experience`. Keep three concise bullets per role. Entries are sorted by start date, most recent first:
 
 ```ts
 {
@@ -92,10 +93,13 @@ src/
 
 ## Design notes
 
-- Warm field-notes palette with cream paper, ink borders, orange, electric blue, and acid-lime accents
-- Space Grotesk (display) + Inter (body) via `@fontsource`
-- Scroll-reveal and hover micro-interactions respect `prefers-reduced-motion`
-- The desktop hero intentionally uses oversized editorial type; narrow-screen sizes must still be checked at 320px and 390px
+- Off-white paper, charcoal text, and a muted forest-green accent.
+- Inter for reading and Georgia italic for the name and contact heading.
+- Research appears above software. Each project has a summary, individual contribution, evidence, and expandable technical details.
+- Native links and disclosures work without animation. Smooth scrolling and hover transitions respect `prefers-reduced-motion`.
+- Check narrow-screen layouts at 320px and 390px when changing type sizes or copy.
+- The design study is preserved on `codex/portfolio-design-study`. The editorial variant was selected for readable project entries and direct navigation.
+- Visual references: [Dennis Snellenberg](https://dennissnellenberg.com/) and [Gianluca Gradogna](https://gianlucagradogna.com/), discovered through Awwwards. Typography and spacing informed this design; their text and assets were not reused.
 
 ## Content and metadata
 
