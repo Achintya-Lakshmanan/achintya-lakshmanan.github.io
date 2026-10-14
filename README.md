@@ -22,60 +22,15 @@ src/data/content.ts
 
 Edit the `content` object (and the TypeScript interfaces at the top of the file if you need new fields). Components render generically from these arrays. You do **not** need to touch UI code to add entries.
 
-### Add a project
+### What lives where
 
-Append an object to `content.projects`:
+- **Hero** → `badge`, `tokens`, `bio`, `now`, `terminal` (the `agent_loop.py` lines), `photo`, `socials`
+- **Research** → `featured` (the large AURA card), `research` (the 2×2 grid; `tone` picks the status pill, `accent` the bar color), `publication`
+- **Experience** → `experience`, listed in the order written (most recent first). The `t=` step badges count down automatically. `Prof. Rui Zhang` is linked wherever it appears in `context`, `bio`, or `now`.
+- **Software** → `software` (optional `badge`, `images`, `caption`, `link`)
+- **About** → `education`, `skills`, `achievements`, `alsoAchieved`
 
-```ts
-{
-  id: 'unique-slug',
-  title: 'Project Title',
-  subtitle: 'Optional short subtitle',
-  tagline: 'One-line hook shown large at the top of the card.',
-  period: 'Jan 2026 to Present',
-  kind: 'research', // or 'build'
-  scope: 'personal', // for builds: 'personal' or 'team'; omit for research
-  context: 'Course project', // optional project origin or collaboration label
-  summary: 'A concise description of the project and the problem it addresses.',
-  contribution: 'A short, visible description of what you personally built.',
-  highlight: 'Optional finding or recognition. Omit when there is no result.',
-  approach: 'Optional. The technical write-up in the expandable panel; omit to hide it.',
-  tags: ['Python', 'PyTorch'],
-  evidence: ['A result, limitation, or honest current status.'],
-  status: 'Evaluation in progress', // optional
-  study: [{ label: 'Controlled comparison', text: 'What stays fixed and what changes.' }], // optional protocol inside details
-  images: [{ src: '/projects/app.png', alt: 'Description of the app view', width: 1080, height: 574 }], // optional
-  imageCaption: 'Actual app view with sample data.',
-  links: [ // optional; only add verified public URLs
-    { label: 'Project repository', href: 'https://...', kind: 'github' },
-  ],
-}
-```
-
-### Add experience
-
-Append to `content.experience`. Keep two or three concise bullets per role. Entries are sorted by start date, most recent first:
-
-```ts
-{
-  id: 'unique-slug',
-  title: 'Role Title',
-  organization: 'Lab or Company',
-  period: 'Mon YYYY to Present',
-  category: 'research', // or 'teaching' / 'industry'
-  context: 'What the product or research group does.',
-  highlights: [
-    'Bullet point with impact / metrics.',
-  ],
-}
-```
-
-### Add education, skills, or achievements
-
-- **Education** → `content.education` (`Education` interface)
-- **Skills** → `content.skills` (group by category, list skill strings)
-- **Achievements** → `content.achievements`
-- **Hero / socials** → top-level fields on `content` (`positioning`, `bio`, `socials`, etc.)
+Keep the research grid at an even number of cards so no card sits alone on the last row.
 
 ## Deploy to GitHub Pages
 
@@ -92,24 +47,24 @@ You can also trigger a deploy manually from the **Actions** tab (`workflow_dispa
 ```
 src/
   data/content.ts     # ← all content (edit here)
-  components/         # UI sections (generic over content arrays)
-  hooks/              # scroll spy, reduced-motion helpers
+  data/bars.ts        # deterministic heights for the decorative bar charts
+  components/         # one component per section
+  hooks/useScrollSpy.ts
   App.tsx
   main.tsx
-  index.css
+  index.css           # design tokens and all styles
 .github/workflows/deploy.yml
 ```
 
 ## Design notes
 
-- Warm paper, charcoal text, and terracotta accents. Full-width project panels use muted backgrounds, with dark green reserved for AURA.
-- Inter for reading and Georgia italic for the name and contact heading.
-- The page order is research, experience, then software. Industry work appears only under experience. Software is grouped into personal software and team projects. Set a build's `scope` to put it in the right group. Each panel leads with what the project does and a short, visible personal contribution. Status labels are visible. Add a compact finding or recognition only where one exists. Methods, full evaluation notes, and the featured protocol expand across the full panel width.
-- Projects are text-led. App images must come from the app itself. The NotchNest gallery uses its own SwiftUI view renders with sample data, labelled as such. No invented diagrams or interface mockups are used.
-- Type entrances, panel reveals, and hover feedback supply motion. The navigation includes a pause control, the rotating hero accent pauses offscreen, and `prefers-reduced-motion` disables animation. Content remains visible without JavaScript.
+- Dark, LLM/RL-themed page: near-black ground (`#0A0C10`) with two accents only, mint `#7AF0C0` and violet `#A78BFA`.
+- Bricolage Grotesque for display type, IBM Plex Sans for reading, IBM Plex Mono for labels.
+- Theme motifs: the name split into tokens, an `agent_loop.py` terminal with a reward sparkline, logit-style bars on research cards, `t=` step badges on the experience timeline, and a rising reward curve behind the contact section. The bars are decorative and carry no data.
+- 3D touches are CSS only: the tilted terminal, the arXiv cover, and the angled NotchNest screenshots, which flatten on hover.
+- `prefers-reduced-motion` disables all animation. Content is prerendered, so it is readable without JavaScript.
 - Check narrow-screen layouts at 320px and 390px when changing type sizes or copy.
-- The original layout study is preserved on `codex/portfolio-design-study`. An earlier motion study is on `codex/motion-project-study`. The user rejected its diagram-based graphics and selected full-width project panels. App imagery was reintroduced by request on September 30, 2026.
-- The project scale and transitions take cues from [Giats's project gallery](https://giats.me/projects), found through [Awwwards](https://www.awwwards.com/sites/https-giats-me). [Jordan Delcros](https://jordan-delcros.com/) was also reviewed, but its immersive 3D approach was not used. Earlier typography references were [Dennis Snellenberg](https://dennissnellenberg.com/) and [Gianluca Gradogna](https://gianlucagradogna.com/). No reference-site text, code, or assets were copied.
+- The design was worked out in a Claude design canvas before being built here.
 
 ## Content and metadata
 
