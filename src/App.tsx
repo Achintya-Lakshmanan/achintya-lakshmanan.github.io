@@ -1,28 +1,30 @@
-import { Achievements } from './components/Achievements'
+import { About } from './components/About'
 import { Contact, Footer } from './components/Contact'
-import { Education } from './components/Education'
 import { Experience } from './components/Experience'
-import { Hero } from './components/Hero'
+import { Hero, SkillMarquee } from './components/Hero'
 import { Navbar } from './components/Navbar'
-import { Projects } from './components/Projects'
-import { Skills } from './components/Skills'
+import { ResearchProjects, SoftwareProjects } from './components/Projects'
+import { usePageMotion } from './hooks/usePageMotion'
+import { useTheme } from './hooks/useTheme'
 
 export default function App() {
+  const { rootRef, paused, reduced, toggleMotion } = usePageMotion()
+  const { theme, toggleTheme } = useTheme()
   return (
-    <div className="site">
+    <div className="site" ref={rootRef} data-motion={paused || reduced ? 'off' : 'on'}>
+      <div className="cursor-glow" aria-hidden />
+      <div className="grain" aria-hidden />
       <a href="#main-content" className="skip-link">
         Skip to content
       </a>
-      <Navbar />
+      <Navbar motionPaused={paused} reducedMotion={reduced} onToggleMotion={toggleMotion} theme={theme} onToggleTheme={toggleTheme} />
       <main id="main-content" tabIndex={-1}>
         <Hero />
-        <Projects />
+        <SkillMarquee />
+        <ResearchProjects />
         <Experience />
-        <div id="background" className="background-sections">
-          <Education />
-          <Skills />
-          <Achievements />
-        </div>
+        <SoftwareProjects />
+        <About />
         <Contact />
       </main>
       <Footer />

@@ -38,15 +38,24 @@ export interface Experience {
 export interface Project {
   id: string
   title: string
+  subtitle?: string
+  /** One-line hook shown large at the top of the card. */
+  tagline: string
   period: string
   kind: 'research' | 'build'
-  scope?: 'professional'
+  scope?: 'personal' | 'team'
+  context?: string
   summary: string
-  approach: string
+  /** Technical write-up shown in the expandable details. Omit to hide the panel. */
+  approach?: string
   contribution: string
+  highlight?: string
   tags: string[]
   evidence: string[]
   status?: string
+  study?: { label: string; text: string }[]
+  images?: { src: string; alt: string; width: number; height: number }[]
+  imageCaption?: string
   links?: ProjectLink[]
 }
 
@@ -88,6 +97,10 @@ export interface SiteContent {
   copyrightYear: string
   positioning: string
   bio: string
+  /** Short lines rendered as the hero's "currently" list. */
+  now: string[]
+  /** Linked wherever the name appears in the bio, "now" list, or experience. */
+  advisor: { name: string; href: string }
   contactCopy: string
   location: string
   /** Profile photo path under /public (e.g. /me.jpg). Optional. */
@@ -109,9 +122,15 @@ export const content: SiteContent = {
   location: 'University Park, PA',
   photo: '/me.jpg',
   positioning: 'Software engineer and ML research engineer.',
-  bio: "I'm interested in where reinforcement learning meets LLMs. At Penn State, I study how language-model agents make decisions. I also build full-stack software and love vibe-coding macOS apps.",
+  bio: "I'm a master's student at Penn State and a graduate researcher in the Penn State NLP Group, advised by Prof. Rui Zhang. I work on LLM agents and reinforcement learning, and outside the lab I build full-stack software and native macOS apps.",
+  advisor: { name: 'Prof. Rui Zhang', href: 'https://ryanzhumich.github.io/' },
+  now: [
+    'Researching LLM agents in the Penn State NLP Group with Prof. Rui Zhang',
+    'Teaching Assistant for CMPSC 461 at Penn State',
+    'MS CSE at Penn State, graduating May 2027',
+  ],
   contactCopy:
-    "I'd like to hear about software engineering and ML research opportunities. Email is the easiest way to reach me.",
+    "I'm looking for software engineering and ML research roles. If you're working on something interesting, I'd love to hear about it. Email is the fastest way to reach me.",
   socials: [
     {
       label: 'GitHub',
@@ -131,9 +150,9 @@ export const content: SiteContent = {
   ],
   nav: [
     { label: 'Research', href: '#research-work' },
-    { label: 'Software', href: '#software-work' },
     { label: 'Experience', href: '#experience' },
-    { label: 'Background', href: '#background' },
+    { label: 'Software', href: '#software-work' },
+    { label: 'About', href: '#background' },
     { label: 'Contact', href: '#contact' },
   ],
   education: [
@@ -143,7 +162,7 @@ export const content: SiteContent = {
       institution: 'Pennsylvania State University',
       location: 'University Park, PA',
       period: 'Expected May 2027',
-      gpa: '3.8',
+      gpa: '3.8/4.0',
       logo: '/logos/psu.png',
       coursework: [
         'Algorithm Analysis',
@@ -181,24 +200,41 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/psu.png',
       context:
-        'Research on LLM-driven behavior in daily-routine simulations and context sharing between retrieval-augmented generation (RAG) agents.',
+        'Advised by Prof. Rui Zhang. Research on LLM-driven behavior in daily-routine simulations and context sharing between retrieval-augmented generation (RAG) agents.',
       highlights: [
-        'Built the AURA controller to score four proposed activities against American Time Use Survey patterns, with separate records of selected plans and executed actions.',
-        'Helped build LangGraph experiments comparing text-based context sharing with KV-cache transfer, using quantization and matched-noise controls to study downstream decisions.',
+        'Build the AURA heatwave-simulation pipeline, including planning, validation checks, and execution logs.',
+        'Helped build LangGraph experiments comparing text handoffs with same-model KV-cache reuse, then tested whether decision changes translated into better answers.',
+        'Run experiments with diffusion language models for reconstructing daily activity routines.',
+        'Evaluate activation-steering methods for reducing hallucination in reasoning models.',
+      ],
+    },
+    {
+      id: 'psu-ta',
+      title: 'Teaching Assistant, CMPSC 461',
+      organization: 'Pennsylvania State University',
+      period: 'Aug 2026 to Present',
+      category: 'teaching',
+      logo: '/logos/psu.png',
+      context:
+        'Teaching assistant for CMPSC 461, helping run the course and supporting undergraduate students.',
+      highlights: [
+        'Set exam questions and design assignments, and grade student submissions.',
+        'Hold office hours to explain course concepts in plain language and help students debug their work.',
       ],
     },
     {
       id: 'psu-la',
       title: 'Learning Assistant',
       organization: 'Pennsylvania State University',
-      period: 'Sep 2025 to Present',
+      period: 'Aug 2025 to May 2026',
       category: 'teaching',
       logo: '/logos/psu.png',
       context:
-        'Support undergraduate computing students through office hours, concept explanations, and project guidance.',
+        'Supported undergraduate computing courses, from course materials and grading to student projects.',
       highlights: [
-        'Explain course concepts in plain language and help students debug implementations.',
-        'Help students scope longer course projects and turn unclear requirements into concrete next steps.',
+        'Set exam questions and assignments, and graded student submissions.',
+        'Mentored student projects, helping teams scope their work and turn unclear requirements into concrete next steps.',
+        'Held office hours to explain course concepts and help students debug implementations.',
       ],
     },
     {
@@ -209,9 +245,9 @@ export const content: SiteContent = {
       category: 'research',
       logo: '/logos/snu.svg',
       context:
-        'Medical-imaging research on reconstructing 3D anatomy from limited views and segmenting noisy, low-contrast ultrasound images.',
+        'Medical-imaging experiments in single-view X-ray reconstruction and segmentation of noisy, low-contrast ultrasound images.',
       highlights: [
-        'Built and evaluated a Mamba-enhanced neural radiance field (NeRF) pipeline for reconstructing 3D bone structure from a single X-ray.',
+        'Implemented and evaluated a Mamba-enhanced neural radiance field (NeRF) pipeline for single-view X-ray reconstruction experiments.',
         'Evaluated Semi-Mamba and a VMUNet variant with mutual learning for fetal-ultrasound segmentation under noisy imaging conditions.',
       ],
     },
@@ -239,7 +275,8 @@ export const content: SiteContent = {
       context:
         'Built tools for analytics teams to generate formulas, edit shared JSON configuration, and prepare Power BI reports.',
       highlights: [
-        'Developed a TypeScript RAG assistant for Inforiver Matrix formula generation and a React/Node.js JSON editor with WebSocket synchronization.',
+        'Developed a TypeScript RAG assistant for Inforiver Matrix formula generation using retrieved product context.',
+        'Built the React interface and Node.js/WebSocket synchronization for a shared JSON editor, propagating configuration edits between connected sessions.',
         'Contributed Microsoft Project data parsing and reusable theme utilities for Power BI reporting workflows.',
       ],
     },
@@ -289,38 +326,49 @@ export const content: SiteContent = {
   projects: [
     {
       id: 'aura',
-      title: 'AURA: daily routines in extreme heat',
+      title: 'AURA',
+      subtitle: 'Simulating daily life in extreme heat',
+      tagline: 'Can language models, including diffusion LMs, produce daily routines that look like real ones?',
       period: 'Apr 2026 to Present',
       kind: 'research',
+      context: 'Penn State NLP research',
       summary:
-        "AURA tests whether LLMs can help simulated people change their routines during heatwaves. Observed time-use patterns provide a baseline, so we can separate the model's contribution from the simulator's behavior.",
-      approach:
-        'At each step, the controller scores four LLM proposals against time-of-day activity probabilities and transitions from the American Time Use Survey.',
+        "AURA simulates how people go about their day during a heatwave, grounded in real time-use survey data. We're studying how well different kinds of language models, including diffusion language models, can plan and reconstruct realistic daily routines.",
       contribution:
-        'I built the controller that scores proposed activities and tracks the difference between a selected plan and what the simulator actually executes.',
-      tags: ['Python', 'vLLM', 'LLM Agents', 'Simulation', 'Evaluation'],
-      evidence: [
-        'Evaluation is ongoing. Matched runs compare behavior with and without model input.',
-        'Heatwave behavior is assessed after each run against an evaluation target withheld from the simulator.',
-      ],
-      status: 'Ongoing evaluation',
+        'I work on the simulation and planning pipeline and run the diffusion-LM experiments.',
+      tags: ['Python', 'LLM Agents', 'Diffusion LMs', 'Simulation'],
+      evidence: [],
+      status: 'In progress · paper in preparation',
+    },
+    {
+      id: 'steering',
+      title: 'Steering thinking models away from hallucination',
+      tagline: 'Can activation steering make reasoning models hallucinate less?',
+      period: 'Jul 2026 to Present',
+      kind: 'research',
+      context: 'Penn State NLP research',
+      summary:
+        'Testing whether activation-steering methods can reduce hallucination in newer reasoning ("thinking") language models.',
+      contribution:
+        'I adapt and evaluate steering methods on recent open models.',
+      tags: ['Python', 'PyTorch', 'Activation Steering', 'Hallucination'],
+      evidence: [],
+      status: 'In progress · paper in preparation',
     },
     {
       id: 'attention-bias-rag',
-      title: 'Context sharing in multi-agent RAG',
+      title: 'Context sharing between LLM agents',
+      tagline: "Should agents hand each other text, or the model's own KV cache?",
       period: 'Feb 2026 to Present',
       kind: 'research',
+      context: 'Research collaboration',
       summary:
-        "In this collaborative study, we compare passing text between LLM agents with transferring their key-value caches. The goal is to measure how inherited context affects the next agent's decisions.",
-      approach:
-        'The pipeline compares text re-prefill, FP16 cache transfer, and INT4 quantization round trips across three models and two datasets. Matched Gaussian-noise and dropout controls test whether quantization has a distinct effect.',
+        "This question-answering pipeline tests two ways for LLM agents to share context: passing text or reusing the model's cached context. We compare which evidence the agents accept and whether their final answers improve.",
       contribution:
-        'I helped build the LangGraph experiments and comparison controls, then analyzed changes in downstream decisions.',
+        "I helped build the LangGraph pipeline and controlled experiments, then compared the evaluator's decisions with the quality of the final answers.",
+      status: 'Work in progress',
       tags: ['Python', 'PyTorch', 'LangGraph', 'RAG', 'KV Cache'],
-      evidence: [
-        'Cache transfer changed downstream decisions, but final-answer exact-match and F1 scores stayed flat.',
-        'Matched noise and dropout controls tied or beat INT4 in most comparisons, so the observed effects were not unique to INT4 quantization.',
-      ],
+      evidence: [],
       links: [
         {
           label: 'Collaborative repository',
@@ -331,83 +379,76 @@ export const content: SiteContent = {
     },
     {
       id: 'mcts-llm',
-      title: 'Search-guided text-to-SQL',
+      title: 'Search-guided SQL',
+      tagline: 'Tree search over the first few tokens of a SQL query, with grammar and schema guardrails.',
       period: 'Feb 2026 to Present',
       kind: 'research',
+      context: 'Reinforcement learning course project',
       summary:
-        'This decoder spends search effort on the first few SQL tokens, where early choices shape the rest of a query. It then switches to greedy decoding to finish the statement.',
-      approach:
-        'Monte Carlo tree search explores the first 6 to 10 SQL tokens under grammar and database-schema constraints. Greedy decoding completes the query. The evaluation separates oracle-assisted search from the non-oracle configuration intended for deployment.',
+        'A decoder that turns natural-language questions into SQL queries. It uses Monte Carlo tree search to explore different ways to begin a query, with grammar and schema checks keeping candidates valid.',
       contribution:
-        'I implemented the hybrid decoder and benchmarking code in a fork of the upstream project, with separate oracle-assisted and non-oracle test paths.',
+        'I built the decoder and its benchmark code on top of genlm-control.',
       tags: ['Python', 'PyTorch', 'MCTS', 'Text-to-SQL', 'SPIDER'],
-      evidence: [
-        'Benchmarking is in progress, with oracle-assisted results kept separate from deployable settings.',
-      ],
-      status: 'Evaluation in progress',
+      evidence: [],
+      status: 'Work in progress',
+      links: [{ label: 'Upstream decoder', href: 'https://github.com/genlm/genlm-control', kind: 'github' }],
     },
     {
       id: 'notchnest',
       title: 'NotchNest',
+      tagline: 'The MacBook notch, turned into a home for music, calendar, timers, and files.',
       period: '2026',
       kind: 'build',
+      scope: 'personal',
       summary:
-        'NotchNest is a native macOS app that brings music controls, calendar events, and everyday utilities to the MacBook notch.',
+        'NotchNest puts music controls, upcoming events, timers, and a place to stash files in the MacBook notch. Hover over the notch to open the panel. Move away and it closes.',
       approach:
-        'AppKit and SwiftUI power expandable native panels. System events drive state updates across media, calendar, and other utilities, while permission flows govern access to protected macOS services.',
+        'SwiftUI draws the widgets inside an AppKit panel. Separate services handle media, EventKit, and device controls. The panel stays on the built-in notch even when an external display becomes the main screen. Mirroring or closing the lid hides it and returns volume and brightness keys to macOS, while keeping timers and Shelf files in memory. Display notifications and polling keep the UI updated. Each protected service has its own permission flow.',
       contribution:
-        'I built the app in Swift 6, using AppKit and SwiftUI for its interface. I handle the native integrations, permissions, and event-driven state.',
+        'I built the app in Swift, including the widgets and native integrations. I also handled permissions and what happens when displays are connected, mirrored, or disconnected.',
       tags: ['Swift 6', 'AppKit', 'SwiftUI', 'macOS'],
       evidence: [
-        'Integrates media, calendar, camera, audio, and launch-at-login features in one native macOS utility.',
+        'Tests simulate display layouts and check permissions, panel sizes, calendar navigation, and the playback timeout. Testing with real external displays is a separate manual step.',
+        'Weather currently uses a fixed State College location. Brightness control relies on a private macOS interface and can break after an OS update.',
       ],
-    },
-    {
-      id: 'lumel-json-editor',
-      title: 'Collaborative JSON editor',
-      period: 'Mar to Jun 2025',
-      kind: 'build',
-      scope: 'professional',
-      summary:
-        'A shared editor for the JSON configuration behind analytics reports. Multiple users can edit the same configuration and receive changes from connected sessions.',
-      approach:
-        'The React client keeps local editing state in sync with incoming WebSocket updates. Node.js carries changes between connected sessions.',
-      contribution:
-        'I implemented the shared-state and synchronization flows during my internship at Lumel.',
-      tags: ['React', 'Node.js', 'WebSockets', 'TypeScript'],
-      evidence: [
-        'Shipped in the analytics authoring and collaboration workflow at Lumel Technologies.',
+      images: [
+        { src: '/projects/notchnest-music.png', alt: 'NotchNest music panel with sample artwork, playback controls, and audio output selection', width: 1080, height: 574 },
+        { src: '/projects/notchnest-calendar.png', alt: 'NotchNest calendar panel with a month grid, sample events, and a dated reminder', width: 1080, height: 574 },
       ],
-      status: 'Lumel Technologies',
+      imageCaption: "NotchNest's own app views, rendered with sample data. Music and calendar panels.",
     },
     {
       id: 'haze-removal',
       title: 'Removing dense, uneven haze',
+      tagline: 'Restoring photos through dense, uneven haze on a four-hour training budget.',
       period: 'Jan to Apr 2024',
       kind: 'research',
+      context: 'Computer vision challenge',
       summary:
-        'An image-restoration model for dense, uneven haze. A compact ResNet U-Net and histogram equalization fit the work within a four-hour challenge training budget.',
+        'This was a challenge project on restoring photos affected by dense, uneven haze. The pipeline adjusts contrast first, then uses a small ResNet U-Net to restore the image.',
       approach:
-        'The pipeline combines histogram equalization for contrast adjustment with a compact ResNet U-Net for learned image restoration.',
+        'I used histogram equalization for contrast adjustment and a compact ResNet U-Net for restoration. A four-hour training budget limited the model size and how many training iterations I could run.',
       contribution:
-        'I implemented the restoration pipeline, trained the model within the fixed budget, and prepared the challenge submission.',
+        'I built the pipeline, trained the model within a four-hour budget, and prepared the submission.',
       tags: ['Python', 'PyTorch', 'Computer Vision', 'U-Net'],
-      evidence: [
-        'Placed 16th out of 128 submissions, with a reported peak signal-to-noise ratio of 14.4 dB.',
-      ],
-      status: 'Challenge result',
+      evidence: [],
+      status: 'Completed challenge project',
     },
     {
       id: 'krypton',
-      title: 'Krypton: financial fraud investigation',
+      title: 'Krypton',
+      tagline: 'A fraud-investigation dashboard that won the Encryptcon hackathon.',
       period: 'Jan to Mar 2024',
       kind: 'build',
+      scope: 'team',
       summary:
-        'Krypton is a team-built financial-fraud prototype combining transaction classification, IP-based location checks, and a companion spam/phishing detection app.',
+        'Krypton was our hackathon project for investigating suspicious financial transactions. It puts fraud predictions, transaction timing, and location checks in a React dashboard so an analyst can review them together.',
       approach:
-        'A Random Forest uses transaction features, time intervals, and distances between successive locations to identify suspicious activity in a synthetic fraud dataset. A React interface connects to Python inference services, with IP lookups supporting investigation.',
+        'A Random Forest uses transaction details, time gaps, and distances between locations to flag suspicious activity in a synthetic dataset. The dashboard gets predictions from Python inference services and includes IP lookups. We also built a companion app for spam and phishing detection.',
       contribution:
-        'I built the fraud-detection models and integrated their predictions into the React frontend; teammates owned the API and storage layers.',
+        'I worked on the fraud models and connected their predictions to the dashboard. My teammates handled the API and data storage.',
+      highlight: 'Winner, Encryptcon Shaastra Hackathon, IIT Madras and Temenos.',
+      status: 'Hackathon prototype',
       tags: ['Python', 'React', 'FastAPI', 'MongoDB', 'Random Forest'],
       evidence: [
         'Won the Encryptcon Shaastra Hackathon organized with IIT Madras and Temenos.',
@@ -428,7 +469,7 @@ export const content: SiteContent = {
       title: 'Improving LLM-Assisted Secure Code Generation through Retrieval-Augmented Generation and Multi-Tool Feedback',
       period: 'arXiv · 2026',
       summary:
-        'Our preprint studies a C/C++ repair loop: retrieve examples of fixes, generate code, then use compiler, CodeQL, and KLEE feedback to revise it. We evaluated the system offline on 3,242 programs from DeepSeek-Coder-1.3B and CodeLlama-7B.',
+        'An offline study of C/C++ code repair using retrieved examples and compiler, CodeQL, and KLEE feedback. We evaluated 3,242 programs from DeepSeek-Coder-1.3B and CodeLlama-7B. I contributed to the retrieval-based remediation pipeline. The evaluation measures compilation, tool-detected issues, and behavior under test harnesses; it does not establish security for deployed software.',
       link: 'https://arxiv.org/abs/2601.00509',
       linkLabel: 'Read the paper',
       status: 'Coauthored preprint',
@@ -485,6 +526,7 @@ export const content: SiteContent = {
       id: 'accel-ai',
       title: 'Silver + Elite Top 5%',
       detail: 'Applied Accelerated AI, IIT Palakkad',
+      organization: 'IIT Palakkad',
     },
     {
       id: 'trinity',
