@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { content, type ExperienceCategory } from '../data/content'
 import { AdvisorText } from './AdvisorText'
+import { OrgLogo } from './OrgLogo'
 import { SectionHeading } from './SectionHeading'
 
 const filters: (ExperienceCategory | 'all')[] = ['all', 'research', 'industry', 'teaching']
@@ -33,8 +34,13 @@ export function Experience() {
               </div>
             </div>
             <div className="card timeline-card">
-              <h3>{entry.title}</h3>
-              <p className="organization">{entry.organization}</p>
+              <div className="card-heading">
+                <OrgLogo name={entry.organization} src={entry.logo} />
+                <div>
+                  <h3>{entry.title}</h3>
+                  <p className="organization">{entry.organization}</p>
+                </div>
+              </div>
               <p className="timeline-context"><AdvisorText text={entry.context} /></p>
               <ul>{entry.highlights.map((line) => <li key={line}>{line}</li>)}</ul>
             </div>

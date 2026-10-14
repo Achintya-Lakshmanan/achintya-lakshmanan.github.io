@@ -49,7 +49,7 @@ src/
   data/content.ts     # ← all content (edit here)
   data/bars.ts        # deterministic heights for the decorative bar charts
   components/         # one component per section
-  hooks/useScrollSpy.ts
+  hooks/              # scroll spy, theme toggle
   App.tsx
   main.tsx
   index.css           # design tokens and all styles
@@ -59,6 +59,8 @@ src/
 ## Design notes
 
 - Dark, LLM/RL-themed page: near-black ground (`#0A0C10`) with two accents only, mint `#7AF0C0` and violet `#A78BFA`.
+- A light theme mirrors the same tokens (`:root[data-theme='light']` in `index.css`). The navbar toggle saves the choice; first visits follow the system setting. Accent fills (`--mint-fill`, `--violet-fill`) are separate from accent text colors so both stay readable on light backgrounds.
+- Organization logos live in `public/logos` and sit on white tiles; a missing or broken logo falls back to a monogram.
 - Bricolage Grotesque for display type, IBM Plex Sans for reading, IBM Plex Mono for labels.
 - Theme motifs: the name split into tokens, an `agent_loop.py` terminal with a reward sparkline, logit-style bars on research cards, `t=` step badges on the experience timeline, and a rising reward curve behind the contact section. The bars are decorative and carry no data.
 - 3D touches are CSS only: the tilted terminal, the arXiv cover, and the angled NotchNest screenshots, which flatten on hover.

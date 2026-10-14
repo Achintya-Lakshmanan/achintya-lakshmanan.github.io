@@ -17,6 +17,7 @@ export interface Education {
   gpa: string
   scale: string
   coursework: string[]
+  logo: string
 }
 
 export type ExperienceCategory = 'research' | 'industry' | 'teaching'
@@ -27,6 +28,8 @@ export interface Experience {
   organization: string
   period: string
   category: ExperienceCategory
+  /** Path under /public. Falls back to a monogram if missing or broken. */
+  logo?: string
   /** The advisor's name is linked automatically when it appears here. */
   context: string
   highlights: string[]
@@ -82,6 +85,9 @@ export interface SoftwareProject {
 export interface Achievement {
   title: string
   detail: string
+  /** Name used for the monogram fallback. */
+  organization: string
+  logo?: string
 }
 
 export const content = {
@@ -192,6 +198,7 @@ export const content = {
       organization: 'Pennsylvania State University',
       period: 'Aug 2026 – Present',
       category: 'teaching',
+      logo: '/logos/psu.png',
       context: 'Helping run the course and supporting undergraduate students.',
       highlights: [
         'Set exam questions and design assignments, and grade student submissions.',
@@ -204,6 +211,7 @@ export const content = {
       organization: 'Penn State NLP Group',
       period: 'Apr 2026 – Present',
       category: 'research',
+      logo: '/logos/psu.png',
       context:
         'Advised by Prof. Rui Zhang. Research on LLM-driven behavior in daily-routine simulations, context sharing between agents, and hallucination in reasoning models.',
       highlights: [
@@ -219,6 +227,7 @@ export const content = {
       organization: 'Pennsylvania State University',
       period: 'Aug 2025 – May 2026',
       category: 'teaching',
+      logo: '/logos/psu.png',
       context: 'Supported undergraduate computing courses, from course materials and grading to student projects.',
       highlights: [
         'Set exam questions and assignments, and graded student submissions.',
@@ -232,6 +241,7 @@ export const content = {
       organization: 'Lumel Technologies',
       period: 'Mar – Jun 2025',
       category: 'industry',
+      logo: '/logos/lumel.svg',
       context: 'Built tools for analytics teams to generate formulas, edit shared JSON configuration, and prepare Power BI reports.',
       highlights: [
         'Developed a TypeScript RAG assistant for Inforiver Matrix formula generation using retrieved product context.',
@@ -245,6 +255,7 @@ export const content = {
       organization: 'Vision and Image Processing Lab, SNU',
       period: 'Aug 2024 – Mar 2025',
       category: 'research',
+      logo: '/logos/snu.svg',
       context: 'Medical-imaging experiments in single-view X-ray reconstruction and segmentation of noisy ultrasound images.',
       highlights: [
         'Implemented and evaluated a Mamba-enhanced NeRF pipeline for single-view X-ray reconstruction.',
@@ -257,6 +268,7 @@ export const content = {
       organization: 'Phosphene AI',
       period: 'May – Jul 2024',
       category: 'industry',
+      logo: '/logos/phosphene.png',
       context: 'Five-person team on video deepfake detection under compression, blur, color changes, and multiple identities.',
       highlights: [
         'Led implementation of the PyTorch detector and evaluated it across varied video conditions.',
@@ -269,6 +281,7 @@ export const content = {
       organization: 'Culvii',
       period: 'Feb – May 2024',
       category: 'industry',
+      logo: '/logos/culvii.svg',
       context: 'Student-management and gamified learning products with GPT-powered conversational assistance.',
       highlights: [
         'Built class-tracking and onboarding features across the Next.js interface and Node.js backend.',
@@ -281,6 +294,7 @@ export const content = {
       organization: 'Optisol Business Solutions',
       period: 'May 2023 – Jan 2024',
       category: 'industry',
+      logo: '/logos/optisol.png',
       context: 'Applied ML to image generation, automated issue resolution, and computer vision on edge hardware.',
       highlights: [
         'Built a Stable Diffusion app with a React interface and FastAPI backend, and contributed to fine-tuning.',
@@ -293,6 +307,7 @@ export const content = {
       organization: 'Speech Lab, SNU',
       period: 'Sep – Nov 2022',
       category: 'research',
+      logo: '/logos/snu.svg',
       context: 'Speech synthesis and voice cloning for Tamil versions of IIT educational content.',
       highlights: [
         'Built text-to-speech and voice-cloning experiments with encoder-decoder and Tacotron models.',
@@ -340,6 +355,7 @@ export const content = {
       period: 'expected May 2027',
       gpa: '3.8',
       scale: '4.0',
+      logo: '/logos/psu.png',
       coursework: [
         'Algorithm Analysis',
         'Computer Architecture',
@@ -357,6 +373,7 @@ export const content = {
       period: 'June 2025',
       gpa: '9.15',
       scale: '10',
+      logo: '/logos/snu.svg',
       coursework: [
         'Data Structures',
         'Web Technology',
@@ -378,10 +395,10 @@ export const content = {
     },
   ],
   achievements: [
-    { title: 'Winner, Encryptcon Shaastra Hackathon', detail: 'IIT Madras + Temenos' },
-    { title: 'Gold + Elite, top 2%', detail: 'Intro to Soft Computing, IIT Kharagpur' },
-    { title: 'Silver + Elite, top 5%', detail: 'Applied Accelerated AI, IIT Palakkad' },
-    { title: 'Electronic Keyboard Grade 6, Distinction', detail: 'Trinity College London' },
+    { title: 'Winner, Encryptcon Shaastra Hackathon', detail: 'IIT Madras + Temenos', organization: 'IIT Madras', logo: '/logos/iitm.ico' },
+    { title: 'Gold + Elite, top 2%', detail: 'Intro to Soft Computing, IIT Kharagpur', organization: 'IIT Kharagpur', logo: '/logos/iitkgp.png' },
+    { title: 'Silver + Elite, top 5%', detail: 'Applied Accelerated AI, IIT Palakkad', organization: 'IIT Palakkad' },
+    { title: 'Electronic Keyboard Grade 6, Distinction', detail: 'Trinity College London', organization: 'Trinity College London', logo: '/logos/trinity.svg' },
   ] satisfies Achievement[],
   alsoAchieved: 'Also: Event Head, Code Triathlon (Invente 7.0); Core Committee, AI/ML (SNUC Coding Club).',
 }
