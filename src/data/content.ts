@@ -416,7 +416,7 @@ export const content = {
     },
   ],
   achievements: [
-    { title: 'Winner, Best Use of Vultr', detail: 'HackPSU Fall 2026 · ChillySOS', organization: 'HackPSU' },
+    { title: 'Winner, Best Use of Vultr', detail: 'HackPSU Fall 2026 · ChillySOS', organization: 'Hack PSU' },
     { title: 'Winner, Encryptcon Shaastra Hackathon', detail: 'IIT Madras + Temenos', organization: 'IIT Madras', logo: '/logos/iitm.ico' },
     { title: 'Gold + Elite, top 2%', detail: 'Intro to Soft Computing, IIT Kharagpur', organization: 'IIT Kharagpur', logo: '/logos/iitkgp.png' },
     { title: 'Silver + Elite, top 5%', detail: 'Applied Accelerated AI, IIT Palakkad', organization: 'IIT Palakkad' },
