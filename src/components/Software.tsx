@@ -21,7 +21,10 @@ export function Software() {
               <div className="software-body">
                 <p className="muted">{project.summary}</p>
                 <p>{project.contribution}</p>
-                {project.link && <a className="button button-ghost" href={project.link.href} target="_blank" rel="noopener noreferrer">{project.link.label} ↗</a>}
+                {project.links && <div className="software-links">
+                  {project.links.map((link) => <a key={link.href} className="button button-ghost" href={link.href}
+                    target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}
+                </div>}
               </div>
             </div>
             {project.images && <figure className="screens">

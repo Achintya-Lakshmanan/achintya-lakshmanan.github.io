@@ -79,7 +79,7 @@ export interface SoftwareProject {
   tags: string[]
   images?: { src: string; alt: string; width: number; height: number }[]
   caption?: string
-  link?: { label: string; href: string }
+  links?: { label: string; href: string }[]
 }
 
 export interface Achievement {
@@ -317,6 +317,27 @@ export const content = {
   ] satisfies Experience[],
   software: [
     {
+      id: 'chillysos',
+      title: 'ChillySOS',
+      label: 'team hackathon project · HackPSU Fall 2026',
+      badge: 'Winner · Best Use of Vultr',
+      tagline: 'Heat and winter-storm planning for Philadelphia: a dashboard for city planners and an iPhone app for residents and volunteers.',
+      summary:
+        "The dashboard replays a real recorded heat or cold day for 20,000 simulated Philadelphians, built from census data and real time-use survey diaries, and ranks the city's cooling and warming sites by how much of the danger each can reach. The iPhone app shows residents which sites are open and how busy they are, and connects them to a nearby volunteer with one tap.",
+      contribution:
+        'I built the simulation pipeline on real data, the iPhone app and its API, Auth0 sign-in, the Gemini chat that answers questions with SQL over Tiger Data, the ElevenLabs voice check-ins, and the Vultr deployment. My teammates designed the dashboard UI and branding and trained the site-ranking models.',
+      tags: ['Python', 'Swift / SwiftUI', 'MapLibre', 'scikit-learn', 'Gemini', 'Tiger Data', 'Auth0', 'Vultr'],
+      images: [
+        { src: '/projects/chillysos-heat.webp', alt: 'ChillySOS dashboard replaying a severe Philadelphia heatwave, with simulated residents on a map and a headline of 10.2 hours of predicted danger for unhoused residents', width: 1080, height: 842 },
+        { src: '/projects/chillysos-cold.webp', alt: 'ChillySOS dashboard in winter-storm mode, with simulated residents on a blue-themed map and a headline of 13.8 hours of predicted danger for unhoused residents', width: 1080, height: 842 },
+      ],
+      caption: 'The planning dashboard replaying a severe heatwave and a winter storm. Residents are simulated.',
+      links: [
+        { label: 'chillysos.us', href: 'https://chillysos.us' },
+        { label: 'Repository', href: 'https://github.com/Achintya-Lakshmanan/swelter' },
+      ],
+    },
+    {
       id: 'notchnest',
       title: 'NotchNest',
       label: 'personal macOS app · 2026',
@@ -343,7 +364,7 @@ export const content = {
       contribution:
         'I worked on the fraud models and connected their predictions to the dashboard; my teammates handled the API and data storage.',
       tags: ['Python', 'React', 'FastAPI', 'MongoDB', 'Random Forest'],
-      link: { label: 'Krypton repository', href: 'https://github.com/Achintya-Lakshmanan/Technica_LAVA' },
+      links: [{ label: 'Krypton repository', href: 'https://github.com/Achintya-Lakshmanan/Technica_LAVA' }],
     },
   ] satisfies SoftwareProject[],
   education: [
@@ -395,6 +416,7 @@ export const content = {
     },
   ],
   achievements: [
+    { title: 'Winner, Best Use of Vultr', detail: 'HackPSU Fall 2026 · ChillySOS', organization: 'HackPSU' },
     { title: 'Winner, Encryptcon Shaastra Hackathon', detail: 'IIT Madras + Temenos', organization: 'IIT Madras', logo: '/logos/iitm.ico' },
     { title: 'Gold + Elite, top 2%', detail: 'Intro to Soft Computing, IIT Kharagpur', organization: 'IIT Kharagpur', logo: '/logos/iitkgp.png' },
     { title: 'Silver + Elite, top 5%', detail: 'Applied Accelerated AI, IIT Palakkad', organization: 'IIT Palakkad' },
