@@ -8,7 +8,7 @@
     <title>Achintya Lakshmanan | Software Engineer &amp; ML Researcher</title>
     <meta
       name="description"
-      content="Achintya Lakshmanan, Penn State MS CSE student and graduate researcher. LLM agents, reinforcement learning, full-stack engineering, and native macOS apps."
+      content="Achintya Lakshmanan fine-tunes, steers and evaluates language models in the Penn State NLP Group, and builds full-stack and native software. Graduating May 2027."
     />
     <meta name="author" content="Achintya Lakshmanan" />
     <meta name="robots" content="index, follow" />
@@ -22,7 +22,7 @@
     />
     <meta
       property="og:description"
-      content="Achintya Lakshmanan, Penn State MS CSE student and graduate researcher. LLM agents, reinforcement learning, full-stack engineering, and native macOS apps."
+      content="Achintya Lakshmanan fine-tunes, steers and evaluates language models in the Penn State NLP Group, and builds full-stack and native software. Graduating May 2027."
     />
     <meta property="og:site_name" content="Achintya Lakshmanan" />
     <meta property="og:locale" content="en_US" />
@@ -35,7 +35,7 @@
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="Achintya Lakshmanan — LLM researcher and software engineer"
+      content="Achintya Lakshmanan — Software Engineer &amp; ML Researcher"
     />
 
     <!-- Twitter -->
@@ -46,7 +46,7 @@
     />
     <meta
       name="twitter:description"
-      content="Achintya Lakshmanan, Penn State MS CSE student and graduate researcher. LLM agents, reinforcement learning, full-stack engineering, and native macOS apps."
+      content="Achintya Lakshmanan fine-tunes, steers and evaluates language models in the Penn State NLP Group, and builds full-stack and native software. Graduating May 2027."
     />
     <meta
       name="twitter:image"
@@ -54,17 +54,20 @@
     />
     <meta
       name="twitter:image:alt"
-      content="Achintya Lakshmanan — LLM researcher and software engineer"
+      content="Achintya Lakshmanan — Software Engineer &amp; ML Researcher"
     />
 
-    <meta name="theme-color" content="#0A0C10" />
-    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#F3F0E8" />
+    <meta name="color-scheme" content="light dark" />
     <script>
       (function () {
-        var theme = 'dark'
-        try { theme = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark') } catch (e) {}
+        // The page is paper by default; the night page is a choice, remembered.
+        var theme = 'light'
+        try { theme = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light' } catch (e) {}
         document.documentElement.dataset.theme = theme
-        if (theme === 'light') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F4F5F1')
+        // "Skip the room" is remembered too, and applied before the first paint so the layout does not jump.
+        try { if (localStorage.getItem('room') === 'off') document.documentElement.classList.add('plain') } catch (e) {}
+        if (theme === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0A0C10')
       })()
     </script>
 
@@ -74,10 +77,10 @@
         "@type": "Person",
         "name": "Achintya Lakshmanan",
         "url": "https://achintya-lakshmanan.github.io/",
-        "image": "https://achintya-lakshmanan.github.io/me.jpg",
+        "image": "https://achintya-lakshmanan.github.io/me.webp",
         "email": "mailto:aql6062@psu.edu",
         "jobTitle": "Software Engineer and ML Researcher",
-        "description": "Graduate Researcher and MS CSE student at Penn State, expected May 2027. Work in LLM agents, reinforcement learning, full-stack engineering, and native macOS development.",
+        "description": "Graduate Researcher and MS CSE student at Penn State, expected May 2027. Work in fine-tuning, steering and evaluating language models, full-stack engineering, and native macOS development.",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "University Park",

@@ -1,63 +1,48 @@
-import { logitBars } from '../data/bars'
 import { content } from '../data/content'
-import { SectionHeading } from './SectionHeading'
+import { ChapterHeading } from './ChapterHeading'
 
 export function Research() {
-  const { featured, research, publication } = content
+  const { interests, current, publication, earlier } = content.research
   return (
-    <section id="research" className="section" aria-labelledby="research-title">
-      <div className="page-width">
-        <SectionHeading id="research-title" index="01 / research" title="Research" />
-
-        <article className="card card-large featured">
-          <div className="featured-title">
-            <div className="chips">
-              <span className="chip chip-solid">{featured.label}</span>
-              <span className="chip chip-outline">{featured.status}</span>
-            </div>
-            <h3 className="featured-name">{featured.title}</h3>
-            <p className="featured-subtitle">{featured.subtitle}</p>
-          </div>
-          <div className="featured-body">
-            <p className="lead">{featured.question}</p>
-            <p className="muted">{featured.summary}</p>
-            <p className="contribution"><span className="comment">what I do · </span>{featured.contribution}</p>
-            <p className="meta">{featured.meta}</p>
-          </div>
-        </article>
-
-        <div className="grid-two research-grid">
-          {research.map((project, index) => <article key={project.id} className="card project-card">
-            <div className={'bars logits accent-' + project.accent} aria-hidden>
-              {logitBars(24, index + 1).map((value, i) => <span key={i} style={{ height: value * 100 + '%', opacity: 0.35 + value * 0.6 }} />)}
-            </div>
-            <div className="project-meta">
-              <span>{project.period}</span>
-              <span className={'status status-' + project.tone}>{project.status}</span>
-            </div>
-            <h3>{project.title}</h3>
-            <p className="project-hook">{project.tagline}</p>
-            <p className="muted">{project.summary}</p>
-            <div className="project-footer">
-              <span>{project.tags.join(' · ')}</span>
-              {project.link && <a href={project.link} target="_blank" rel="noopener noreferrer">repository ↗</a>}
-            </div>
-          </article>)}
-        </div>
-
-        <article className="publication">
-          <div className="paper-cover" aria-hidden>
-            <span className="paper-venue">{publication.venue}</span>
-            <span className="paper-year">{publication.year}</span>
-          </div>
-          <div className="publication-body">
-            <p className="publication-label">{publication.label}</p>
-            <h3>{publication.title}</h3>
-            <p>{publication.summary}</p>
-            <a className="button button-violet" href={publication.link} target="_blank" rel="noopener noreferrer">Read the paper ↗</a>
-          </div>
-        </article>
+    <section id="research" className="chapter" data-chapter="0" aria-labelledby="research-title">
+      {/* The chapter opens with its heading, held at the top while the camera turns to its corner of the room. */}
+      <div className="gate" data-beat="research">
+        <ChapterHeading id="research-title" number={1} title="Research" />
       </div>
+      <p className="chapter-lead">{interests}</p>
+
+      <h3 className="subheading">What I'm working on</h3>
+      {current.map((project) => <article key={project.id} className="card" data-beat={project.id}>
+        <p className="card-top"><span className="tag tag-research">{project.status}</span></p>
+        <h4 className="card-title">{project.name}</h4>
+        <p className="bubble">{project.question}</p>
+        <p>{project.line}</p>
+        <p className="meta">{project.tags.join(' · ')}</p>
+      </article>)}
+
+      <h3 className="subheading">Preprint</h3>
+      <article className="card" data-beat="publication">
+        <p className="card-top"><span className="kicker">{publication.venue} · {publication.year}</span></p>
+        <h4 className="card-title card-title-small">{publication.title}</h4>
+        <p className="authors">
+          {publication.authors.map((author, index) => <span key={author}>
+            {index > 0 && ', '}
+            {author === content.name ? <strong>{author}</strong> : author}
+          </span>)}
+        </p>
+        <p>{publication.summary}</p>
+        <p>{publication.findings}</p>
+        <p><strong>My part:</strong> {publication.contribution}</p>
+        <a className="inline-link" href={publication.link} target="_blank" rel="noopener noreferrer">Read the paper ↗</a>
+      </article>
+
+      <h3 className="subheading">Earlier</h3>
+      <article className="card" data-beat="haze">
+        <p className="card-top"><span className="kicker">{earlier.kicker}</span></p>
+        <h4 className="card-title card-title-small">{earlier.title}</h4>
+        <p>{earlier.summary}</p>
+        <p className="meta">{earlier.results.map((result) => result.headline + ' ' + result.label).join(' · ')}</p>
+      </article>
     </section>
   )
 }

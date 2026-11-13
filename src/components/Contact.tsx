@@ -1,26 +1,20 @@
-import { rewardBars } from '../data/bars'
 import { content } from '../data/content'
-
-const curve = rewardBars(40, 99, 11)
+import { ChapterHeading } from './ChapterHeading'
 
 export function Contact() {
   return (
-    <section id="contact" className="contact" aria-labelledby="contact-title">
-      <div className="bars reward-curve" aria-hidden>
-        {curve.map((value, i) => <span key={i} className={i > 30 ? 'hot' : undefined} style={{ height: value * 100 + '%' }} />)}
+    <section id="contact" className="chapter chapter-last" data-chapter="4" aria-labelledby="contact-title">
+      {/* The chapter opens with its heading, held at the top while the camera turns to its corner of the room. */}
+      <div className="gate" data-beat="contact">
+        <ChapterHeading id="contact-title" number={5} title="Contact" />
       </div>
-      <div className="page-width contact-layout">
-        <div className="contact-copy">
-          <p className="section-index">05 / reward ↑</p>
-          <h2 id="contact-title">Let's talk.</h2>
-          <p>{content.contactCopy}</p>
-        </div>
-        <div className="contact-actions">
-          <a className="button button-primary button-huge" href={'mailto:' + content.email}>{content.email} ↗</a>
-          <div className="contact-socials">
-            {content.socials.map((link) => <a key={link.href} className="button button-ghost" href={link.href}
-              target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}
-          </div>
+      <div className="card contact-card">
+        <p className="contact-title">Let's talk.</p>
+        <p>{content.contactCopy}</p>
+        <a className="button button-mint button-large contact-email" href={'mailto:' + content.email}>{content.email} ↗</a>
+        <div className="card-links">
+          {content.socials.map((link) => <a key={link.href} className="button" href={link.href}
+            target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}
         </div>
       </div>
     </section>

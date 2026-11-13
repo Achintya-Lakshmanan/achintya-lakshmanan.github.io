@@ -1,46 +1,57 @@
 import { content } from '../data/content'
+import { ChapterHeading } from './ChapterHeading'
 import { OrgLogo } from './OrgLogo'
-import { SectionHeading } from './SectionHeading'
 
 export function About() {
   return (
-    <section id="about" className="section section-alt" aria-labelledby="about-title">
-      <div className="page-width">
-        <SectionHeading id="about-title" index="04 / about" title="About" />
-        <div className="grid-two">
-          {content.education.map((school, index) => <article key={school.id} className="card about-card">
-            <div className="education-top">
-              <p>{school.period}</p>
-              <p><span className={'gpa ' + (index === 0 ? 'mint' : 'violet')}>{school.gpa}</span>/{school.scale}</p>
-            </div>
-            <div className="card-heading">
-              <OrgLogo name={school.institution} src={school.logo} />
-              <div>
-                <h3>{school.degree}</h3>
-                <p className="institution">{school.institution} · {school.location}</p>
-              </div>
-            </div>
-            <p className="list">{school.coursework.join(' · ')}</p>
-          </article>)}
-          <article className="card about-card">
-            <p className="comment">// toolkit</p>
-            {content.skills.map((group) => <div key={group.category} className="skill-group">
-              <h3>{group.category}</h3>
-              <p className="list">{group.skills.join(' · ')}</p>
-            </div>)}
-          </article>
-          <article className="card about-card">
-            <p className="comment violet">// recognition</p>
-            <ul className="awards">
-              {content.achievements.map((award) => <li key={award.title}>
-                <OrgLogo name={award.organization} src={award.logo} size={36} />
-                <div><strong>{award.title}</strong><span>{award.detail}</span></div>
-              </li>)}
-            </ul>
-            <p className="also">{content.alsoAchieved}</p>
-          </article>
+    // Read out in the night sky, through the open window: a searchlight finds each card in turn (see index.css).
+    <section id="about" className="chapter chapter-sky" data-chapter="3" aria-labelledby="about-title">
+      {/* The chapter opens with its heading, held at the top while the camera turns to its corner of the room. */}
+      <div className="gate" data-beat="about">
+        <ChapterHeading id="about-title" number={4} title="About" />
+      </div>
+      <div className="card about-intro" data-beat="about-intro">
+        <figure className="portrait">
+          <img src={content.photo} alt="Achintya Lakshmanan at the Grand Canyon" width={520} height={650} loading="lazy" decoding="async" />
+        </figure>
+        <div className="about-words">
+          {content.about.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </div>
       </div>
+
+      <article className="card" data-beat="education">
+        <h3 className="kicker">Education</h3>
+        <ul className="plain-list">
+          {content.education.map((school) => <li key={school.id}>
+            <OrgLogo name={school.institution} src={school.logo} size={40} />
+            <div>
+              <strong>{school.degree}</strong>
+              <span>{school.institution} · {school.period}</span>
+              <span>GPA <b className="figure">{school.gpa}</b></span>
+            </div>
+          </li>)}
+        </ul>
+      </article>
+
+      <article className="card" data-beat="recognition">
+        <h3 className="kicker">Recognition</h3>
+        <ul className="plain-list">
+          {content.achievements.map((award) => <li key={award.title}>
+            <OrgLogo name={award.organization} src={award.logo} size={40} />
+            <div><strong>{award.title}</strong><span>{award.detail}</span></div>
+          </li>)}
+        </ul>
+      </article>
+
+      <article className="card" data-beat="skills">
+        <h3 className="kicker">Skills</h3>
+        <dl className="skills">
+          {content.skills.map((group) => <div key={group.category}>
+            <dt>{group.category}</dt>
+            <dd>{group.skills.join(' · ')}</dd>
+          </div>)}
+        </dl>
+      </article>
     </section>
   )
 }
